@@ -8,7 +8,7 @@ An evidence-led reconstruction of Xiaoyi for design research, interaction review
 
 This is an independent research project, **not Huawei's official design system**. Observed structure, estimated values and inferred semantics are distinguished. AI, voice, camera, visual search and cross-app actions are local simulations, without real Xiaoyi services.
 
-Use **中文 / English** in the header. The choice is remembered locally; `?lang=en` and `?lang=zh` also select a language. All Markdown files contain both languages. Original Chinese reference figures remain unchanged and have English explanations. Downloadable reference, web-source, token and motion-stage JSON includes explicit English metadata while original filenames, source URLs and hashes remain intact.
+Use **中文 / English** in the header. The choice is remembered locally; `?lang=en` and `?lang=zh` also select a language. All Markdown files contain both languages. Original Chinese reference figures remain unchanged and have English explanations. Reference, web-source, token, icon and motion-stage JSON files include explicit English metadata while original filenames, source URLs and hashes remain intact.
 
 ![English interface preview](docs/preview-en.png)
 
@@ -91,7 +91,7 @@ Every live orb uses real Three.js TSL with transparent borders; the source recor
 
 ![系统预览](docs/preview.png)
 
-界面右上角可切换中文 / English，语言选择保存在本机；也可使用 `?lang=en` 或 `?lang=zh`。所有 Markdown 都含完整中英文说明。参考清单、网络来源、设计变量和动效阶段 JSON 同时提供英文字段；原始文件名与参考图中的中文保持原样，并附英文解读。
+界面右上角可切换中文 / English，语言选择保存在本机；也可使用 `?lang=en` 或 `?lang=zh`。所有 Markdown 都含完整中英文说明。参考清单、网络来源、设计变量、图标和动效阶段 JSON 同时提供英文字段；原始文件名与参考图中的中文保持原样，并附英文解读。
 
 ## 开始使用
 
