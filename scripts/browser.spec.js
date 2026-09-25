@@ -4,6 +4,7 @@ const pages = [
   "foundations",
   "components",
   "motion",
+  "icons",
   "patterns",
   "reference",
   "handoff",
@@ -123,7 +124,7 @@ test("conversation submission and camera simulation", async ({ page }) => {
   await expect(d.locator(".xy-assistant-message")).toContainText("设计讨论会");
   await d.getByLabel("实时对话", { exact: true }).click();
   await d.getByLabel("打开摄像头示例").click();
-  await expect(d.getByText("视觉对话", { exact: true })).toBeVisible();
+  await expect(d.locator(".vision-demo")).toHaveAttribute("data-camera", "on");
   await d.getByLabel("挂断").click();
   await expect(d.locator(".xy-assistant-message")).toBeVisible();
 });
@@ -155,27 +156,88 @@ test("drag and keyboard alternative receive content", async ({ page }) => {
   await d.getByRole("button", { name: "发送给小艺" }).click();
   await expect(d.getByRole("status")).toContainText("已接收");
 });
-test("motion pause, resize and reduced motion", async ({ page }) => {
+test("TSL WebGPU timeline, pause, parameters and reduced motion", async ({
+  page,
+}) => {
+  const errors = [];
+  page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("/#motion");
-  await page.getByRole("button", { name: "聆听 多环扩散，回应输入。" }).click();
-  await expect(page.locator(".motion-stage .xy-orb")).toHaveClass(/listening/);
-  await page.getByRole("button", { name: "暂停动画", exact: true }).click();
-  expect(
-    await page
-      .locator(".motion-stage .ring-one")
-      .evaluate((el) => getComputedStyle(el).animationPlayState),
-  ).toBe("paused");
-  await page.getByLabel("光球尺寸").fill("120");
-  await expect(page.locator(".motion-stage .xy-orb")).toHaveCSS(
-    "width",
-    "120px",
+  const orb = page.locator(".reference-render"),
+    canvas = orb.locator("canvas");
+  await expect(orb).toHaveAttribute("data-render-status", "ready");
+  await expect(canvas).toHaveAttribute("data-time", /\d/);
+  await page.getByLabel("参考时间轴", { exact: true }).fill("5");
+  await expect(canvas).toHaveAttribute("data-time", "5.000");
+  await expect(canvas).toHaveAttribute("data-paused", "true");
+  const before = await canvas.screenshot();
+  await page.waitForTimeout(250);
+  expect((await canvas.screenshot()).equals(before)).toBeTruthy();
+  await page.getByLabel("主环半径", { exact: true }).fill("0.65");
+  await page.waitForTimeout(120);
+  expect((await canvas.screenshot()).equals(before)).toBeFalsy();
+  const download = page.waitForEvent("download");
+  await page.getByRole("button", { name: "导出参数", exact: true }).click();
+  const file = await download;
+  expect(file.suggestedFilename()).toBe("xiaoyi-motion.parameters.json");
+  await page.getByLabel("导入动效参数").setInputFiles({
+    name: "settings.json",
+    mimeType: "application/json",
+    buffer: Buffer.from(
+      JSON.stringify({
+        parameters: { radius: 0.39, maxFps: 15, cyan: "#ff0033" },
+      }),
+    ),
+  });
+  await expect(page.getByLabel("主环半径", { exact: true })).toHaveValue(
+    "0.39",
   );
+  await page.getByRole("button", { name: "播放动效", exact: true }).click();
+  await expect(canvas).not.toHaveAttribute("data-time", "5.000");
   await page.emulateMedia({ reducedMotion: "reduce" });
-  expect(
-    await page
-      .locator(".motion-stage .ring-one")
-      .evaluate((el) => getComputedStyle(el).animationName),
-  ).toBe("none");
+  await expect(canvas).toHaveAttribute("data-paused", "true");
+  const frozen = await canvas.getAttribute("data-time");
+  await page.waitForTimeout(250);
+  expect(await canvas.getAttribute("data-time")).toBe(frozen);
+  expect(errors).toEqual([]);
+});
+test("same TSL graph renders with WebGL2 fallback", async ({ page }) => {
+  const errors = [];
+  page.on("pageerror", (e) => errors.push(e.message));
+  await page.goto("/?backend=webgl#motion");
+  const orb = page.locator(".reference-render");
+  await expect(orb).toHaveAttribute("data-render-status", "ready");
+  await expect(orb).toHaveAttribute("data-backend", "WebGL2 · TSL");
+  await page.getByLabel("参考时间轴", { exact: true }).fill("14.5");
+  await expect(orb.locator("canvas")).toHaveAttribute("data-time", "14.500");
+  await page.screenshot({ path: "qa/tsl-webgl.png" });
+  expect(errors).toEqual([]);
+});
+test("icon library search, controls, SVG and ZIP downloads", async ({
+  page,
+  request,
+}) => {
+  await page.goto("/#icons");
+  await expect(page.locator(".icon-tile")).toHaveCount(77);
+  await page.getByLabel("搜索图标").fill("摘要");
+  await expect(page.locator(".icon-tile")).toHaveCount(1);
+  await page.locator(".icon-tile").click();
+  await page.getByLabel("图标尺寸").selectOption("48");
+  await page.getByLabel("图标笔画").selectOption("2.5");
+  await expect(page.locator(".icon-tile svg")).toHaveAttribute("width", "48");
+  await expect(page.locator(".icon-tile svg")).toHaveAttribute(
+    "stroke-width",
+    "2.5",
+  );
+  const download = page.waitForEvent("download");
+  await page.getByRole("button", { name: "下载 SVG", exact: true }).click();
+  expect((await download).suggestedFilename()).toBe("xiaoyi-summarize.svg");
+  await page.getByLabel("搜索图标").fill("nothing");
+  await expect(page.getByText("没有匹配的图标。")).toBeVisible();
+  await page.getByRole("button", { name: "清除筛选" }).click();
+  await expect(page.locator(".icon-tile")).toHaveCount(77);
+  const manifest = await (await request.get("/icons/manifest.json")).json();
+  expect(manifest.icons).toHaveLength(77);
+  expect((await request.get("/downloads/xiaoyi-icons.zip")).ok()).toBeTruthy();
 });
 test("portable token downloads match count", async ({ request }) => {
   const data = await (
@@ -185,3 +247,402 @@ test("portable token downloads match count", async ({ request }) => {
   expect(data.color.primary.$value).toBe("#0a59f7");
   expect((await request.get("/downloads/tokens.css")).ok()).toBeTruthy();
 });
+
+test("common cards expand and selection remains exclusive", async ({
+  page,
+}) => {
+  await page.goto("/#components");
+  await page.getByRole("button", { name: "卡片", exact: true }).click();
+  const scope = page.locator("#component-content-cards");
+  const details = scope.getByRole("button", { name: "查看详情", exact: true });
+  await details.click();
+  await expect(scope.getByText("参会人：林然、周宁、陈悦")).toBeVisible();
+  await scope.getByRole("button", { name: "收起详情" }).click();
+  await expect(scope.locator(".card-detail")).toHaveCount(0);
+  await scope.getByRole("button", { name: "简洁 快速获取要点" }).click();
+  await expect(
+    scope.getByRole("button", { name: "简洁 快速获取要点" }),
+  ).toHaveAttribute("aria-pressed", "true");
+  await expect(
+    scope.getByRole("button", { name: "完整 展开更多细节" }),
+  ).toHaveAttribute("aria-pressed", "false");
+  await expect(
+    scope.getByRole("button", { name: "深度研究 暂不可用" }),
+  ).toBeDisabled();
+});
+test("sliders support keyboard, endpoints, steps, pointer and disabled state", async ({
+  page,
+}) => {
+  await page.goto("/#components");
+  await page.getByRole("button", { name: "Slider", exact: true }).click();
+  const volume = page.getByRole("slider", { name: "音量", exact: true });
+  await volume.focus();
+  await page.keyboard.press("ArrowRight");
+  await expect(volume).toHaveValue("65");
+  await page.keyboard.press("End");
+  await expect(volume).toHaveValue("100");
+  await page.keyboard.press("Home");
+  await expect(volume).toHaveValue("0");
+  const box = await volume.boundingBox();
+  await page.mouse.click(box.x + box.width * 0.7, box.y + box.height / 2);
+  expect(+(await volume.inputValue())).toBeGreaterThan(60);
+  expect(+(await volume.inputValue())).toBeLessThan(80);
+  const speed = page.getByRole("slider", { name: "朗读速度", exact: true });
+  await speed.focus();
+  await page.keyboard.press("ArrowRight");
+  await expect(speed).toHaveValue("1.25");
+  await expect(speed).toHaveAttribute("aria-valuetext", "1.25×");
+  await expect(
+    page.getByRole("slider", { name: "不可用", exact: true }),
+  ).toBeDisabled();
+});
+test("chips filter, remove, restore and bottom dock submits", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/#components");
+  await page.getByRole("button", { name: "底部 Chip", exact: true }).click();
+  const scope = page.locator("#component-bottom-chips");
+  await scope.getByRole("button", { name: "已收藏", exact: true }).click();
+  await expect(scope.getByText("收藏内容 · 3 项")).toBeVisible();
+  await scope.getByRole("button", { name: "移除设计周报" }).click();
+  await expect(scope.getByRole("button", { name: "移除设计周报" })).toHaveCount(
+    0,
+  );
+  await scope.getByRole("button", { name: "恢复标签" }).click();
+  await expect(
+    scope.getByRole("button", { name: "移除设计周报" }),
+  ).toBeVisible();
+  await scope.getByRole("button", { name: "生成脑图", exact: true }).click();
+  await expect(scope.locator(".dock-reply")).toContainText("四个分支");
+  await scope.getByRole("button", { name: "翻译全文", exact: true }).focus();
+  await page.keyboard.press("Enter");
+  await expect(scope.locator(".dock-reply")).toContainText(
+    "contextual assistance",
+  );
+  await scope.getByLabel("底部输入", { exact: true }).fill("明天几点开会");
+  await scope.getByLabel("发送底部问题").click();
+  await expect(scope.locator(".dock-reply")).toHaveText(
+    "已记录问题：明天几点开会",
+  );
+  await expect(scope.getByLabel("发送底部问题")).toBeDisabled();
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBeTruthy();
+});
+test("toast expiry, replacement, focus and unmount", async ({ page }) => {
+  await page.clock.install();
+  await page.goto("/#components");
+  await page.getByRole("button", { name: "Toast / 进度", exact: true }).click();
+  const scope = page.locator("#component-toast");
+  const action = scope.getByRole("button", { name: "完成操作", exact: true });
+  await action.click();
+  await expect(action).toBeFocused();
+  await expect(scope.locator(".xy-toast")).toHaveText("已完成");
+  await page.clock.runFor(1000);
+  await scope.getByRole("button", { name: "复制内容" }).click();
+  await page.clock.runFor(600);
+  await expect(scope.locator(".xy-toast")).toHaveText("已复制");
+  await page.clock.runFor(950);
+  await expect(scope.locator(".xy-toast")).toHaveCount(0);
+  await scope.getByLabel("Toast 持续时间").selectOption("5000");
+  await scope.getByRole("button", { name: "显示长提示" }).click();
+  await page.clock.runFor(1600);
+  await expect(scope.locator(".xy-toast")).toContainText("网络连接不可用");
+  await page.getByRole("button", { name: "Slider", exact: true }).click();
+  await page.clock.runFor(5000);
+  await page.getByRole("button", { name: "Toast / 进度", exact: true }).click();
+  await expect(page.locator(".xy-toast")).toHaveCount(0);
+});
+test("switch, radio, mixed checkbox and segmented state", async ({ page }) => {
+  await page.goto("/#components");
+  await page.getByRole("button", { name: "开关 / 选择", exact: true }).click();
+  const scope = page.locator("#component-choice-controls");
+  const toggle = scope.getByRole("switch", { name: /自动朗读/ });
+  await expect(toggle).toBeChecked();
+  await toggle.focus();
+  await page.keyboard.press("Space");
+  await expect(toggle).not.toBeChecked();
+  await expect(
+    scope.getByRole("switch", { name: "跨设备接续" }),
+  ).toBeDisabled();
+  await scope.getByRole("radio", { name: "仅耳机", exact: true }).check();
+  await expect(
+    scope.getByRole("radio", { name: "自动", exact: true }),
+  ).not.toBeChecked();
+  await expect(
+    scope.getByRole("radio", { name: "仅耳机", exact: true }),
+  ).toBeChecked();
+  const all = scope.getByRole("checkbox", { name: "全部内容", exact: true });
+  await expect(all).toHaveAttribute("aria-checked", "mixed");
+  await all.click();
+  await expect(scope.getByRole("checkbox", { name: "图片说明" })).toBeChecked();
+  await all.click();
+  await expect(
+    scope.getByRole("checkbox", { name: "正文内容" }),
+  ).not.toBeChecked();
+  await scope.getByRole("radio", { name: "列表", exact: true }).focus();
+  await page.keyboard.press("ArrowRight");
+  await expect(
+    scope.getByRole("radio", { name: "脑图", exact: true }),
+  ).toBeChecked();
+});
+test("progress completes, pauses, resets and reduced motion is static", async ({
+  page,
+}) => {
+  await page.clock.install();
+  await page.goto("/#components");
+  await page.getByRole("button", { name: "Toast / 进度", exact: true }).click();
+  const scope = page.locator("#component-progress");
+  const progress = scope.getByRole("progressbar", {
+    name: "文档整理进度",
+    exact: true,
+  });
+  await scope.getByRole("button", { name: "继续整理" }).click();
+  await page.clock.runFor(500);
+  await scope.getByRole("button", { name: "暂停", exact: true }).click();
+  const frozen = await progress.getAttribute("aria-valuenow");
+  await page.clock.runFor(500);
+  await expect(progress).toHaveAttribute("aria-valuenow", frozen);
+  await scope.getByRole("button", { name: "继续整理" }).click();
+  await page.clock.runFor(5000);
+  await expect(progress).toHaveAttribute("aria-valuenow", "100");
+  await expect(scope.getByText("整理完成", { exact: true })).toBeVisible();
+  await scope.getByRole("button", { name: "重置进度" }).click();
+  await expect(progress).toHaveAttribute("aria-valuenow", "0");
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  expect(
+    await scope
+      .locator(".is-indeterminate .xy-progress-ring > svg")
+      .evaluate((el) => getComputedStyle(el).animationName),
+  ).toBe("none");
+});
+test("control search and official reference previews", async ({ page }) => {
+  await page.goto("/");
+  await page.getByLabel("搜索设计系统").fill("Slider");
+  await page.locator(".search-results button").click();
+  await expect(page).toHaveURL(/#components$/);
+  await expect(page.locator("#component-sliders")).toBeVisible();
+  await expect(page.locator("#component-content-cards")).toHaveCount(0);
+  await page
+    .locator("#component-sliders")
+    .getByText("查看官方示例图", { exact: true })
+    .click();
+  const img = page.locator("#component-sliders .control-reference img");
+  await expect(img).toBeVisible();
+  expect(
+    await img.evaluate((el) => el.complete && el.naturalWidth > 0),
+  ).toBeTruthy();
+  await expect(
+    page.locator("#component-sliders .control-source-links a"),
+  ).toHaveAttribute("href", /openharmony\/docs/);
+});
+
+for (const width of [1440, 390])
+  test(`English coverage and responsive layout at ${width}px`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width, height: 1000 });
+    const errors = [];
+    page.on("pageerror", (e) => errors.push(e.message));
+    for (const id of [
+      "overview",
+      "foundations",
+      "components",
+      "motion",
+      "icons",
+      "patterns",
+      "reference",
+      "handoff",
+    ]) {
+      await page.goto(`/?lang=en#${id}`);
+      await expect(page.locator("html")).toHaveAttribute("lang", "en");
+      await expect(page.locator("main h1")).toBeVisible();
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= innerWidth + 1,
+        ),
+      ).toBe(true);
+      const untranslated = await page.locator("main").evaluate((main) => {
+        const walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT);
+        const found = [];
+        while (walker.nextNode()) {
+          const n = walker.currentNode;
+          if (n.parentElement.closest('[translate="no"]')) continue;
+          if (
+            /[\u3400-\u9fff]/.test(n.textContent) &&
+            !n.textContent.match(/\.(png|jpe?g|mp4|mov)/)
+          )
+            found.push(n.textContent);
+        }
+        return found;
+      });
+      expect(untranslated).toEqual([]);
+    }
+    expect(errors).toEqual([]);
+  });
+test("language choice persists and preserves slider state and user input", async ({
+  page,
+}) => {
+  await page.goto("/?lang=zh#components");
+  await page.getByRole("button", { name: "Slider", exact: true }).click();
+  await page.getByRole("slider", { name: "音量", exact: true }).fill("73");
+  await page.getByRole("button", { name: "English", exact: true }).click();
+  await expect(
+    page.getByRole("slider", { name: "Volume", exact: true }),
+  ).toHaveValue("73");
+  await page.reload();
+  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  await page.goto("/#patterns");
+  await page
+    .getByRole("button", { name: "Full-screen conversation", exact: true })
+    .click();
+  await page.getByPlaceholder("How can I help?").fill("阅读笔记");
+  await page
+    .locator(".pattern-canvas")
+    .getByRole("button", { name: "Send", exact: true })
+    .click();
+  await expect(page.locator(".xy-user-message")).toHaveText("阅读笔记");
+  await page.goto("/?lang=en#reference");
+  await page
+    .getByRole("textbox", { name: "Search references", exact: true })
+    .fill("Voice listening");
+  await expect(page.locator(".reference-card")).toHaveCount(1);
+  await page.goto("/?lang=en#icons");
+  await page
+    .getByRole("textbox", { name: "Search icons", exact: true })
+    .fill("End call");
+  await expect(page.locator(".icon-tile")).toHaveCount(1);
+  await page.goto("/?lang=en#patterns");
+  await page
+    .getByRole("button", { name: "Full-screen conversation", exact: true })
+    .click();
+  await page.getByPlaceholder("How can I help?").fill("阅读笔记");
+  await page
+    .locator(".pattern-canvas")
+    .getByRole("button", { name: "Send", exact: true })
+    .click();
+  await page.getByRole("button", { name: "中文", exact: true }).click();
+  await expect(page.locator("html")).toHaveAttribute("lang", "zh-CN");
+  await expect(page.locator(".xy-user-message")).toHaveText("阅读笔记");
+});
+for (const language of ["zh", "en"])
+  test(`vision example and reference controls in ${language}`, async ({
+    page,
+  }) => {
+    await page.goto(`/?lang=${language}#patterns`);
+    const labels =
+      language === "en"
+        ? [
+            "Look at the World",
+            "Captions",
+            "Flip camera",
+            "Mute",
+            "Turn camera off",
+            "Hang up",
+            "Start again",
+          ]
+        : [
+            "小艺看世界",
+            "字幕",
+            "翻转摄像头",
+            "静音",
+            "关闭摄像头",
+            "挂断",
+            "重新开始",
+          ];
+    await page.getByRole("button", { name: labels[0], exact: true }).click();
+    const demo = page.locator(".vision-demo");
+    await expect(demo).toHaveAttribute("data-camera", "on");
+    await expect(page.locator(".vision-reference img")).toHaveCount(3);
+    await demo.getByRole("button", { name: labels[1], exact: true }).click();
+    await expect(demo.locator(".vision-captions")).toBeVisible();
+    await demo.getByRole("button", { name: labels[2], exact: true }).click();
+    await expect(demo).toHaveAttribute("data-facing", "front");
+    await demo.getByRole("button", { name: labels[3], exact: true }).click();
+    await expect(
+      demo.locator(".vision-actions button").first(),
+    ).toHaveAttribute("aria-pressed", "true");
+    await demo.getByRole("button", { name: labels[4], exact: true }).click();
+    await expect(demo).toHaveAttribute("data-camera", "off");
+    await expect(
+      demo.getByRole("button", { name: labels[2], exact: true }),
+    ).toBeDisabled();
+    await demo.getByRole("button", { name: labels[5], exact: true }).click();
+    await expect(demo).toHaveCount(0);
+    await page.getByRole("button", { name: labels[6], exact: true }).click();
+    await expect(page.locator(".vision-demo")).toHaveAttribute(
+      "data-camera",
+      "on",
+    );
+  });
+for (const backend of ["webgpu", "webgl"])
+  test(`transparent TSL borders across time and backgrounds on ${backend}`, async ({
+    page,
+  }) => {
+    await page.goto(
+      `/?lang=en${backend === "webgl" ? "&backend=webgl" : ""}#motion`,
+    );
+    const orb = page.locator(".render-figure .tsl-orb");
+    await expect(orb).toHaveAttribute("data-render-status", "ready");
+    if (backend === "webgl")
+      await expect(orb).toHaveAttribute("data-backend", /WebGL2/);
+    for (const [time, surface] of [
+      [1, "White"],
+      [5, "Dark"],
+      [14.5, "Blue"],
+      [20, "Pink"],
+    ]) {
+      await page
+        .getByRole("slider", { name: "Reference timeline", exact: true })
+        .fill(String(time));
+      await page.getByRole("button", { name: surface, exact: true }).click();
+      await expect(orb.locator("canvas")).toHaveAttribute(
+        "data-time",
+        time.toFixed(3),
+      );
+      // Browser compositing retains GPU output after the drawing buffer is discarded.
+      // Capture against a transparent ancestor chain, then inspect actual PNG alpha.
+      await orb.evaluate((el) => {
+        for (let p = el; p; p = p.parentElement) {
+          p.dataset.alphaTestStyle = p.getAttribute("style") || "";
+          p.style.setProperty("background", "transparent", "important");
+          p.style.setProperty("box-shadow", "none", "important");
+        }
+      });
+      const png = await orb
+        .locator("canvas")
+        .screenshot({ omitBackground: true });
+      const pixels = await page.evaluate(async (base64) => {
+        const img = new Image();
+        img.src = "data:image/png;base64," + base64;
+        await img.decode();
+        const c = document.createElement("canvas");
+        c.width = img.width;
+        c.height = img.height;
+        const ctx = c.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        const { data } = ctx.getImageData(0, 0, c.width, c.height);
+        let border = 0,
+          visible = 0;
+        for (let y = 0; y < c.height; y++)
+          for (let x = 0; x < c.width; x++) {
+            const alpha = data[(y * c.width + x) * 4 + 3];
+            if (x === 0 || y === 0 || x === c.width - 1 || y === c.height - 1)
+              border = Math.max(border, alpha);
+            if (alpha > 20) visible++;
+          }
+        return { border, visible };
+      }, png.toString("base64"));
+      await orb.evaluate((el) => {
+        for (let p = el; p; p = p.parentElement) {
+          p.setAttribute("style", p.dataset.alphaTestStyle);
+          delete p.dataset.alphaTestStyle;
+        }
+      });
+      expect(pixels.border).toBe(0);
+      expect(pixels.visible).toBeGreaterThan(100);
+    }
+  });

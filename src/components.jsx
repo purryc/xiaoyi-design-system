@@ -1,102 +1,9 @@
+import { useLanguage, english } from "./i18n/runtime";
+import { VisionDemo } from "./vision/VisionDemo";
 import React, { useState, useEffect, useRef } from "react";
-import {
-  ArrowUp,
-  ArrowLeft,
-  ArrowDown,
-  Plus,
-  X,
-  MoreHorizontal,
-  Grip,
-  Keyboard,
-  Mic,
-  Camera,
-  Volume2,
-  VolumeX,
-  Copy,
-  Check,
-  Search,
-  Eye,
-  ScanLine,
-  FileText,
-  Sparkles,
-  ListChecks,
-  Clipboard,
-  MessageCircle,
-  RefreshCw,
-  BookOpen,
-  Share2,
-  ChevronRight,
-  ChevronDown,
-  Send,
-  Square,
-  AlignLeft,
-  AudioLines,
-  PenLine,
-  Calendar,
-  MapPin,
-  Headphones,
-  Heart,
-  Star,
-} from "lucide-react";
-export const icons = {
-  ArrowUp,
-  ArrowLeft,
-  ArrowDown,
-  Plus,
-  X,
-  MoreHorizontal,
-  Grip,
-  Keyboard,
-  Mic,
-  Camera,
-  Volume2,
-  VolumeX,
-  Copy,
-  Check,
-  Search,
-  Eye,
-  ScanLine,
-  FileText,
-  Sparkles,
-  ListChecks,
-  Clipboard,
-  MessageCircle,
-  RefreshCw,
-  BookOpen,
-  Share2,
-  ChevronRight,
-  ChevronDown,
-  Send,
-  Square,
-  AlignLeft,
-  AudioLines,
-  PenLine,
-  Calendar,
-  MapPin,
-  Headphones,
-  Heart,
-  Star,
-};
-export function Icon({ name, size = 20, ...props }) {
-  if (name === "Grip")
-    return (
-      <svg
-        width={size}
-        height={size}
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        aria-hidden="true"
-        {...props}
-      >
-        <circle cx="7" cy="7" r="1.6" />
-        <circle cx="17" cy="7" r="1.6" />
-        <circle cx="7" cy="17" r="1.6" />
-        <circle cx="17" cy="17" r="1.6" />
-      </svg>
-    );
-  const C = icons[name] || Sparkles;
-  return <C size={size} strokeWidth={1.65} aria-hidden="true" {...props} />;
-}
+import { Icon, icons } from "./icons/Icon";
+import { TslOrb } from "./motion/TslOrb";
+export { Icon, icons };
 export function IconButton({ icon, label, className = "", ...props }) {
   return (
     <button
@@ -125,28 +32,7 @@ export function Chip({ children, active = false, icon, ...props }) {
     </button>
   );
 }
-export function Orb({
-  state = "idle",
-  size = 100,
-  paused = false,
-  className = "",
-}) {
-  return (
-    <div
-      className={`xy-orb ${state} ${paused ? "paused" : ""} ${className}`}
-      style={{ "--orb-size": `${size}px` }}
-      role="img"
-      aria-label={`小艺光球：${{ idle: "待机", listening: "聆听", thinking: "思考", speaking: "回应", error: "错误" }[state] || state}`}
-    >
-      <div className="orb-aura" />
-      <div className="orb-core" />
-      <div className="orb-ring ring-one" />
-      <div className="orb-ring ring-two" />
-      <div className="orb-ring ring-three" />
-      <div className="orb-satellite" />
-    </div>
-  );
-}
+export const Orb = TslOrb;
 export function AssistantInput({
   onSubmit,
   placeholder = "有什么可以帮你？",
@@ -180,10 +66,15 @@ export function AssistantInput({
     </form>
   );
 }
-export function UserMessage({ children }) {
-  return <div className="xy-user-message">{children}</div>;
+export function UserMessage({ children, literal = false }) {
+  return (
+    <div className="xy-user-message" translate={literal ? "no" : undefined}>
+      {children}
+    </div>
+  );
 }
 export function AssistantMessage({ children }) {
+  const { language } = useLanguage();
   const [copied, setCopied] = useState(false);
   return (
     <div className="xy-assistant-message">
@@ -196,7 +87,9 @@ export function AssistantMessage({ children }) {
             try {
               await navigator.clipboard.writeText(
                 typeof children === "string"
-                  ? children
+                  ? language === "en"
+                    ? english(children)
+                    : children
                   : "阅读的价值，在于把信息变成自己的理解。",
               );
               setCopied(true);
@@ -241,13 +134,13 @@ export function ServiceCard({ type = "calendar" }) {
   );
 }
 export const writingTools = [
-  ["FileText", "摘要"],
-  ["ListChecks", "校正文本"],
-  ["Sparkles", "润色改写"],
-  ["AudioLines", "语气改写"],
-  ["Clipboard", "扩写"],
-  ["AlignLeft", "分段小结"],
-  ["BookOpen", "会议排版"],
+  ["summarize", "摘要"],
+  ["proofread", "校正文本"],
+  ["rewrite", "润色改写"],
+  ["tone", "语气改写"],
+  ["expand-text", "扩写"],
+  ["paragraph", "分段小结"],
+  ["meeting", "会议排版"],
 ];
 export function WritingSheet({ onClose, onApply }) {
   const [selected, setSelected] = useState(null),
@@ -686,26 +579,35 @@ export function ConversationDemo() {
       {call ? (
         <div className={`call-stage ${camera ? "camera-on" : ""}`}>
           {camera ? (
-            <div className="camera-placeholder">
-              <Icon name="Camera" size={54} />
-              <span>视觉对话</span>
-            </div>
+            <VisionDemo
+              embedded
+              onHangup={() => {
+                setCall(false);
+                setCamera(false);
+              }}
+            />
           ) : (
             <Orb size={145} state="listening" />
           )}
-          <div className="call-actions">
-            <IconButton
-              icon="Mic"
-              label="开始语音示例"
-              onClick={() => setCamera(false)}
-            />
-            <IconButton
-              icon="Camera"
-              label={camera ? "关闭摄像头示例" : "打开摄像头示例"}
-              onClick={() => setCamera(!camera)}
-            />
-            <IconButton icon="X" label="挂断" onClick={() => setCall(false)} />
-          </div>
+          {!camera && (
+            <div className="call-actions">
+              <IconButton
+                icon="Mic"
+                label="开始语音示例"
+                onClick={() => setCamera(false)}
+              />
+              <IconButton
+                icon="Camera"
+                label={camera ? "关闭摄像头示例" : "打开摄像头示例"}
+                onClick={() => setCamera(!camera)}
+              />
+              <IconButton
+                icon="X"
+                label="挂断"
+                onClick={() => setCall(false)}
+              />
+            </div>
+          )}
         </div>
       ) : (
         <>
@@ -723,7 +625,9 @@ export function ConversationDemo() {
             ) : (
               messages.map((m, i) =>
                 m.role === "user" ? (
-                  <UserMessage key={i}>{m.text}</UserMessage>
+                  <UserMessage key={i} literal>
+                    {m.text}
+                  </UserMessage>
                 ) : (
                   <AssistantMessage key={i}>{m.text}</AssistantMessage>
                 ),
@@ -964,3 +868,15 @@ export function DragDemo() {
     </div>
   );
 }
+
+export {
+  Card,
+  Slider,
+  ActionChip,
+  BottomChips,
+  Toast,
+  Switch,
+  Checkbox,
+  RadioGroup,
+  Progress,
+} from "./controls/index";

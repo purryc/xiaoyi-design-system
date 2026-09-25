@@ -1,4 +1,8 @@
-# 小艺设计规格 · Reconstruction 1.0
+# 小艺设计规格 · Reconstruction 2.2
+
+[中文](#中文) · [English](#english)
+
+## 中文
 
 ## 证据定义
 
@@ -24,16 +28,16 @@
 
 ### 形状和布局
 
-| 对象 | 复刻规格 | 依据 |
-| --- | --- | --- |
-| 控件圆角 | 12px | L09 工具按钮 |
-| 内容卡片 | 20px | L01 / L05 |
-| 帮写面板 | 顶部 28px，底部贴边 | L09 |
-| 应用窗口 | 32px 设计变量；示例缩放适配 | L11 / L15 |
-| 胶囊 | 999px；水平内边距 14px | L15 建议 |
-| 间距 | 4px 基础步长，常用 8 / 12 / 16 / 24 / 32 | 按截图观感归一化 |
-| 窄伴随 | 约 87:13 主应用/侧栏 | L15 缩略图可见边界约 x=1041/1200 |
-| 展开伴随 | 约 71:29 主应用/侧栏 | L11 缩略图可见边界约 x=853/1200 |
+| 对象     | 复刻规格                                 | 依据                             |
+| -------- | ---------------------------------------- | -------------------------------- |
+| 控件圆角 | 12px                                     | L09 工具按钮                     |
+| 内容卡片 | 20px                                     | L01 / L05                        |
+| 帮写面板 | 顶部 28px，底部贴边                      | L09                              |
+| 应用窗口 | 32px 设计变量；示例缩放适配              | L11 / L15                        |
+| 胶囊     | 999px；水平内边距 14px                   | L15 建议                         |
+| 间距     | 4px 基础步长，常用 8 / 12 / 16 / 24 / 32 | 按截图观感归一化                 |
+| 窄伴随   | 约 87:13 主应用/侧栏                     | L15 缩略图可见边界约 x=1041/1200 |
+| 展开伴随 | 约 71:29 主应用/侧栏                     | L11 缩略图可见边界约 x=853/1200  |
 
 这些比例可直接从源图布局得到近似关系，但响应式最小宽度会调整实际比例。移动端文档把平板范式缩成展示框；不是对真实手机伴随布局的声明。
 
@@ -65,7 +69,7 @@
 
 ### 对话和多模态
 
-以 L06 / L07 / L08 支持的浅色对话、实时通话光球、视觉模式为结构方向。初始卡片、示例文案、相机占位和规则回复由本项目编写。相机画面用占位呈现，未请求摄像头或麦克风权限；不把占位图宣称为真实取景复刻。
+以 L06 / L07 / L08 支持的浅色对话、实时通话光球、视觉模式为结构方向。初始卡片、示例文案、相机占位和规则回复由本项目编写。2.2 视觉通话采用 W18 官方布局与参考照片裁切，支持字幕、前后镜头、静音和挂断；未请求摄像头或麦克风权限。
 
 ### 圈选
 
@@ -79,16 +83,82 @@ L12 提供轮廓、顶部工具条、底部问答/识图与结果面板；L13 �
 
 ## 动效
 
-| 状态 | 视觉 | 证据程度 |
-| --- | --- | --- |
-| idle | 柔和单环，低幅光晕 | L10 单环可见；idle 语义推断 |
-| listening | 同心环外扩 | L18 收音文字+多环直接支持 |
-| thinking | 椭圆环面旋转 | L10 椭圆可见；thinking 语义推断 |
-| speaking | 核心脉动、低幅外扩 | 原型推断 |
-| error | 低饱和红粉光环 | 原型扩展，未展示在默认路径 |
+| 状态      | 视觉               | 证据程度                        |
+| --------- | ------------------ | ------------------------------- |
+| idle      | 柔和单环，低幅光晕 | L10 单环可见；idle 语义推断     |
+| listening | 同心环外扩         | L18 收音文字+多环直接支持       |
+| thinking  | 椭圆环面旋转       | L10 椭圆可见；thinking 语义推断 |
+| speaking  | 核心脉动、低幅外扩 | 原型推断                        |
+| error     | 低饱和红粉光环     | 原型扩展，未展示在默认路径      |
 
-光球采用可编辑 CSS 渐变与蒙版，未用源视频当背景。120–180ms 控件、360ms 面板、480ms 布局、3.2s 呼吸、6s 环旋转为实现参数。UI 不把 CSS 循环时长称为原视频测量值。保持 prefers-reduced-motion，暂停控制可冻结动效。
+光球采用 Three.js TSL，源片背景拟合仅保留为分析数据，实时画布输出透明背景，主环由四阶傅里叶轮廓/光强与高斯亮芯重建，扩散和交错环为程序化投影。38 个采样点按 23.217 s 参考时间轴插值；28 个公开参数带单位、范围和证据。保留 prefers-reduced-motion 和按需重绘。控件 120–180ms、面板 360ms、布局 480ms 仍是 CSS UI 过渡，非光球渲染。详见 [动效规格](motion.md)。
 
 ## 可用性边界
 
 支持键盘焦点、原生对话框焦点约束、Escape 关闭参考、空输入禁发、视觉状态文本、减少动态效果。尚未进行完整 WCAG 对比度认证或屏幕阅读器实机审阅；文档中缩放展示的平板不是触控尺寸规范。状态来自客户端演示，不能用来评价真实小艺的能力、速度或准确性。
+
+---
+
+## English
+
+### Evidence definitions
+
+**Observed** means a structure or state directly visible in a source image or reviewed video sample. **Estimated** means normalized colors, dimensions, spacing, curves or timing for reusable components. **Inferred** means semantic mappings, demo behavior, responsive treatment or recovery not directly established by evidence.
+
+Local media has no reliable OS/application version metadata and is marked `unknown`. Filename dates are not OS versions. Different devices and releases can have different visual styles.
+
+### Visual foundations
+
+Light conversations and documents use white, with pale-gray control groups and blue primary actions. L09 blends pale pink, blue and violet in a writing sheet. L11 / L15 use a dark blue-black companion while keeping the document bright. Cyan, blue, violet and pink light identify the orb and analysis entry in L10 / L18.
+
+Content, secondary text, actions and assistant states have separate semantic tokens. Success and error colors are prototype additions without local screenshot evidence. Colors are estimated sRGB values, not official brand specifications.
+
+W04 mentions HarmonyOS Sans. The stack is HarmonyOS Sans SC → HarmonyOS Sans → PingFang SC → Microsoft YaHei → sans-serif; no font files are distributed. Using PingFang locally does not establish official typeface parity. The normalized scale is 12 / 14 / 16 / 20 / 24 / 32 / 48 CSS px. Screenshot pixels do not equal native vp; scaled demos do not specify physical touch targets.
+
+| Object             | Reconstruction                           | Evidence                   |
+| ------------------ | ---------------------------------------- | -------------------------- |
+| Control radius     | 12px                                     | L09 tools                  |
+| Content cards      | 20px                                     | L01 / L05                  |
+| Writing sheet      | 28px top radius, flush bottom            | L09                        |
+| App window         | 32px token; scaled specimens             | L11 / L15                  |
+| Pills              | 999px radius; 14px horizontal padding    | L15                        |
+| Spacing            | 4px base; commonly 8 / 12 / 16 / 24 / 32 | Visual normalization       |
+| Narrow companion   | App/sidebar ≈ 87:13                      | L15 boundary ≈ x=1041/1200 |
+| Expanded companion | App/sidebar ≈ 71:29                      | L11 boundary ≈ x=853/1200  |
+
+These approximate relationships follow visible boundaries; responsive minimum sizes can change the ratio. The mobile documentation scales tablet examples, without claiming they are native phone layouts.
+
+### Surface and background rules
+
+1. Writing: bright original content and a bottom sheet; no visible full-screen gray scrim in L09.
+2. Companion: the application narrows beside a dark assistant; L15 / L18 keep the app bright.
+3. Selection: L12 at 5.530s has a global gray scrim and object glow; results overlay the selection.
+4. Transition: L17 at 2.491s is light and blurred. That transient frame does not justify blurring every stable state.
+
+### Interaction models
+
+**Companion:** `idle → listening → thinking → speaking/result → idle/closed`. The narrow rail contains suggestions, screen analysis and an orb, with close at the top. Suggestions enter generation directly; holding the orb listens and releasing submits a sample. Results expand the sidebar while preserving the app. Collapse returns control; exit restores width. Closing during generation cancels the timer, preventing stale results. Mute is UI-only. W01 concerns specified devices/releases and cannot identify the local tablet OS. Explicit demo controls replace native double-tap gestures.
+
+**Writing:** original → tool → generation → review → replace / back / close. Preserve the 3+4 order: summary, proofread, polish / tone, expand, section summaries, meeting format. A fixed 950ms delay demonstrates waiting. Only Replace original modifies the note. Closing does not replace; returning to types cancels pending generation.
+
+**Conversation and vision:** L06 / L07 / L08 support light conversations, call orbs and visual mode. Cards, copy and rule-based responses are authored examples. Version 2.2 uses W18's official full-screen layout and cropped reference photos, with captions, camera flip, mute and hang-up. No camera or microphone permission is requested.
+
+**Selection:** browse → selection → action → result → back / exit. L12 provides the outline, toolbar, ask/search and results; L13 provides text selection. The demo uses a fixed tree illustration and elliptical glow, without free lasso, segmentation, original person outlines or real image search. Save exports the drawn SVG; Copy copies the example description.
+
+**Drag:** follows W03's navigation-bar semantics and L07's entry appearance. Supports HTML text drag and a Send to Xiaoyi touch/keyboard alternative. Only the built-in document is accepted; no user files or system drag protocol are parsed.
+
+### Motion
+
+| State     | Visual                          | Evidence                              |
+| --------- | ------------------------------- | ------------------------------------- |
+| idle      | Soft single ring                | L10 form; inferred idle semantics     |
+| listening | Concentric expansion            | L18 listening label and rings         |
+| thinking  | Rotating ellipses               | L10 form; inferred thinking semantics |
+| speaking  | Core pulse and subtle expansion | Prototype inference                   |
+| error     | Desaturated red/pink ring       | Extension outside the default path    |
+
+The orb uses Three.js TSL. Fitted recording backgrounds are archived analysis data only; live canvases are transparent. Main-ring contours and radiance use fourth-order Fourier fits and Gaussian cores; ripples and intersecting rings use procedural projection. There are 38 samples over 23.217 seconds and 28 annotated parameters. Reduced motion and on-demand rendering are supported. Control transitions at 120–180ms, sheets at 360ms and layouts at 480ms remain CSS UI transitions, separate from orb rendering. See [motion](motion.md#english).
+
+### Usability limits
+
+Keyboard focus, native dialog focus containment, Escape, empty-input protection, visible state text and reduced motion are supported. Full WCAG contrast certification and real screen-reader/device review have not been completed. Scaled tablets are not touch-size specifications. Client-side states cannot establish real Xiaoyi capability, speed or accuracy.

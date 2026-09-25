@@ -34,7 +34,7 @@ for (const item of manifest.items) {
     assert(item.frames.every((f) => f.time > 0 && f.time < item.duration));
   }
 }
-assert.equal(web.length, 9);
+assert.equal(web.length, 18);
 assert(web.every((s) => s.url.startsWith("https://") && s.scope && s.accessed));
 let count = 0;
 for (const [group, items] of Object.entries(tokens)) {
@@ -72,4 +72,82 @@ console.log(
 );
 console.log(
   `Original media hashes verified: ${local}/18${local < 18 ? " (originals are local-only and optional on other machines)" : ""}.`,
+);
+
+const { iconLibrary, iconSvg } = await import("../src/icons/icon-data.js");
+const { parameterSchema, sanitizeParameters } =
+  await import("../src/motion/parameters.js");
+assert.equal(iconLibrary.length, 77);
+assert.equal(new Set(iconLibrary.map((i) => i.id)).size, 77);
+const aliases = iconLibrary.flatMap((i) => [i.id, ...i.aliases]);
+assert.equal(new Set(aliases).size, aliases.length);
+for (const i of iconLibrary) {
+  assert.equal(fs.readFileSync(`public/icons/${i.id}.svg`, "utf8"), iconSvg(i));
+  assert(i.source && i.note);
+}
+assert.equal(parameterSchema.length, 28);
+for (const p of parameterSchema) {
+  assert(p.unit && p.evidence && p.description);
+  if (p.type !== "color") assert(p.default >= p.min && p.default <= p.max);
+}
+assert.equal(
+  sanitizeParameters({ radius: 1e9, cyan: "red", maxFps: NaN }).radius,
+  0.7,
+);
+assert.equal(
+  sanitizeParameters({ radius: 1e9, cyan: "red", maxFps: NaN }).cyan,
+  "#54f7ef",
+);
+const motion = JSON.parse(fs.readFileSync("reference/motion-analysis.json"));
+const fit = JSON.parse(fs.readFileSync("reference/light-field-fit.json"));
+assert.equal(motion.frames.length, 38);
+assert.equal(fit.frames.length, 38);
+for (let i = 0; i < motion.frames.length; i++) {
+  const f = fit.frames[i];
+  assert.equal(f.time, motion.frames[i].time);
+  assert.equal(f.background.length, 10);
+  assert.equal(f.radius.length, 9);
+  assert.equal(f.radiance.length, 9);
+  assert(
+    [...f.background.flat(), ...f.radius, ...f.radiance.flat()].every(
+      Number.isFinite,
+    ),
+  );
+  assert(fs.existsSync("public" + motion.frames[i].preview));
+}
+assert.equal(
+  crypto
+    .createHash("sha256")
+    .update(fs.readFileSync("public" + motion.proxy.path))
+    .digest("hex"),
+  motion.proxy.sha256,
+);
+assert(!fs.readFileSync("src/styles.css", "utf8").includes(".xy-orb::after"));
+console.log(
+  "PASS: 77 unique SVGs and aliases, 28 annotated parameters, 38 finite light-field fits and comparison proxy SHA-256.",
+);
+
+const { controlItems } = await import("../src/controls/catalog.js");
+assert.equal(controlItems.length, 6);
+for (const item of controlItems) {
+  assert(item.code && item.params.length && item.description);
+  for (const id of item.sources) assert(web.some((s) => s.id === id));
+  for (const id of item.local || [])
+    assert(manifest.items.some((s) => s.id === id));
+}
+const figures = web.filter((s) => s.figure);
+assert.equal(figures.length, 3);
+for (const source of figures) {
+  assert(source.figure.attribution && source.figure.licenseUrl);
+  assert.equal(
+    crypto
+      .createHash("sha256")
+      .update(fs.readFileSync("public" + source.preview))
+      .digest("hex"),
+    source.figure.previewSha256,
+  );
+}
+assert(fs.existsSync("docs/controls.md"));
+console.log(
+  "PASS: 6 control specimens, all source IDs resolved, 3 official figure hashes and attribution.",
 );

@@ -79,5 +79,178 @@
     "scope": "Tech News，2025-01-22。只检索到页面摘要，未观看完整视频。",
     "note": "第三方版本线索；不用于复刻定稿。",
     "accessed": "2026-09-25"
+  },
+  {
+    "id": "W10",
+    "title": "鸿蒙卡片设计指南",
+    "url": "https://developer.huawei.com/consumer/cn/doc/design-guides/harmonyos-widget2-0000002731312633",
+    "type": "official",
+    "scope": "华为官方设计指南；本次检索正文可读，直接抓取受限。用于内容层级，不把网页尺寸当作小艺真机规范。",
+    "note": "卡片以结构化信息和核心操作为主，区分应用内、服务与小艺建议卡片。",
+    "accessed": "2026-09-25",
+    "publisher": "HUAWEI",
+    "evidence": "documentation"
+  },
+  {
+    "id": "W11",
+    "title": "OpenHarmony Slider",
+    "url": "https://github.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-slider.md",
+    "type": "official",
+    "scope": "OpenHarmony 框架 API；默认值与行为可查证，网页复刻的像素尺寸为工程估值。",
+    "note": "滑杆支持范围、步长、步长标识与浮动提示，包含 OutSet / InSet 形态。",
+    "accessed": "2026-09-25",
+    "publisher": "OpenHarmony",
+    "evidence": "documentation-and-figure",
+    "preview": "/reference/controls/W11.jpg",
+    "figure": {
+      "url": "https://raw.githubusercontent.com/openharmony/docs/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/figures/slider.gif",
+      "frameIndex": 260,
+      "sourceSha256": "17d5f94ffad7c209a4aef0478ce0de95e6be48568aa3a2cea05fd6c4b4a1d5dc",
+      "previewSha256": "474b45a6c080597e0722230aecaff42dfbb20f64fb6cd72c2917fe5cc4755db2",
+      "transform": "Representative GIF frame or PNG resized within 720x720; JPEG q92.",
+      "attribution": "OpenHarmony contributors, docs official component example; CC BY 4.0. Representative frame, resized and JPEG encoded.",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://github.com/openharmony/docs/blob/master/LICENSE"
+    }
+  },
+  {
+    "id": "W12",
+    "title": "OpenHarmony Chip",
+    "url": "https://github.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ohos-arkui-advanced-Chip.md",
+    "type": "official",
+    "scope": "OpenHarmony API 11+ 组件；用作通用 Chip 行为补充。底部建议排列另依据本地 L09 / L15，非官方新增布局。",
+    "note": "操作块区分激活、禁用、前后图标及独立删除动作。",
+    "accessed": "2026-09-25",
+    "publisher": "OpenHarmony",
+    "evidence": "documentation-and-figure",
+    "preview": "/reference/controls/W12.jpg",
+    "figure": {
+      "url": "https://raw.githubusercontent.com/openharmony/docs/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/figures/chip1.png",
+      "frameIndex": 0,
+      "sourceSha256": "bd618771197e44f7964ccdea98c3a547a32afce7ff746a0ad258be9ca20cea8c",
+      "previewSha256": "9a79591673953c4a81666d31418dab44f0c8d9458e3f15e0edb86a7a607bb022",
+      "transform": "Representative GIF frame or PNG resized within 720x720; JPEG q92.",
+      "attribution": "OpenHarmony contributors, docs official component example; CC BY 4.0. Representative frame, resized and JPEG encoded.",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://github.com/openharmony/docs/blob/master/LICENSE"
+    }
+  },
+  {
+    "id": "W13",
+    "title": "OpenHarmony Toast / PromptAction",
+    "url": "https://github.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/js-apis-promptAction.md",
+    "type": "official",
+    "scope": "OpenHarmony 主文档；API 12+ 示例外观已查看。Web 使用 80 CSS px 作工程近似；不声称实现原生键盘避让。",
+    "note": "纯文本即时反馈；默认时长 1500ms，范围 1500–10000ms；原生默认 bottom 为 80vp。",
+    "accessed": "2026-09-25",
+    "publisher": "OpenHarmony",
+    "evidence": "documentation-and-figure",
+    "preview": "/reference/controls/W13.jpg",
+    "figure": {
+      "url": "https://raw.githubusercontent.com/openharmony/docs/master/zh-cn/application-dev/reference/apis-arkui/figures/toast-api12.gif",
+      "frameIndex": 37,
+      "sourceSha256": "74aca2a10d695c66bfa3cc44167b945ca0a5e80d6f8652c95b5b60daaf22ac71",
+      "previewSha256": "857459c02936ce4f0b571d768b9de01f529991488c4406fc1cd4a1345e529ce1",
+      "transform": "Representative GIF frame or PNG resized within 720x720; JPEG q92.",
+      "attribution": "OpenHarmony contributors, docs official component example; CC BY 4.0. Representative frame, resized and JPEG encoded.",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://github.com/openharmony/docs/blob/master/LICENSE"
+    }
+  },
+  {
+    "id": "W14",
+    "title": "OpenHarmony Toggle",
+    "url": "https://github.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-toggle.md",
+    "type": "official",
+    "scope": "框架行为参考；开关尺寸和网页视觉为同风格补全。",
+    "note": "开关通过 isOn 表达状态，通过 onChange 响应切换。",
+    "accessed": "2026-09-25",
+    "publisher": "OpenHarmony",
+    "evidence": "documentation"
+  },
+  {
+    "id": "W15",
+    "title": "OpenHarmony Radio",
+    "url": "https://github.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-radio.md",
+    "type": "official",
+    "scope": "采用圆形勾选视觉与浏览器原生单选键盘行为，非 ArkUI 组件绑定。",
+    "note": "同组单选互斥；API 12 起默认选中图案由圆点变为勾。",
+    "accessed": "2026-09-25",
+    "publisher": "OpenHarmony",
+    "evidence": "documentation"
+  },
+  {
+    "id": "W16",
+    "title": "OpenHarmony Checkbox",
+    "url": "https://github.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-checkbox.md",
+    "type": "official",
+    "scope": "勾选与禁用状态参考框架，网页增加可访问的混合选择状态。",
+    "note": "多选表达独立选择状态；配合分组选择与取消。",
+    "accessed": "2026-09-25",
+    "publisher": "OpenHarmony",
+    "evidence": "documentation"
+  },
+  {
+    "id": "W17",
+    "title": "OpenHarmony Progress",
+    "url": "https://github.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis-arkui/arkui-ts/ts-basic-components-progress.md",
+    "type": "official",
+    "scope": "框架形态参考，具体进度数值和文档处理过程为本地演示。",
+    "note": "进度以 value / total 表达；线形与环形用于不同空间和任务反馈。",
+    "accessed": "2026-09-25",
+    "publisher": "OpenHarmony",
+    "evidence": "documentation"
+  },
+  {
+    "id": "W18",
+    "title": "小艺看世界：边聊边看陪你看世界的小艺",
+    "url": "https://consumer.huawei.com/cn/support/content/zh-cn16053374/",
+    "publisher": "Huawei Consumer Support",
+    "accessed": "2026-09-25",
+    "kind": "official",
+    "scope": "官方帮助页与入口、字幕、翻转摄像头示例图已阅读。5.1 / 6.0 入口分开描述；示例采用页面中的全屏视觉通话布局，不推断具体设备版本。",
+    "evidence": "已观察：全幅取景、顶部标题与字幕/翻转按钮、底部静音/摄像头/挂断；示例为本地状态模拟。",
+    "preview": "/reference/vision/W18-captions.jpg",
+    "figures": [
+      {
+        "label": "entry",
+        "path": "/reference/vision/W18-entry.jpg",
+        "url": "https://consumer-tkbdownload.huawei.com/ctkbfm/servlet/download/downloadServlet/H4sIAAAAAAAA_z1Qy07DMBD8F58L2vWja3Oq40QqF8ShnCsncVJLrVulCYgi_h0nitjb7IxmRvPDpnsYDt-3wF4Ysg1rr19phSLDLp7Dm7_M8HF6atIxXnwfjrAcGi0BlCLxfEv9qn734ymrTaegDmAkdUJq8nXWhWC2nZHQBD571_Hx2mbp3u4Wb9yCEoJkppoh-DFe0yHO0ZkwUoAEzKEbdo998uM0zKWg4JYrIzCXcFqrUmhQZUGOVyRLpPy2FUfEoiLjQHNyiFYZVwgjKkk569OfY_vxv8I4TGHptq6wt-z3D-hlJM0mAQAA.png",
+        "sourceSha256": "e44149df30e7542180cd8fec48fcc555a9acccf77bcc2f566130f3cc470d8ea9",
+        "sha256": "3b11e9648289fccf7fcab3789cc3df6285d045934905f062b6f5bff46f1cee7e",
+        "transform": "Resize to maximum 1000 px and convert to JPEG quality 90; source annotations preserved."
+      },
+      {
+        "label": "captions",
+        "path": "/reference/vision/W18-captions.jpg",
+        "url": "https://consumer-tkbdownload.huawei.com/ctkbfm/servlet/download/downloadServlet/H4sIAAAAAAAA_z2QwU7DMBBE_8Xngtbxrh1zwnGJygVxKOfKtd3UUutWaQKiiH_HiSL2NpqnndH8sPEW--33NbInxtmKhctXXqQo8pBO8c2dJ3k_Pvi8S2fXxR3Mx7WiGiWX9HjN3UK_u-FYaB9Aoa5EfRAV4t5r8gqCQilrjgF1offp_hoKujHP828ugYRQWCzfRzekS96mKboYGgUg8BK6YrfUZTeM_VTKWlgLVYNFUi1vdBFGImpEJGxsY3SjivMitVJtiy1VgritgYC4WVtZsj7dKYWP_xWGfoxzt2WFjWG_f5y2RU4mAQAA.png",
+        "sourceSha256": "34bafdc503391566996a5ad9ec576b340e37294ab381e4e9b21e102df94b8a66",
+        "sha256": "b35739d212a380cb2087ac9951da54886347ad05f10e7c6637280fdb41729454",
+        "transform": "Resize to maximum 1000 px and convert to JPEG quality 90; source annotations preserved."
+      },
+      {
+        "label": "camera",
+        "path": "/reference/vision/W18-camera.jpg",
+        "url": "https://consumer-tkbdownload.huawei.com/ctkbfm/servlet/download/downloadServlet/H4sIAAAAAAAA_z2QwU7DMBBE_8XngmyvvWtzImmwygVxKOfKbezUUutWaQKiiH_HiSL2Ntq3O6P5YeMt9Nvva2BPTLAVay9feZFQZEyn8ObPk7wfHw55l86-Czs-j7CEoJQkerzmbqHf_XAsdKSAOnJAH0mBjt5LYQhbabm0cW8KvU_317agm-p5_i2QawBSZXXogx_SJW_TZF0WVgFXXBTTFbulLvth7KdQWKGplRYGAcCBXJOthQE0DjisrWyMajhyIl2ubSNdJRS9uBqME642TfH69KfUfvy3MPRjmLMtLWwq9vsHNLdkAyYBAAA%3D.png",
+        "sourceSha256": "5171faee19ceb41a3105a49a9ef3d81ef2b76407e858a428909a57ecb2d27211",
+        "sha256": "6387c445218b1d791c17fc85002104af1b6a987ac64746ac90f25755d05aca0f",
+        "transform": "Resize to maximum 1000 px and convert to JPEG quality 90; source annotations preserved."
+      },
+      {
+        "label": "temple",
+        "path": "/reference/vision/W18-temple.jpg",
+        "url": "https://consumer-tkbdownload.huawei.com/ctkbfm/servlet/download/downloadServlet/H4sIAAAAAAAA_z2QwU7DMBBE_8Xngtbxrh1zwnGJygVxKOfKtd3UUutWaQKiiH_HiSL2NpqnndH8sPEW--33NbInxtmKhctXXqQo8pBO8c2dJ3k_Pvi8S2fXxR3Mx7WiGiWX9HjN3UK_u-FYaB9Aoa5EfRAV4t5r8gqCQilrjgF1offp_hoKujHP828ugYRQWCzfRzekS96mKboYGgUg8BK6YrfUZTeM_VTKWlgLVYNFUi1vdBFGImpEJGxsY3SjivMitVJtiy1VgritgYC4WVtZsj7dKYWP_xWGfoxzt2WFjWG_f5y2RU4mAQAA.png",
+        "sha256": "1992dc5c2bc576c31a9f2c0a3a2633369a142b73c063e146083c386f9521dc95",
+        "transform": "Crop (3, 100, 329, 540) from official figure for simulated preview; JPEG quality 90."
+      },
+      {
+        "label": "portrait",
+        "path": "/reference/vision/W18-portrait.jpg",
+        "url": "https://consumer-tkbdownload.huawei.com/ctkbfm/servlet/download/downloadServlet/H4sIAAAAAAAA_z2QwU7DMBBE_8XngmyvvWtzImmwygVxKOfKbezUUutWaQKiiH_HiSL2Ntq3O6P5YeMt9Nvva2BPTLAVay9feZFQZEyn8ObPk7wfHw55l86-Czs-j7CEoJQkerzmbqHf_XAsdKSAOnJAH0mBjt5LYQhbabm0cW8KvU_317agm-p5_i2QawBSZXXogx_SJW_TZF0WVgFXXBTTFbulLvth7KdQWKGplRYGAcCBXJOthQE0DjisrWyMajhyIl2ubSNdJRS9uBqME642TfH69KfUfvy3MPRjmLMtLWwq9vsHNLdkAyYBAAA%3D.png",
+        "sha256": "eda6b222ec8d799a9cf8ea73f9e049b72670a8c66412fd7d35e5991429ba4b97",
+        "transform": "Crop (410, 96, 765, 590) from official figure for simulated preview; JPEG quality 90."
+      }
+    ],
+    "attribution": "Huawei. Reference images and embedded photographs belong to their respective rights holders. Small derivatives for attributed interface research; no open-source media license is claimed."
   }
 ]

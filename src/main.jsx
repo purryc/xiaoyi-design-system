@@ -1,3 +1,4 @@
+import { LanguageProvider, LanguageSwitch, english } from "./i18n/runtime";
 import React, { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
@@ -17,6 +18,11 @@ import {
   DragDemo,
   NavigationBar,
 } from "./components.jsx";
+import { controlItems } from "./controls/catalog";
+import { ControlCatalog } from "./controls/ControlCatalog";
+import { VisionDemo, VisionReference } from "./vision/VisionDemo";
+import { MotionLab } from "./motion/MotionLab";
+import { IconLibrary } from "./icons/IconLibrary";
 import tokens from "../tokens/xiaoyi.tokens.json";
 import manifest from "../reference/manifest.json";
 import webSources from "../reference/web-sources.json";
@@ -27,6 +33,7 @@ const nav = [
   ["foundations", "设计基础", "Foundations", "Grip"],
   ["components", "组件库", "Components", "Clipboard"],
   ["motion", "光球与动效", "Motion & presence", "AudioLines"],
+  ["icons", "图标库", "Icon library", "grid-four"],
   ["patterns", "交互范式", "Patterns", "ScanLine"],
   ["reference", "参考与证据", "References", "BookOpen"],
   ["handoff", "使用与交付", "Getting started", "FileText"],
@@ -89,7 +96,7 @@ function Overview({ go, onOpen }) {
     <>
       <div className="overview-heading">
         <div className="eyebrow">
-          XIAOYI DESIGN SYSTEM <span className="version">1.0</span>
+          XIAOYI DESIGN SYSTEM <span className="version">2.2</span>
         </div>
         <h1>
           小艺，
@@ -124,7 +131,7 @@ function Overview({ go, onOpen }) {
           <span>设计变量</span>
         </div>
         <div>
-          <strong>5</strong>
+          <strong>6</strong>
           <span>交互范式</span>
         </div>
         <div className="strip-note">
@@ -186,7 +193,7 @@ function Overview({ go, onOpen }) {
       <div className="research-note">
         <Icon name="BookOpen" />
         <p>
-          这是一套独立复刻的研究型设计系统。界面结构来自截图与录屏；数值、图标和演示时序为工程近似，具体来源可逐项查看。
+          这是一套独立复刻的研究型设计系统。界面结构来自截图与录屏；数值与演示时序为工程近似，图标提供可编辑重绘，具体来源可逐项查看。
         </p>
       </div>
     </>
@@ -394,18 +401,21 @@ const componentItems = [
     "<NavigationBar onDrop={receive} onClick={open} />",
   ],
 ];
-function Components({ onOpen }) {
+function Components({ onOpen, controlRequest }) {
   const [category, setCategory] = useState("all"),
     [selected, setSelected] = useState("总结一下"),
     [message, setMessage] = useState(""),
     [sent, setSent] = useState(""),
     [clicked, setClicked] = useState(false);
+  useEffect(() => {
+    if (controlRequest) setCategory(controlRequest.category);
+  }, [controlRequest]);
   return (
     <>
       <PageTitle
         eyebrow="02 / COMPONENTS"
         title="组件库"
-        description="独立组件，可直接组合。每个交互都有清晰的状态与来源。"
+        description="卡片、Slider、底部 Chip、Toast 与常用选择控件。可交互、可复用，参数与参考逐项对应。"
       />
       <div className="filter-row">
         {[
@@ -413,6 +423,10 @@ function Components({ onOpen }) {
           ["buttons", "动作"],
           ["input", "输入"],
           ["cards", "卡片"],
+          ["sliders", "Slider"],
+          ["chips", "底部 Chip"],
+          ["feedback", "Toast / 进度"],
+          ["choice", "开关 / 选择"],
           ["writing", "帮写"],
           ["companion", "伴随"],
           ["selection", "圈选"],
@@ -427,6 +441,7 @@ function Components({ onOpen }) {
           </Chip>
         ))}
       </div>
+      <ControlCatalog category={category} onOpen={onOpen} />
       <div className="component-stack">
         {componentItems
           .filter((c) => category === "all" || category === c[0])
@@ -512,162 +527,21 @@ function Components({ onOpen }) {
           ))}
       </div>
       <div className="notice">
-        图标使用 Lucide
-        线性图标作为可编辑替代，未宣称是华为原版图标。错误、完成反馈与键盘交互属于复刻的可用性补充。
+        图标已统一使用本项目的 77 枚自绘
+        SVG，可在图标库中检索和下载。错误、完成反馈与键盘交互属于复刻的可用性补充。
       </div>
     </>
   );
 }
-const motionStates = [
-  ["idle", "待机", "低幅呼吸，保持可感知。"],
-  ["listening", "聆听", "多环扩散，回应输入。"],
-  ["thinking", "思考", "环面旋转，表达处理中。"],
-  ["speaking", "回应", "柔和脉动，维持对话连续。"],
-];
-function Motion({ onOpen }) {
-  const [state, setState] = useState("idle"),
-    [paused, setPaused] = useState(false),
-    [size, setSize] = useState(210),
-    [surface, setSurface] = useState("light"),
-    [auto, setAuto] = useState(false);
-  useEffect(() => {
-    if (!auto) return;
-    let i = 0;
-    setState("idle");
-    const t = setInterval(() => {
-      i = (i + 1) % 4;
-      setState(motionStates[i][0]);
-    }, 2600);
-    return () => clearInterval(t);
-  }, [auto]);
-  return (
-    <>
-      <PageTitle
-        eyebrow="03 / MOTION & PRESENCE"
-        title="光球与动效"
-        description="用光的密度、环的形态和运动节奏，让状态可以被感知。"
-      />
-      <div className="motion-lab">
-        <div
-          className={`motion-stage ${surface} ${paused ? "motion-paused" : ""}`}
-        >
-          <span className="stage-label">XIAOYI / {state.toUpperCase()}</span>
-          <Orb state={state} size={size} paused={paused} />
-          <span className="motion-status">
-            {motionStates.find((x) => x[0] === state)[1]}
-          </span>
-        </div>
-        <aside className="motion-controls">
-          <span className="eyebrow">STATE EXPLORER</span>
-          <h3>状态实验室</h3>
-          <div className="state-options">
-            {motionStates.map(([id, title, desc]) => (
-              <button
-                key={id}
-                className={state === id ? "active" : ""}
-                onClick={() => {
-                  setAuto(false);
-                  setState(id);
-                }}
-              >
-                <span>{title}</span>
-                <small>{desc}</small>
-                <span className="radio-dot" />
-              </button>
-            ))}
-          </div>
-          <label className="range-label">
-            尺寸 <span>{size} px</span>
-            <input
-              aria-label="光球尺寸"
-              type="range"
-              min="80"
-              max="280"
-              value={size}
-              onChange={(e) => setSize(+e.target.value)}
-            />
-          </label>
-          <div className="inline">
-            <Chip
-              active={surface === "light"}
-              onClick={() => setSurface("light")}
-            >
-              浅色
-            </Chip>
-            <Chip
-              active={surface === "dark"}
-              onClick={() => setSurface("dark")}
-            >
-              深色
-            </Chip>
-          </div>
-          <div className="inline motion-buttons">
-            <Button
-              variant="secondary"
-              onClick={() => {
-                setPaused(!paused);
-                if (!paused) setAuto(false);
-              }}
-            >
-              {paused ? "继续动画" : "暂停动画"}
-            </Button>
-            <Button
-              variant="ghost"
-              onClick={() => {
-                setPaused(false);
-                setAuto(!auto);
-              }}
-            >
-              {auto ? "停止演示" : "播放状态序列"}
-            </Button>
-          </div>
-        </aside>
-      </div>
-      <Evidence ids="L10,L18,L14" onOpen={onOpen} />
-      <div className="notice">
-        <span className="badge estimate">语义映射为推断</span>L10
-        展示单环、同心环与椭圆变化，没有注明对应状态。聆听多环另有 L18
-        截图支持；其余状态映射和时间参数用于原型。
-      </div>
-      <SectionTitle index="01" title="从参考中提取的形态" />
-      <div className="motion-frames">
-        {[0, 1, 3].map((n, i) => (
-          <button key={n} onClick={() => onOpen(sourceById.L10)}>
-            <img
-              src={`/reference/L10-${n + 1}.jpg`}
-              alt={["单环", "同心环", "旋转椭圆"][i]}
-            />
-            <span>
-              <strong>{["单环", "同心环", "旋转椭圆"][i]}</strong>
-              {sourceById.L10.frames[n].time}s
-            </span>
-          </button>
-        ))}
-      </div>
-      <SectionTitle index="02" title="节奏与过渡" />
-      <div className="timing-table">
-        {[
-          ["控件反馈", "120–180 ms", "轻量的按下、焦点和颜色变化"],
-          ["面板进入", "360 ms", "位移与透明度同步收敛"],
-          ["布局过渡", "480 ms", "应用收窄，伴随区展开"],
-          ["呼吸循环", "3.2 s", "以小幅缩放表达存在"],
-          ["环面旋转", "6 s", "柔和连续的光环位移"],
-        ].map(([n, t, d]) => (
-          <div key={n}>
-            <strong>{n}</strong>
-            <code>{t}</code>
-            <span>{d}</span>
-          </div>
-        ))}
-      </div>
-      <p className="fine-print">
-        这些时长是本项目的实现参数，未声称从原视频测得。系统开启「减少动态效果」时，持续动画与过渡会停止。
-      </p>
-      <Code>{`<Orb state="listening" size={96} paused={false} />\n\n@media (prefers-reduced-motion: reduce) {\n  .xy-orb * { animation: none; }\n}`}</Code>
-    </>
-  );
-}
+const Motion = MotionLab;
 const patternList = [
+  [
+    "vision",
+    "小艺看世界",
+    "L06",
+    "全幅取景中的实时视觉对话。字幕与翻转摄像头位于顶部，静音、摄像头和挂断位于底部。",
+    "依据 W18 官方界面图重建；取景照片为参考裁切，字幕是固定示例。可切换字幕、前后摄像头、静音和通话状态，不请求设备权限。",
+  ],
   [
     "companion",
     "伴随阅读",
@@ -713,7 +587,7 @@ function Patterns({ onOpen }) {
   return (
     <>
       <PageTitle
-        eyebrow="04 / INTERACTION PATTERNS"
+        eyebrow="05 / INTERACTION PATTERNS"
         title="交互范式"
         description="从组件到完整场景，体验小艺如何进入任务、承接意图与交还控制。"
       />
@@ -742,7 +616,9 @@ function Patterns({ onOpen }) {
         </Button>
       </div>
       <div className={`pattern-canvas canvas-${id}`} key={`${id}-${key}`}>
-        {id === "companion" ? (
+        {id === "vision" ? (
+          <VisionDemo />
+        ) : id === "companion" ? (
           <CompanionDemo />
         ) : id === "writing" ? (
           <WritingDemo />
@@ -754,6 +630,7 @@ function Patterns({ onOpen }) {
           <DragDemo />
         )}
       </div>
+      {id === "vision" && <VisionReference />}
       <div className="pattern-foot">
         <Evidence ids={source} onOpen={onOpen} />
         <span className="badge estimate">本地模拟</span>
@@ -765,21 +642,23 @@ function Patterns({ onOpen }) {
       </details>
       <SectionTitle index="01" title="状态路径" />
       <div className="state-flow">
-        {(id === "companion"
-          ? [
-              "窄栏待机",
-              "聆听 / 快捷指令",
-              "理解内容",
-              "展开结果",
-              "收起 / 退出",
-            ]
-          : id === "writing"
-            ? ["原文", "选择类型", "生成中", "审阅结果", "替换原文"]
-            : id === "selection"
-              ? ["浏览内容", "圈定对象", "选择动作", "查看结果", "返回选区"]
-              : id === "drag"
-                ? ["选择内容", "拖入导航条", "接收内容", "提供服务"]
-                : ["开始对话", "提交输入", "思考中", "回复结果", "继续提问"]
+        {(id === "vision"
+          ? ["进入看世界", "开启摄像头", "查看字幕", "切换取景", "挂断返回"]
+          : id === "companion"
+            ? [
+                "窄栏待机",
+                "聆听 / 快捷指令",
+                "理解内容",
+                "展开结果",
+                "收起 / 退出",
+              ]
+            : id === "writing"
+              ? ["原文", "选择类型", "生成中", "审阅结果", "替换原文"]
+              : id === "selection"
+                ? ["浏览内容", "圈定对象", "选择动作", "查看结果", "返回选区"]
+                : id === "drag"
+                  ? ["选择内容", "拖入导航条", "接收内容", "提供服务"]
+                  : ["开始对话", "提交输入", "思考中", "回复结果", "继续提问"]
         ).map((x, i) => (
           <React.Fragment key={x}>
             {i > 0 && <Icon name="ChevronRight" size={16} />}
@@ -799,14 +678,21 @@ function References({ onOpen }) {
   const items = manifest.items.filter(
     (r) =>
       (filter === "all" || r.kind === filter || r.evidence === filter) &&
-      (r.title + r.filename + r.category + r.id)
+      (
+        r.title +
+        english(r.title) +
+        r.filename +
+        r.category +
+        english(r.category) +
+        r.id
+      )
         .toLowerCase()
         .includes(query.toLowerCase()),
   );
   return (
     <>
       <PageTitle
-        eyebrow="05 / REFERENCE LIBRARY"
+        eyebrow="06 / REFERENCE LIBRARY"
         title="参考与证据"
         description="18 份本地素材，逐项归档。看得到来源，也看得到还原的边界。"
       >
@@ -904,6 +790,18 @@ function References({ onOpen }) {
               </div>
               <p>{s.note}</p>
               <small>{s.scope}</small>
+              {s.preview && (
+                <details className="control-reference">
+                  <summary>查看官方示例图</summary>
+                  <a href={s.url} target="_blank" rel="noreferrer">
+                    <img
+                      src={s.preview}
+                      alt={s.title + " 原文示例"}
+                      loading="lazy"
+                    />
+                  </a>
+                </details>
+              )}
             </div>
           </article>
         ))}
@@ -919,7 +817,7 @@ function Handoff() {
   return (
     <>
       <PageTitle
-        eyebrow="06 / GETTING STARTED"
+        eyebrow="07 / GETTING STARTED"
         title="使用与交付"
         description="从设计审阅到原型实现，带着来源复用这套系统。"
       />
@@ -990,8 +888,7 @@ function Handoff() {
         <div>
           <span className="badge estimate">估值</span>
           <p>
-            色值、间距、圆角、动效时长和缩放比例均为工程估值。图标是 Lucide
-            替代，字体回退效果与真机可能不同。
+            色值、间距、圆角、动效时长和缩放比例均为工程估值。图标是参考重绘与同风格扩展，字体回退效果与真机可能不同。
           </p>
         </div>
         <div>
@@ -1096,7 +993,8 @@ function App() {
   const [page, setPage] = useState(pageFromHash),
     [menu, setMenu] = useState(false),
     [search, setSearch] = useState(""),
-    [reference, setReference] = useState(null);
+    [reference, setReference] = useState(null),
+    [controlRequest, setControlRequest] = useState(null);
   useEffect(() => {
     const fn = () => {
       setPage(pageFromHash());
@@ -1117,16 +1015,36 @@ function App() {
         .filter((x) => x.join(" ").toLowerCase().includes(search.toLowerCase()))
         .map((x) => ({ type: "page", id: x[0], title: x[1] }))
         .concat(
+          controlItems
+            .filter((item) =>
+              (item.title + english(item.title) + item.subtitle + item.id)
+                .toLowerCase()
+                .includes(search.toLowerCase()),
+            )
+            .map((item) => ({
+              type: "control",
+              id: item.id,
+              title: item.title,
+              category: item.category,
+            })),
+        )
+        .concat(
           manifest.items
             .filter((x) =>
-              (x.title + x.category + x.id)
+              (
+                x.title +
+                english(x.title) +
+                x.category +
+                english(x.category) +
+                x.id
+              )
                 .toLowerCase()
                 .includes(search.toLowerCase()),
             )
             .map((x) => ({ type: "reference", id: x.id, title: x.title })),
         )
     : [];
-  const common = { go, onOpen: setReference };
+  const common = { go, onOpen: setReference, controlRequest };
   return (
     <>
       <a className="skip-link" href="#main-content">
@@ -1197,6 +1115,7 @@ function App() {
             <strong>{nav.find((n) => n[0] === page)[1]}</strong>
           </div>
           <div className="topbar-actions">
+            <LanguageSwitch />
             <div className="global-search">
               <Icon name="Search" size={16} />
               <input
@@ -1221,14 +1140,23 @@ function App() {
                         key={r.id}
                         onClick={() => {
                           if (r.type === "page") go(r.id);
-                          else {
+                          else if (r.type === "control") {
+                            go("components");
+                            setControlRequest({ category: r.category });
+                          } else {
                             setReference(sourceById[r.id]);
                             setSearch("");
                           }
                         }}
                       >
                         <span>{r.title}</span>
-                        <small>{r.type === "page" ? "页面" : r.id}</small>
+                        <small>
+                          {r.type === "page"
+                            ? "页面"
+                            : r.type === "control"
+                              ? "控件"
+                              : r.id}
+                        </small>
                       </button>
                     ))
                   ) : (
@@ -1237,7 +1165,7 @@ function App() {
                 </div>
               )}
             </div>
-            <span className="top-version">v1.0</span>
+            <span className="top-version">v2.2</span>
           </div>
         </header>
         <main id="main-content" key={page}>
@@ -1249,6 +1177,8 @@ function App() {
             <Components {...common} />
           ) : page === "motion" ? (
             <Motion {...common} />
+          ) : page === "icons" ? (
+            <IconLibrary />
           ) : page === "patterns" ? (
             <Patterns {...common} />
           ) : page === "reference" ? (
@@ -1267,4 +1197,8 @@ function App() {
     </>
   );
 }
-createRoot(document.getElementById("root")).render(<App />);
+createRoot(document.getElementById("root")).render(
+  <LanguageProvider>
+    <App />
+  </LanguageProvider>,
+);

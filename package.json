@@ -1,26 +1,27 @@
 {
   "name": "xiaoyi-design-system",
-  "version": "1.0.0",
+  "version": "2.2.0",
   "private": true,
   "type": "module",
-  "description": "Evidence-led Xiaoyi design system reconstruction: tokens, React components, motion and interaction patterns.",
+  "description": "小艺设计系统研究复刻 / Xiaoyi design system reconstruction: bilingual React UI, transparent Three.js TSL motion, icons and references.",
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 5197",
-    "build": "node scripts/build-tokens.mjs && vite build",
+    "build": "node scripts/build-tokens.mjs && node scripts/build-icons.mjs && vite build",
     "preview": "vite preview --host 127.0.0.1 --port 5197",
-    "check": "node scripts/check.mjs",
+    "check": "node scripts/check.mjs && node scripts/check-i18n.mjs",
     "test": "playwright test",
     "inventory": "python3 scripts/inventory.py"
   },
   "dependencies": {
-    "lucide-react": "^0.468.0",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "three": "^0.186.1"
   },
   "devDependencies": {
     "@playwright/test": "^1.55.1",
     "@vitejs/plugin-react": "^5.0.3",
     "prettier": "^3.9.9",
-    "vite": "^7.1.7"
+    "vite": "^7.1.7",
+    "@babel/parser": "^7.29.9"
   }
 }
