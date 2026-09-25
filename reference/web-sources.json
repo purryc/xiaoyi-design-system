@@ -1,0 +1,83 @@
+[
+  {
+    "id": "W01",
+    "title": "小艺伴随式 AI 功能介绍",
+    "url": "https://consumer.huawei.com/cn/support/content/zh-cn16094008/",
+    "type": "official",
+    "scope": "HarmonyOS 6.1.0.115+；页面列明 Pura X Max / X View 等适用产品，不能据此推定本地平板版本。圈选伴随在该页标注为 7.0+。",
+    "note": "小屏、大屏、极简三形态；双击导航条进入、长按收音、显式退出。",
+    "accessed": "2026-09-25"
+  },
+  {
+    "id": "W02",
+    "title": "小艺圈选功能说明",
+    "url": "https://consumer.huawei.com/cn/support/content/zh-cn16023699/",
+    "type": "official",
+    "scope": "HarmonyOS 5.0+；本次搜索索引可读，直接打开返回 503。",
+    "note": "指关节圈选后可问问小艺、识图搜索、保存或分享；本地 L12 为直接视觉依据。",
+    "accessed": "2026-09-25"
+  },
+  {
+    "id": "W03",
+    "title": "拖给小艺功能简介",
+    "url": "https://consumer.huawei.com/cn/support/content/zh-cn16010332/",
+    "type": "official",
+    "scope": "HarmonyOS 5.0+；受导航方式及应用支持限制。",
+    "note": "可将文本、图片、文件拖向输入框或导航条，交给小艺分析。",
+    "accessed": "2026-09-25"
+  },
+  {
+    "id": "W04",
+    "title": "HarmonyOS 设计理念",
+    "url": "https://developer.huawei.com/consumer/cn/design/concept/",
+    "type": "official",
+    "scope": "通用 HarmonyOS 设计理念；非小艺组件规范。",
+    "note": "蓝白基调、舒适圆角、HarmonyOS Sans 与跨设备卡片设计。",
+    "accessed": "2026-09-25"
+  },
+  {
+    "id": "W05",
+    "title": "HarmonyOS 设计资源",
+    "url": "https://developer.huawei.com/consumer/cn/design/resource?ha_source=sifou&ha_sourceId=89000483",
+    "type": "official",
+    "scope": "访问时资源页列出 2026/06 与 2026/07 更新。",
+    "note": "官方字体、图标和设计组件获取入口；本项目未捆绑这些授权资源。",
+    "accessed": "2026-09-25"
+  },
+  {
+    "id": "W06",
+    "title": "小艺官网",
+    "url": "https://consumer.huawei.com/cn/mobileservices/celia/",
+    "type": "official",
+    "scope": "动态营销页；功能需结合机型及系统版本确认。",
+    "note": "补充多模态、办公、服务卡片与跨设备能力的范围。",
+    "accessed": "2026-09-25"
+  },
+  {
+    "id": "W07",
+    "title": "小艺帮写功能介绍",
+    "url": "https://consumer.huawei.com/cn/support/content/zh-cn16015627/",
+    "type": "official",
+    "scope": "该页对应 HarmonyOS 4.0 / 4.2 / 4.3 输入法帮写。",
+    "note": "只补充写作语义；不将旧版输入法的 19 类场景映射到 L09 备忘录面板。",
+    "accessed": "2026-09-25"
+  },
+  {
+    "id": "W08",
+    "title": "HarmonyOS 6 · 超能小艺，轻松搞定",
+    "url": "https://www.bilibili.com/video/BV1K8s8zrERL/",
+    "type": "video-link",
+    "scope": "华为终端，2025-10-22。已读页面信息，未逐帧审阅线上视频。",
+    "note": "官方视频检索线索；不作为数值或动效时序依据。",
+    "accessed": "2026-09-25"
+  },
+  {
+    "id": "W09",
+    "title": "Huawei Celia Assistant gets Native HarmonyOS support",
+    "url": "https://www.youtube.com/watch?v=yBWt0BUIcGo",
+    "type": "video-link",
+    "scope": "Tech News，2025-01-22。只检索到页面摘要，未观看完整视频。",
+    "note": "第三方版本线索；不用于复刻定稿。",
+    "accessed": "2026-09-25"
+  }
+]
