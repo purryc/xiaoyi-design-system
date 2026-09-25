@@ -4,6 +4,7 @@ import {
   OrthographicCamera,
   PlaneGeometry,
   Mesh,
+  Color,
   SRGBColorSpace,
   NoToneMapping,
 } from "three/webgpu";
@@ -35,6 +36,8 @@ export async function createOrbRenderer(canvas, { forceWebGL = false } = {}) {
     { material, uniforms: u } = createOrbMaterial(),
     mesh = new Mesh(geometry, material);
   scene.add(mesh);
+  const colorA = new Color(),
+    colorB = new Color();
   let lastSize = "",
     disposed = false;
   return {
@@ -72,10 +75,21 @@ export async function createOrbRenderer(canvas, { forceWebGL = false } = {}) {
           b = sample.field.b,
           f = sample.field.mix;
         u["contour" + i].value = a.radius[i] + (b.radius[i] - a.radius[i]) * f;
-        u["flux" + i].value.set(
-          ...a.radiance[i].map((v, k) => v + (b.radiance[i][k] - v) * f),
-        );
       }
+      for (const [prefix, key, count] of [
+        ["ringColor", "ringSrgb", 16],
+        ["glowColor", "glowSrgb", 16],
+        ["bodyColor", "bodySrgb", 4],
+      ]) {
+        for (let i = 0; i < count; i++) {
+          colorA.setRGB(...sample.colors.a[key][i], SRGBColorSpace);
+          colorB.setRGB(...sample.colors.b[key][i], SRGBColorSpace);
+          u[prefix + i].value.copy(colorA.lerp(colorB, sample.colors.mix));
+        }
+      }
+      colorA.setRGB(...sample.colors.a.coreSrgb, SRGBColorSpace);
+      colorB.setRGB(...sample.colors.b.coreSrgb, SRGBColorSpace);
+      u.measuredCore.value.copy(colorA.lerp(colorB, sample.colors.mix));
       renderer.render(scene, camera);
     },
     dispose() {

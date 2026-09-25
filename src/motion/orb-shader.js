@@ -1,4 +1,4 @@
-import { Color, Vector3, MeshBasicNodeMaterial } from "three/webgpu";
+import { Color, MeshBasicNodeMaterial } from "three/webgpu";
 import {
   Fn,
   uv,
@@ -31,10 +31,13 @@ export function createOrbMaterial() {
   for (const p of parameterSchema)
     u[p.key] =
       p.type === "color" ? uniform(new Color(p.default)) : uniform(p.default);
-  for (let i = 0; i < 9; i++) {
-    u["contour" + i] = uniform(0);
-    u["flux" + i] = uniform(new Vector3());
+  for (let i = 0; i < 9; i++) u["contour" + i] = uniform(0);
+  for (let i = 0; i < 16; i++) {
+    u["ringColor" + i] = uniform(new Color());
+    u["glowColor" + i] = uniform(new Color());
   }
+  u.measuredCore = uniform(new Color());
+  for (let i = 0; i < 4; i++) u["bodyColor" + i] = uniform(new Color());
   const gaussian = (distance, width) =>
     exp(distance.div(width).pow(2).negate());
   const rotate = (p, a) =>
@@ -42,14 +45,36 @@ export function createOrbMaterial() {
       p.x.mul(cos(a)).add(p.y.mul(sin(a))),
       p.y.mul(cos(a)).sub(p.x.mul(sin(a))),
     );
-  const palette = (angle, offset = 0) => {
-    const phase = angle.mul(2).add(u.time.mul(u.colorSpeed)).add(offset);
-    const rose = sin(phase).mul(0.5).add(0.5).pow(2.2);
-    const cream = sin(angle.add(u.time.mul(u.colorSpeed).mul(0.5)).add(2.1))
-      .mul(0.5)
-      .add(0.5)
-      .pow(9);
-    return mix(mix(u.cyan, u.pink, rose), u.warm, cream);
+  const palette = (angle, offset = 0, prefix = "ringColor") => {
+    // Non-negative interpolation of direct RGB samples cannot introduce the
+    // spurious green/yellow hues of the old background-subtracted RGB fit.
+    const turn = fract(
+      angle
+        .add(offset)
+        .add(u.time.mul(u.colorSpeed.sub(0.72)))
+        .div(Math.PI * 2)
+        .add(0.5),
+    );
+    const result = vec3(0).toVar();
+    for (let i = 0; i < 16; i++) {
+      const d = turn.sub(i / 16).abs();
+      const w = float(1)
+        .sub(d.min(float(1).sub(d)).mul(16))
+        .max(0);
+      result.addAssign(u[prefix + i].mul(w));
+    }
+    // Color controls are explicit deviations from the measured default palette.
+    const cool = float(1).sub(smoothstep(0.45, 0.9, result.r));
+    const pink = result.r.sub(result.g).max(0).mul(3).clamp(0, 1);
+    return result
+      .add(u.cyan.sub(vec3(...new Color(defaults.cyan).toArray())).mul(cool))
+      .add(u.pink.sub(vec3(...new Color(defaults.pink).toArray())).mul(pink))
+      .add(
+        u.warm
+          .sub(vec3(...new Color(defaults.warm).toArray()))
+          .mul(float(1).sub(cool).sub(pink).max(0)),
+      )
+      .clamp(0, 1);
   };
   const ring = (p, radius, tilt, rotation, width, strength, phase = 0) => {
     const q = rotate(p, rotation);
@@ -63,14 +88,18 @@ export function createOrbMaterial() {
     const distance = length(circular)
       .sub(radius.add(rippleShape))
       .mul(squash.mul(0.45).add(0.55));
-    const ink = palette(angle, phase);
+    const ink = palette(
+      mix(atan(p.y, p.x), angle, u.gyro),
+      u.gyro.mul(phase),
+      "glowColor",
+    );
     const sharp = gaussian(distance, width).mul(u.intensity);
     const near = gaussian(distance, u.bloomWidth).mul(u.bloom);
     const far = gaussian(distance, u.haloWidth).mul(u.halo);
     const facing = sin(angle.mul(2).add(rotation)).mul(0.45).add(0.55).pow(1.5);
     return ink
       .mul(near.add(far).add(sharp.mul(0.8)))
-      .add(vec3(1, 0.985, 0.97).mul(sharp.mul(0.18)))
+      .add(vec3(1, 0.985, 1).mul(sharp.mul(0.18)))
       .mul(strength)
       .mul(facing);
   };
@@ -90,16 +119,12 @@ export function createOrbMaterial() {
     const tilt = u.gyro.mul(u.gyroTilt).mul(1.18);
     const primary = p.sub(vec2(0.035, 0));
     const polar = atan(primary.y, primary.x);
-    const contour = u.contour0.toVar(),
-      flux = u.flux0.toVar();
+    const contour = u.contour0.toVar();
     for (let k = 1; k <= 4; k++) {
       const c = cos(polar.mul(k)),
         s = sin(polar.mul(k));
       contour.addAssign(
         u["contour" + (k * 2 - 1)].mul(c).add(u["contour" + k * 2].mul(s)),
-      );
-      flux.addAssign(
-        u["flux" + (k * 2 - 1)].mul(c).add(u["flux" + k * 2].mul(s)),
       );
     }
     const dist = length(primary).sub(
@@ -108,31 +133,17 @@ export function createOrbMaterial() {
         .add(sin(polar.mul(2).add(u.time)).mul(u.wobble.sub(0.012))),
     );
     const profile = gaussian(dist, u.lineWidth)
-      .mul(0.68)
-      .add(gaussian(dist, u.bloomWidth).mul(u.bloom.div(0.72)).mul(0.25))
-      .add(gaussian(dist, u.haloWidth).mul(u.halo.div(0.3)).mul(0.07));
-    const roseWeight = sin(polar.mul(2).add(u.time.mul(u.colorSpeed)))
-      .mul(0.5)
-      .add(0.5);
-    const warmWeight = sin(polar.add(u.time.mul(0.36)))
-      .mul(0.5)
-      .add(0.5)
-      .pow(6);
-    const tint = u.cyan
-      .sub(vec3(...new Color(defaults.cyan).toArray()))
-      .mul(float(1).sub(roseWeight))
-      .add(
-        u.pink.sub(vec3(...new Color(defaults.pink).toArray())).mul(roseWeight),
-      )
-      .add(
-        u.warm.sub(vec3(...new Color(defaults.warm).toArray())).mul(warmWeight),
-      )
-      .mul(0.7);
+      .mul(0.45)
+      .add(gaussian(dist, u.bloomWidth).mul(u.bloom.div(0.72)).mul(0.45))
+      .add(gaussian(dist, u.haloWidth).mul(u.halo.div(0.3)).mul(0.1));
     light.addAssign(
-      flux
-        .max(0)
-        .add(tint)
-        .mul(profile)
+      palette(polar)
+        .mul(gaussian(dist, u.lineWidth).mul(0.45))
+        .add(
+          palette(polar, 0, "glowColor").mul(
+            profile.sub(gaussian(dist, u.lineWidth).mul(0.45)),
+          ),
+        )
         .mul(u.intensity.div(1.35))
         .mul(float(1).sub(u.gyro)),
     );
@@ -212,14 +223,39 @@ export function createOrbMaterial() {
     // exactly transparent, including the tighter icon framing.
     const edge = u.framing.mul(u.aspect.min(1));
     const support = float(1).sub(smoothstep(edge.mul(0.82), edge, radial));
-    const body = gaussian(radial, r.mul(0.88)).mul(u.coreDepth).mul(0.53);
-    const energy = length(light).mul(0.85).clamp(0, 1);
-    const alpha = body.add(energy).clamp(0, 1).mul(support);
-    const rgb = mix(u.coreColor, u.auraColor, smoothstep(0, r, radial))
-      .mul(body)
-      .add(light)
-      .div(body.add(energy).max(0.001))
+    const body = exp(radial.div(r.mul(1.35)).pow(4).negate())
+      .mul(u.coreDepth.div(0.68))
+      .mul(0.99)
       .clamp(0, 1);
+    const bx = smoothstep(-0.3, 0.3, p.x),
+      by = smoothstep(-0.3, 0.3, p.y);
+    const quadrant = mix(
+      mix(u.bodyColor2, u.bodyColor3, bx),
+      mix(u.bodyColor0, u.bodyColor1, bx),
+      by,
+    )
+      .add(u.coreColor.sub(vec3(...new Color(defaults.coreColor).toArray())))
+      .add(
+        u.auraColor
+          .sub(vec3(...new Color(defaults.auraColor).toArray()))
+          .mul(smoothstep(0.15, 0.6, radial)),
+      )
+      .clamp(0, 1);
+    const core = mix(
+      quadrant,
+      u.measuredCore
+        .add(u.coreColor.sub(vec3(...new Color(defaults.coreColor).toArray())))
+        .clamp(0, 1),
+      gaussian(radial, float(0.2)),
+    );
+    const energy = light.r.max(light.g).max(light.b).clamp(0, 1);
+    const alpha = body
+      .add(energy.mul(float(1).sub(body)))
+      .clamp(0, 1)
+      .mul(support);
+    // Straight color over alpha: do not normalize RGB by vector length, which
+    // darkens near-white light and amplifies hue errors on transparent surfaces.
+    const rgb = mix(core, light.div(energy.max(0.001)).clamp(0, 1), energy);
     return vec4(rgb, alpha);
   })();
   const material = new MeshBasicNodeMaterial({

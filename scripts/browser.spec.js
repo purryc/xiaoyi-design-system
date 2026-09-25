@@ -1,4 +1,10 @@
 import { test, expect } from "@playwright/test";
+import fs from "node:fs";
+const orbColors = JSON.parse(
+  fs.readFileSync(
+    new URL("../reference/orb-color-samples.json", import.meta.url),
+  ),
+);
 const pages = [
   "overview",
   "foundations",
@@ -579,7 +585,7 @@ for (const language of ["zh", "en"])
     );
   });
 for (const backend of ["webgpu", "webgl"])
-  test(`transparent TSL borders across time and backgrounds on ${backend}`, async ({
+  test(`transparent TSL borders and reference colors across time and backgrounds on ${backend}`, async ({
     page,
   }) => {
     await page.goto(
@@ -626,15 +632,53 @@ for (const backend of ["webgpu", "webgl"])
         ctx.drawImage(img, 0, 0);
         const { data } = ctx.getImageData(0, 0, c.width, c.height);
         let border = 0,
-          visible = 0;
+          visible = 0,
+          green = 0,
+          ringPixels = 0;
+        const core = [[], [], []];
         for (let y = 0; y < c.height; y++)
           for (let x = 0; x < c.width; x++) {
             const alpha = data[(y * c.width + x) * 4 + 3];
             if (x === 0 || y === 0 || x === c.width - 1 || y === c.height - 1)
               border = Math.max(border, alpha);
             if (alpha > 20) visible++;
+            const radius = Math.hypot(
+              (x - c.width / 2) / (c.height / 2) - 0.035,
+              (c.height / 2 - y) / (c.height / 2),
+            );
+            const rgb = Array.from(
+              data.slice((y * c.width + x) * 4, (y * c.width + x) * 4 + 3),
+            );
+            if (radius < 0.1) rgb.forEach((v, i) => core[i].push(v));
+            if (radius > 0.41 && radius < 0.5 && alpha > 51) {
+              ringPixels++;
+              const [r, g, b] = rgb,
+                max = Math.max(...rgb),
+                min = Math.min(...rgb),
+                delta = max - min;
+              let hue = 0;
+              if (delta)
+                hue =
+                  60 *
+                  (max === r
+                    ? ((g - b) / delta + 6) % 6
+                    : max === g
+                      ? (b - r) / delta + 2
+                      : (r - g) / delta + 4);
+              if (hue > 70 && hue < 165 && delta / Math.max(1, max) > 0.15)
+                green++;
+            }
           }
-        return { border, visible };
+        return {
+          border,
+          visible,
+          ringPixels,
+          greenRatio: green / Math.max(1, ringPixels),
+          core: core.map(
+            (channel) =>
+              channel.sort((a, b) => a - b)[Math.floor(channel.length / 2)],
+          ),
+        };
       }, png.toString("base64"));
       await orb.evaluate((el) => {
         for (let p = el; p; p = p.parentElement) {
@@ -644,5 +688,148 @@ for (const backend of ["webgpu", "webgl"])
       });
       expect(pixels.border).toBe(0);
       expect(pixels.visible).toBeGreaterThan(100);
+      expect(pixels.ringPixels).toBeGreaterThan(100);
+      expect(pixels.greenRatio).toBeLessThan(0.001);
+      if (time !== 14.5) {
+        const source = orbColors.frames.find((f) => f.time === time).coreSrgb;
+        source.forEach((value, i) =>
+          expect(Math.abs(pixels.core[i] - value * 255)).toBeLessThan(12),
+        );
+      }
     }
+  });
+
+async function edgePixels(page) {
+  const canvas = page.locator(".edge-lab .companion-edge-glow canvas");
+  await page
+    .locator(".edge-surface-content")
+    .evaluate((el) => (el.style.visibility = "hidden"));
+  await canvas.evaluate((el) => {
+    for (let p = el.parentElement; p; p = p.parentElement) {
+      p.dataset.edgeStyle = p.getAttribute("style") || "";
+      p.style.setProperty("background", "transparent", "important");
+      p.style.setProperty("box-shadow", "none", "important");
+    }
+  });
+  const png = await canvas.screenshot({ omitBackground: true });
+  const padding = Number(await canvas.getAttribute("data-padding"));
+  const result = await page.evaluate(
+    async ({ base64, padding }) => {
+      const img = new Image();
+      img.src = "data:image/png;base64," + base64;
+      await img.decode();
+      const c = document.createElement("canvas");
+      c.width = img.width;
+      c.height = img.height;
+      const ctx = c.getContext("2d");
+      ctx.drawImage(img, 0, 0);
+      const { data } = ctx.getImageData(0, 0, c.width, c.height);
+      let visible = 0,
+        border = 0;
+      for (let y = 0; y < c.height; y++)
+        for (let x = 0; x < c.width; x++) {
+          const a = data[(y * c.width + x) * 4 + 3];
+          if (a > 5) visible++;
+          if (x === 0 || y === 0 || x === c.width - 1 || y === c.height - 1)
+            border = Math.max(border, a);
+        }
+      const at = (x, y) => data[(y * c.width + x) * 4 + 3],
+        x = Math.floor(c.width / 2),
+        profile = Array.from({ length: 30 }, (_, y) =>
+          at(x, Math.round(padding) + y),
+        );
+      const peak = Math.max(...profile.slice(0, 5)),
+        start = profile.indexOf(peak);
+      return {
+        visible,
+        border,
+        center: at(x, Math.floor(c.height / 2)),
+        half: profile.slice(start).findIndex((v) => v <= peak * 0.5),
+        tenth: profile.slice(start).findIndex((v) => v <= peak * 0.1),
+      };
+    },
+    { base64: png.toString("base64"), padding },
+  );
+  await canvas.evaluate((el) => {
+    for (let p = el.parentElement; p; p = p.parentElement) {
+      p.setAttribute("style", p.dataset.edgeStyle);
+      delete p.dataset.edgeStyle;
+    }
+  });
+  await page
+    .locator(".edge-surface-content")
+    .evaluate((el) => (el.style.visibility = ""));
+  return result;
+}
+for (const backend of ["webgpu", "webgl"])
+  test(`companion edge diffusion, transparency and reuse on ${backend}`, async ({
+    page,
+  }) => {
+    await page.goto(
+      `/?lang=en${backend === "webgl" ? "&backend=webgl" : ""}#motion`,
+    );
+    const lab = page.locator(".edge-lab"),
+      effect = lab.locator(".companion-edge-glow");
+    await lab.scrollIntoViewIfNeeded();
+    await expect(effect).toHaveAttribute("data-render-status", "ready");
+    await expect(effect).toHaveAttribute(
+      "data-backend",
+      backend === "webgl" ? /WebGL2/ : /WebGPU/,
+    );
+    await lab
+      .getByRole("button", { name: "Pause edge light", exact: true })
+      .click();
+    const canvas = effect.locator("canvas");
+    await expect(canvas).toHaveAttribute("data-paused", "true");
+    const first = await canvas.screenshot();
+    await page.waitForTimeout(120);
+    expect((await canvas.screenshot()).equals(first)).toBeTruthy();
+    const narrow = await edgePixels(page);
+
+    expect(narrow.center).toBe(0);
+    expect(narrow.border).toBe(0);
+    expect(narrow.visible).toBeGreaterThan(300);
+    const h = await page
+      .locator(".edge-surface")
+      .evaluate((el) => el.clientHeight);
+    expect(Math.abs(narrow.half - (8 * h) / 1828)).toBeLessThan(1.3);
+    expect(Math.abs(narrow.tenth - (15 * h) / 1828)).toBeLessThan(1.5);
+    await lab.getByLabel("Inward diffusion width", { exact: false }).fill("30");
+    const broad = await edgePixels(page);
+    expect(broad.visible).toBeGreaterThan(narrow.visible * 1.8);
+    expect(broad.half).toBeGreaterThan(narrow.half + 2);
+    expect(broad.center).toBe(0);
+    await lab.getByRole("button", { name: "Save", exact: true }).click();
+    await expect(
+      lab.getByRole("button", { name: "Saved", exact: true }),
+    ).toBeVisible();
+    await lab
+      .getByRole("button", { name: "Reset edge light", exact: true })
+      .click();
+    await expect(
+      lab.getByLabel("Inward diffusion width", { exact: false }),
+    ).toHaveValue("9.6");
+    const download = page.waitForEvent("download");
+    await lab
+      .getByRole("button", { name: "Export edge parameters", exact: true })
+      .click();
+    const payload = JSON.parse(fs.readFileSync(await (await download).path()));
+    expect(payload.parameters.innerWidth).toBe(9.6);
+    expect(payload.schema).toHaveLength(6);
+    expect(
+      payload.schema.every((p) => p.labelEn && p.descriptionEn),
+    ).toBeTruthy();
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await lab
+      .getByRole("button", { name: "Play edge light", exact: true })
+      .click();
+    await expect(canvas).toHaveAttribute("data-paused", "true");
+    await page.goto("/?lang=en#patterns");
+    const companion = page.locator(".pattern-canvas .companion-edge-glow");
+    await expect(companion).toHaveAttribute("data-render-status", "ready");
+    await page
+      .locator(".pattern-canvas")
+      .getByLabel("Exit companion", { exact: true })
+      .click();
+    await expect(companion).toHaveAttribute("data-active", "false");
   });

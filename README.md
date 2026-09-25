@@ -39,6 +39,7 @@ npm test         # Chrome 中检查页面、交互、下载与减少动态效果
 | 组件     | 光球、按钮、图标按钮、建议胶囊、输入条、消息、服务卡片、帮写面板、伴随侧栏、圈选结果、导航条                                                               |
 | 常用控件 | 信息/操作卡片、Slider、底部 Chip、Toast、Switch、Checkbox、RadioGroup、Progress；状态与来源逐项标注                                                        |
 | 动效     | Three.js TSL / WebGPU；23.217 s 原片时间轴、28 个注释参数、38 个采样时点；WebGL2 兼容                                                                      |
+| 伴随边缘光 | 独立透明 TSL 叠加层；15 条原图宽度剖面、13 组动态配色、6 个可调参数与复用说明 |
 | 图标     | 77 枚自绘 SVG、React 组件、symbol sprite、来源清单、ZIP；搜索及笔画/尺寸/色彩调节                                                                          |
 | 交互范式 | 伴随阅读、上下文帮写、全屏对话、圈选问答、拖给小艺、小艺看世界                                                                                             |
 | 参考     | 18 个本地文件（13 图、5 视频；其中两图是同一内容），43 张目录预览 + 38 张动效采样图 + 1 个本地对照代理视频，18 条网络资料（含 8 条控件补充及看世界官方图） |
@@ -83,6 +84,7 @@ import './src/styles.css';
 ## 证据与版本
 
 - [常用控件与 Reference](docs/controls.md)：卡片、Slider、Chip、Toast 和选择/进度控件的用法与边界。
+- [伴随态边缘光与复用](docs/edge-light.md)：测量宽度、TSL 透明叠加层、6 个参数与 React 用法。
 - [动效模型与全部参数](docs/motion.md)：TSL 构造、可调参数、内部系数、时间轴、误差。
 - [图标库](docs/icons.md)：覆盖范围、SVG / React 用法与来源。
 - [设计规格](docs/design-spec.md)：视觉基础、布局比例、状态模型、行为与边界。
@@ -132,6 +134,7 @@ Original media is not uploaded. A clone runs independently; integrity checks exp
 | Components      | Orb, buttons, icon buttons, chips, input, messages, service cards, writing sheet, companion sidebar, selection results and navigation bar                                                                |
 | Common controls | 9 reusable exports: Card, Slider, ActionChip, BottomChips, Toast, Switch, Checkbox, RadioGroup, Progress; 6 interactive groups                                                                           |
 | Motion          | Three.js TSL / WebGPU with WebGL2 fallback; transparent composition; 23.217 s timeline, 28 annotated parameters and 38 samples                                                                           |
+| Companion edge | Reusable transparent TSL overlay; 15 measured width profiles, 13 color samples, six controls and reuse documentation |
 | Icons           | 77 SVGs, React component, symbol sprite, provenance manifest and ZIP; searchable with size, stroke and color controls                                                                                    |
 | Patterns        | Companion reading, contextual writing, full-screen conversation, circle to ask, drag to Xiaoyi and Look at the World                                                                                     |
 | References      | 18 local files (13 images, 5 videos, one duplicate image); 43 catalog previews, 38 motion samples, one local comparison proxy; 18 web sources, 3 OpenHarmony figures and 5 attributed vision derivatives |
@@ -164,7 +167,7 @@ These sources can be moved into a React prototype. Isolate global `body` / `butt
 
 ### Evidence, scope and rights
 
-See [controls](docs/controls.md#english), [motion](docs/motion.md#english), [icons](docs/icons.md#english), [design specification](docs/design-spec.md#english), [evidence](docs/evidence.md#english), [verification](docs/verification.md#english) and [attribution](docs/attribution.md#english).
+See [companion edge light and reuse](docs/edge-light.md#english), [controls](docs/controls.md#english), [motion](docs/motion.md#english), [icons](docs/icons.md#english), [design specification](docs/design-spec.md#english), [evidence](docs/evidence.md#english), [verification](docs/verification.md#english) and [attribution](docs/attribution.md#english).
 
 The [GitHub repository](https://github.com/purryc/xiaoyi-design-system) is an existing public source and documentation repository, not a public deployment. Xiaoyi, HarmonyOS and reference media belong to their rights holders. Icons are self-drawn reference reconstructions or style extensions. HarmonyOS Sans is not distributed; installed fonts or system fallbacks are used.
 

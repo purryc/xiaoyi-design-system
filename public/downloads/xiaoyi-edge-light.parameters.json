@@ -1,0 +1,94 @@
+{
+  "effect": "companion-edge-light",
+  "version": 1,
+  "sourceIds": [
+    "L11",
+    "L14",
+    "L15",
+    "L16",
+    "L18"
+  ],
+  "referenceHeight": 1828,
+  "parameters": {
+    "lineWidth": 2,
+    "innerWidth": 9.6,
+    "outerWidth": 4,
+    "outerOpacity": 0.04,
+    "opacity": 1,
+    "speed": 1
+  },
+  "schema": [
+    {
+      "key": "lineWidth",
+      "label": "边缘亮线宽度",
+      "default": 2,
+      "min": 0.5,
+      "max": 8,
+      "step": 0.1,
+      "unit": "ref px",
+      "description": "窄核的 1/e 半宽；约 0.57 CSS px / 520px 高。窄核权重 5%，为拟合估值。",
+      "labelEn": "Edge core width",
+      "descriptionEn": "Narrow-core 1/e half-width: about 0.57 CSS px at 520px height. Its 5% weight is a reconstruction estimate."
+    },
+    {
+      "key": "innerWidth",
+      "label": "向内发散宽度",
+      "default": 9.6,
+      "min": 2,
+      "max": 50,
+      "step": 0.1,
+      "unit": "ref px",
+      "description": "内侧高斯 1/e 半宽；约 2.73 CSS px / 520px 高。原图半峰约 8px，10% 约 14–18px。",
+      "labelEn": "Inward diffusion width",
+      "descriptionEn": "Inward Gaussian 1/e half-width: about 2.73 CSS px at 520px height. Source half strength is about 8px, and 10% at 14–18px."
+    },
+    {
+      "key": "outerWidth",
+      "label": "外侧余光宽度",
+      "default": 4,
+      "min": 0,
+      "max": 40,
+      "step": 0.1,
+      "unit": "ref px",
+      "description": "外侧弱光的 1/e 半宽，独立于内侧发散；4px 为保守拟合估值。",
+      "labelEn": "Outer glow width",
+      "descriptionEn": "Outer-glow 1/e half-width, independent of inward diffusion. The 4px default is a conservative reconstruction estimate."
+    },
+    {
+      "key": "outerOpacity",
+      "label": "外侧余光强度",
+      "default": 0.04,
+      "min": 0,
+      "max": 0.5,
+      "step": 0.01,
+      "unit": "α",
+      "description": "外侧最高透明度；默认 4%，避免将应用边缘变成宽霓虹描边。",
+      "labelEn": "Outer glow opacity",
+      "descriptionEn": "Maximum outer opacity: 4% by default, keeping the edge from becoming a broad neon outline."
+    },
+    {
+      "key": "opacity",
+      "label": "边缘光整体强度",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01,
+      "unit": "×",
+      "description": "统一缩放亮线、内侧发散和外侧余光的透明度。",
+      "labelEn": "Edge-light opacity",
+      "descriptionEn": "Scales the opacity of the narrow core, inward diffusion and outer glow together."
+    },
+    {
+      "key": "speed",
+      "label": "边缘色彩播放倍率",
+      "default": 1,
+      "min": 0,
+      "max": 3,
+      "step": 0.1,
+      "unit": "×",
+      "description": "沿 0–12 秒采样播放；随后用 1 秒衔接回起点，循环衔接为复刻处理。",
+      "labelEn": "Edge color playback speed",
+      "descriptionEn": "Plays the 0–12s samples, then blends back to the start over 1s. This loop transition is a reconstruction choice."
+    }
+  ]
+}

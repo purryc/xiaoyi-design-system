@@ -108,3 +108,16 @@ fs.writeFileSync(
 console.log(
   `Generated ${iconLibrary.length} SVG icons, sprite, ZIP and annotated TSL parameter export.`,
 );
+
+const { edgeParameterExport } =
+  await import("../src/motion/edge-parameters.js");
+const edgeExport = edgeParameterExport();
+edgeExport.schema = edgeExport.schema.map((p) => ({
+  ...p,
+  labelEn: english[p.label],
+  descriptionEn: english[p.description],
+}));
+fs.writeFileSync(
+  "public/downloads/xiaoyi-edge-light.parameters.json",
+  JSON.stringify(edgeExport, null, 2) + "\n",
+);

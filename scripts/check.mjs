@@ -96,12 +96,36 @@ assert.equal(
 );
 assert.equal(
   sanitizeParameters({ radius: 1e9, cyan: "red", maxFps: NaN }).cyan,
-  "#54f7ef",
+  "#70efff",
 );
 const motion = JSON.parse(fs.readFileSync("reference/motion-analysis.json"));
 const fit = JSON.parse(fs.readFileSync("reference/light-field-fit.json"));
 assert.equal(motion.frames.length, 38);
 assert.equal(fit.frames.length, 38);
+const sampledColors = JSON.parse(
+  fs.readFileSync("reference/orb-color-samples.json"),
+);
+assert.equal(
+  sampledColors.sourceSha256,
+  manifest.items.find((x) => x.id === "L10").sha256,
+);
+assert.equal(sampledColors.frames.length, motion.frames.length);
+for (const [i, f] of sampledColors.frames.entries()) {
+  assert.equal(f.time, motion.frames[i].time);
+  for (const [key, count] of [
+    ["ringSrgb", 16],
+    ["glowSrgb", 16],
+    ["bodySrgb", 4],
+  ]) {
+    assert.equal(f[key].length, count);
+    for (const color of f[key]) {
+      assert.equal(color.length, 3);
+      assert(color.every((x) => Number.isFinite(x) && x >= 0 && x <= 1));
+    }
+  }
+  assert.equal(f.coreSrgb.length, 3);
+  assert(f.coreSrgb.every((x) => Number.isFinite(x) && x >= 0 && x <= 1));
+}
 for (let i = 0; i < motion.frames.length; i++) {
   const f = fit.frames[i];
   assert.equal(f.time, motion.frames[i].time);
@@ -150,4 +174,51 @@ for (const source of figures) {
 assert(fs.existsSync("docs/controls.md"));
 console.log(
   "PASS: 6 control specimens, all source IDs resolved, 3 official figure hashes and attribution.",
+);
+
+const edgeAnalysis = JSON.parse(
+  fs.readFileSync("reference/edge-light-analysis.json"),
+);
+assert.equal(edgeAnalysis.profiles.length, 15);
+assert(
+  edgeAnalysis.profiles.every(
+    (p) =>
+      p.halfWidth >= 8 &&
+      p.halfWidth <= 9 &&
+      p.tenthWidth >= 14 &&
+      p.tenthWidth <= 18,
+  ),
+);
+assert.equal(edgeAnalysis.frames.length, 13);
+for (const source of edgeAnalysis.sources)
+  assert.equal(
+    source.sha256,
+    manifest.items.find((x) => x.id === source.id).sha256,
+  );
+for (const f of edgeAnalysis.frames) {
+  assert.equal(f.colors.length, 16);
+  assert(
+    f.colors.every(
+      (c) =>
+        c.length === 3 &&
+        c.every((v) => Number.isFinite(v) && v >= 0 && v <= 1),
+    ),
+  );
+}
+const { edgeDefaults, sanitizeEdgeParameters } =
+  await import("../src/motion/edge-parameters.js");
+assert.equal(sanitizeEdgeParameters({ innerWidth: 1e9 }).innerWidth, 50);
+assert.equal(
+  sanitizeEdgeParameters({ innerWidth: NaN }).innerWidth,
+  edgeDefaults.innerWidth,
+);
+assert.equal(sanitizeEdgeParameters({ outerOpacity: -2 }).outerOpacity, 0);
+assert.equal(Object.keys(sanitizeEdgeParameters({ unknown: 4 })).length, 6);
+const edgeExport = JSON.parse(
+  fs.readFileSync("public/downloads/xiaoyi-edge-light.parameters.json"),
+);
+assert.deepEqual(edgeExport.parameters, edgeDefaults);
+assert(edgeExport.schema.every((p) => p.unit && p.labelEn && p.descriptionEn));
+console.log(
+  "PASS: 15 measured edge profiles, 13 palette frames, 6 bounded parameters and bilingual edge export.",
 );

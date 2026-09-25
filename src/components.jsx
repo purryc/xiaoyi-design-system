@@ -1,3 +1,4 @@
+import { CompanionEdgeGlow } from "./motion/CompanionEdgeGlow";
 import { useLanguage, english } from "./i18n/runtime";
 import { VisionDemo } from "./vision/VisionDemo";
 import React, { useState, useEffect, useRef } from "react";
@@ -410,6 +411,7 @@ export function CompanionDemo({ initialExpanded = false }) {
     >
       <div className="companion-app">
         <Article />
+        <CompanionEdgeGlow active={active} />
       </div>
       {active ? (
         <aside className="companion-rail" aria-label="伴随助手">

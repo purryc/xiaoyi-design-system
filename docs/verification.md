@@ -6,6 +6,23 @@
 
 日期：2026-09-25。环境：macOS，Node.js 24.11.1，Chrome 153.0.8010.54，Vite 7.3.6。
 
+## 伴随边缘光交付 · 2026-09-25
+
+- 原件校验后测量 L11/L15/L16/L18 顶部 15 条色度剖面：内侧半峰 8–9 原图 px，10% 距离 14–18px；原高 1828px。L14 前 0–12s 提取 13 组动态配色，应用边界稳定在录屏 x=1667px。完整来源哈希、剖面和色点保存在 `reference/edge-light-analysis.json`。
+- 复用组件为 `CompanionEdgeGlow`：独立 TSL 圆角矩形距离场，6 个可调参数、中英说明、JSON 导出、暂停/定时/减少动态效果和卸载清理。原伴随态的固定 inset box-shadow 已替换；边缘向内扩散为主，外侧默认仅 4% 余光。
+- 构建与完整性检查通过，838 条英文文案、11 份双语 Markdown。原始媒体 18/18 SHA-256 一致。31/31 生产浏览器检查通过，37.2s；新增两项覆盖 WebGPU/WebGL2 的中心/画布边缘 alpha=0、实际半峰/10% 衰减宽度、加宽后像素增长、暂停、点击穿透、复位、双语下载、减少动态效果和退出伴随。
+- 首轮测试发现参数 label 隐式关联到了 output，已改为明确关联 slider。像素剖面按实际峰值定位，避免截图边界取整产生的一像素偏移。手机展开复用表格使用独立水平滚动容器；加入快捷入口后，6 项相关布局、双语与边缘光用例再次通过，6.9s。
+- 人工复核中文桌面、英文手机、伴随态整体、原图直边裁切以及 L14 的 6 个观察时点。宽度单位为原图 px，不是原生 vp；独立窄核、外侧余光和 1 秒循环衔接均标明拟合估值。未做华为真机或性能基准验证。
+- 本轮交付包含已获认可的光球颜色修正。按用户要求同步现有 GitHub 仓库，保持其公开可见性；不部署或合并其他分支。
+
+## 光球颜色修正 · 2026-09-25
+
+- 旧版将背景相减后的 RGB 差值用于透明光带着色，产生了原片未观察到的绿色/黄色，并削弱了蓝色球心。现改为 L10 原件的 38 组直接颜色采样；保留透明输出，未复制原片背景。
+- 对原片 1、5、10、14.5、15.5、20 秒抽帧人工复核。四个单环/扩散检查点（1、5、10、20 秒）在归一化半径 .41–.50、alpha>.2 的光环区域，以 HSV 色相 70°–165° 且饱和度>.15 定义明显偏绿像素：原片为 0%；旧版依次为 19.365%、30.557%、27.381%、14.783%；修正后均为 0%。此阈值用于偏色回归，不代表整体图像一致性。
+- 同一四帧球心半径 .1 内 RGB 中位数：原片依次 `(88,140,230)`、`(91,145,231)`、`(87,141,230)`、`(88,140,230)`；修正后 `(89,141,232)`、`(92,146,232)`、`(89,142,231)`、`(89,141,231)`。渲染值来自透明 PNG 的 RGB；白底合成会受 alpha 影响，不将这组数据解释为背景无关的逐像素一致。
+- 生产构建、完整性、808 条英文文案与双语文档检查通过。生产预览 29/29 浏览器用例通过，34.9s；新增颜色断言合并进原有透明用例，覆盖 WebGPU / WebGL2，要求非空光球、边界 alpha=0、偏绿占比<0.1%，普通状态球心各通道偏差<12/255。
+- 原片、修改前和修改后同尺寸裁切并排图保存在忽略的 `qa/color-review/comparison.png`。旧版修正对象和参考背景有区别；实时画布仍透明。高速交错姿态与光带形状仍有差异，不宣称完全复刻。该次颜色检查结束时尚未推送；此次已纳入后续伴随边缘光交付。
+
 ## 2.2 最终结果
 
 - 生产构建、完整性与双语检查通过；生产预览 **29/29 浏览器用例通过，32.3s**。
@@ -82,6 +99,26 @@
 ## English
 
 Date: 2026-09-25. Environment: macOS, Node.js 24.11.1, Chrome 153.0.8010.54, Vite 7.3.6. This file distinguishes historical checks from the final 2.2 verification recorded below.
+
+### Companion edge-light delivery · 2026-09-25
+
+Fifteen clean top-edge chroma profiles from L11/L15/L16/L18 measured 8–9 source pixels to half strength and 14–18px to 10%, at a reference height of 1828px. Thirteen palettes were sampled from L14 seconds 0–12; the recorded app boundary was consistently x=1667px. Source hashes, profiles and colors are in `reference/edge-light-analysis.json`.
+
+`CompanionEdgeGlow` is a reusable TSL rounded-rectangle distance field with six annotated controls, bilingual JSON export, pause/explicit time, reduced motion and resource cleanup. It replaces the companion's fixed inset box shadows. Diffusion is mainly inward, with conservative 4% outer opacity by default.
+
+Build and integrity checks passed, including 838 English entries, 11 bilingual Markdown files and 18/18 original hashes. The production suite passed 31/31 cases in 37.2s. Two new cases check WebGPU/WebGL2 center and canvas-edge alpha=0, actual half/tenth decay widths, increased pixels after widening, pause stability, content clicks, reset, bilingual export, reduced motion and companion exit. An initial label association targeting output was fixed with explicit slider IDs. Pixel profiles locate their actual peak to account for one-pixel screenshot rounding. Expanded reuse tables have a mobile horizontal-scroll container. After the navigation shortcut was added, six relevant layout, language and edge-light cases passed again in 6.9s.
+
+Visual review covered Chinese desktop, English mobile, the integrated companion, original straight-edge crops and six L14 observation times. Source pixels are distinct from native vp. Narrow-core separation, outer halo and the one-second loop join remain labeled estimates; no Huawei-device or performance benchmark claim is made. Delivery includes the accepted orb color correction and the user-requested update to the existing public GitHub repository, without deployment or unrelated branch merging.
+
+### Orb color correction · 2026-09-25
+
+The previous transparent shader treated background-subtracted RGB residuals as light colors, introducing green/yellow absent from the reviewed source frames and weakening the blue core. It now uses 38 direct L10 color samples while preserving transparent output; the recorded background is never copied into the live canvas.
+
+Source frames at 1, 5, 10, 14.5, 15.5 and 20 seconds were visually reviewed. At the four single/expanding-ring times (1, 5, 10, 20), the annulus at normalized radii .41–.50 with alpha>.2 was measured using HSV hue 70°–165° and saturation>.15 as the green-regression criterion. The source measured 0%; the old renderer measured 19.365%, 30.557%, 27.381% and 14.783%; the corrected renderer measured 0% at all four times. This threshold detects unwanted hue shifts, not whole-image similarity.
+
+Median core RGB within radius .1 was `(88,140,230)`, `(91,145,231)`, `(87,141,230)`, `(88,140,230)` in the source and `(89,141,232)`, `(92,146,232)`, `(89,142,231)`, `(89,141,231)` in corrected transparent PNGs. White-background composites depend on alpha; these measurements do not imply pixel identity on arbitrary backgrounds.
+
+Build, integrity, 808 English catalog entries and bilingual-document checks passed. The production preview passed 29/29 browser cases in 34.9s. Existing transparency cases now also check color on WebGPU and WebGL2: nonempty output, zero-alpha borders, green fraction below 0.1%, and ordinary-state core channel error below 12/255. Equal-size source/before/after crops are in ignored `qa/color-review/comparison.png`. Fast intersecting poses and band geometry still differ. The color correction was local at that verification point and is included in the subsequent companion edge-light delivery.
 
 ### Established checks through 2.1
 

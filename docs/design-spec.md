@@ -91,7 +91,7 @@ L12 提供轮廓、顶部工具条、底部问答/识图与结果面板；L13 �
 | speaking  | 核心脉动、低幅外扩 | 原型推断                        |
 | error     | 低饱和红粉光环     | 原型扩展，未展示在默认路径      |
 
-光球采用 Three.js TSL，源片背景拟合仅保留为分析数据，实时画布输出透明背景，主环由四阶傅里叶轮廓/光强与高斯亮芯重建，扩散和交错环为程序化投影。38 个采样点按 23.217 s 参考时间轴插值；28 个公开参数带单位、范围和证据。保留 prefers-reduced-motion 和按需重绘。控件 120–180ms、面板 360ms、布局 480ms 仍是 CSS UI 过渡，非光球渲染。详见 [动效规格](motion.md)。
+光球采用 Three.js TSL，源片背景拟合仅保留为分析数据，实时画布输出透明背景，主环由四阶傅里叶轮廓、高斯亮芯与原片直接采样的 16 点角向颜色重建，扩散和交错环为程序化投影。38 个采样点按 23.217 s 参考时间轴插值；28 个公开参数带单位、范围和证据。保留 prefers-reduced-motion 和按需重绘。控件 120–180ms、面板 360ms、布局 480ms 仍是 CSS UI 过渡，非光球渲染。详见 [动效规格](motion.md)。
 
 ## 可用性边界
 
@@ -157,7 +157,7 @@ These approximate relationships follow visible boundaries; responsive minimum si
 | speaking  | Core pulse and subtle expansion | Prototype inference                   |
 | error     | Desaturated red/pink ring       | Extension outside the default path    |
 
-The orb uses Three.js TSL. Fitted recording backgrounds are archived analysis data only; live canvases are transparent. Main-ring contours and radiance use fourth-order Fourier fits and Gaussian cores; ripples and intersecting rings use procedural projection. There are 38 samples over 23.217 seconds and 28 annotated parameters. Reduced motion and on-demand rendering are supported. Control transitions at 120–180ms, sheets at 360ms and layouts at 480ms remain CSS UI transitions, separate from orb rendering. See [motion](motion.md#english).
+The orb uses Three.js TSL. Fitted recording backgrounds are archived analysis data only; live canvases are transparent. Main-ring contours use fourth-order Fourier fits; Gaussian profiles use 16 directly sampled angular colors; ripples and intersecting rings use procedural projection. There are 38 samples over 23.217 seconds and 28 annotated parameters. Reduced motion and on-demand rendering are supported. Control transitions at 120–180ms, sheets at 360ms and layouts at 480ms remain CSS UI transitions, separate from orb rendering. See [motion](motion.md#english).
 
 ### Usability limits
 

@@ -1397,11 +1397,8 @@ footer button {
   border-radius: 24px;
   background: #fff;
   position: relative;
-  padding: 3px;
-  box-shadow:
-    inset 1px 1px 5px #75e7ed,
-    inset -1px -1px 5px #eeb9dc;
-  overflow: hidden;
+  padding: 0;
+  overflow: visible;
 }
 .xy-article {
   height: 100%;

@@ -36,6 +36,10 @@ The user requested a GitHub project containing this system; creation and initial
 
 Use Three.js TSL for the light field, rings, glow and sampled reference sequence. Annotate every exposed parameter with unit, range, default, visual effect and evidence status. Keep numerical reconstruction distinct from access to proprietary original shaders. Preserve a synchronized source-frame comparison. Rebuild every UI icon used by this project and source-visible Xiaoyi controls as editable SVG; do not label unobserved app logos as official reconstructed icons. Reuse the new library in existing components. Further git pushes require renewed user instruction; the earlier authorization covered repository creation and initial push.
 
+## Companion edge-light extension
+
+`src/motion/edge-*` and `CompanionEdgeGlow.jsx` own the reusable rounded-rectangle TSL overlay; `EdgeGlowLab.jsx` owns its specimen and parameter controls. Keep the content interactive, the center transparent and the effect independent of companion layout. Measure line and diffusion widths from L11/L15/L16/L18 and time samples from L14; distinguish screen pixels, normalized reference scale and reconstruction estimates. Do not reuse the orb palette: companion borders visibly include pale warm tones. Record reproducible measurements in `reference/edge-light-analysis.json`, reusable parameter exports in `public/downloads/`, and bilingual reuse guidance in `docs/edge-light.md`. The user explicitly authorized committing and pushing this edge-light work together with the accepted orb color correction.
+
 ## Common controls extension
 
 Use Huawei design guidance and OpenHarmony primary component documentation as supplemental references. Clearly separate framework behavior from verified Xiaoyi visuals. Store external source URLs, retrieval dates and any small derived preview provenance in `reference/web-sources.json`. New source figures belong in `public/reference/controls/` with source-ID filenames; no uncredited third-party screenshot bundles. Keep browser controls reusable and keyboard-operable; cancel feedback timers on replacement and unmount. Document estimated web dimensions separately from native vp values.
@@ -78,3 +82,7 @@ All UI copy and Markdown documentation must be available in Chinese and English.
 
 所有 UI 文案和 Markdown 文档提供中文与英文。UI 语言切换应持久化，共用完整翻译表；保留状态键、源文件名、URL、代码标识符与用户输入。每份 Markdown 同时包含完整两种语言。看世界展示已查看的来源，区分观察布局与模拟行为。
 新仓库默认私有；现有仓库已核对为公开，本轮按用户明确授权更新并保持可见性。保存代码、规格、变量、来源元数据及紧凑派生图；排除原视频、node_modules、密钥、生成站点和 QA。不得自动部署或合并。先前授权只覆盖创建和首次推送；用户本轮明确要求更新本地和 GitHub，授权本轮提交、推送及双语仓库介绍。以后推送仍须新指令。
+
+### 伴随边缘光扩展
+
+`src/motion/edge-*` 与 `CompanionEdgeGlow.jsx` 管理可复用圆角矩形 TSL 叠加层；`EdgeGlowLab.jsx` 管理独立示例与参数。保持内容可交互、中心透明，效果不依赖伴随侧栏布局。依据 L11/L15/L16/L18 与 L14 时间采样区分亮边、向内扩散和外侧余光，分清原图像素、参考缩放和拟合估值。伴随边缘含浅暖色，不套用光球配色。测量写入 `reference/edge-light-analysis.json`，参数导出放 `public/downloads/`，双语复用说明放 `docs/edge-light.md`。用户本轮授权将边缘光和已认可的光球颜色修正一同提交并推送 GitHub。

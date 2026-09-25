@@ -1,3 +1,4 @@
+import { EdgeGlowLab } from "./EdgeGlowLab";
 import React, { useEffect, useRef, useState } from "react";
 import { Icon } from "../icons/Icon";
 import { TslOrb } from "./TslOrb";
@@ -109,6 +110,22 @@ export function MotionLab({ onOpen }) {
         >
           <Icon name="download" size={17} />
           导出参数
+        </button>
+      </div>
+      <div className="edge-shortcut">
+        <button
+          className="xy-button ghost small"
+          onClick={() =>
+            document
+              .getElementById("edge-light")
+              ?.scrollIntoView({
+                behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
+                  ? "instant"
+                  : "smooth",
+              })
+          }
+        >
+          伴随态边缘光 <span aria-hidden="true">↓</span>
         </button>
       </div>
       <div className="motion-workbench">
@@ -428,6 +445,7 @@ export function MotionLab({ onOpen }) {
           图的形态参数，语义映射仍为设计系统的演示映射。
         </p>
       </details>
+      <EdgeGlowLab />
     </>
   );
 }

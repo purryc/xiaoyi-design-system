@@ -1,3 +1,4 @@
+import colorSamples from "../../reference/orb-color-samples.json";
 import fieldFit from "../../reference/light-field-fit.json";
 import analysis from "../../reference/motion-analysis.json";
 import { referenceDuration } from "./parameters";
@@ -29,6 +30,11 @@ export function timelineAt(seconds, mode = "reference") {
     f = smooth(a.time, b.time || 0.001, t);
   return {
     time: t,
+    colors: {
+      a: colorSamples.frames[Math.max(0, i - 1)],
+      b: colorSamples.frames[i],
+      mix: f,
+    },
     field: {
       a: fieldFit.frames[Math.max(0, i - 1)],
       b: fieldFit.frames[i],

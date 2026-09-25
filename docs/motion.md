@@ -14,14 +14,22 @@
 - 历史背景拟合（不再参与实时输出）`B(x,y) = b0 + b1*x + b2*y + b3*x*y + Σ bj*G(length(p-cj),wj)`。4 个多项式项 + 6 个高斯场；各时点是 10 个 RGB 向量。
 - 六个场的 `(x,y,width)`：`(0,0,.36)`、`(0,0,.7)`、`(-.45,.4,.7)`、`(.45,-.4,.7)`、`(.4,.45,1)`、`(-.4,-.45,1)`。参数保存在 `light-field-fit.json.lobes`。
 - 主环中心 `(.035,0)`；半径 `r(θ)=c0+Σ(ck*cos(kθ)+sk*sin(kθ))`，k=1..4。`radius[]` 按常数、cos1、sin1…cos4、sin4 排列，单位半高。三、四阶及二阶系数在拟合后缩小以抑制峰值检测噪声，详见拟合脚本。
-- 主环辐射 `radiance[]` 使用相同 9 项结构，每项 RGB 向量；控制高光沿环的不均匀分布。
-- 主环亮芯、近场、远场权重 `.68 / .25 / .07`；各宽度与增益对应下表。
+- 历史 `radiance[]` 差值拟合仅作为分析存档，不再决定颜色。主环与泛光改用原片直接采样的 16 个角向色点，以非负权重插值，避免背景相减与傅里叶过冲产生不存在的绿色。
+- 主环亮芯、近场、远场权重 `.45 / .45 / .10`；各宽度与增益对应下表。
 - 旋转环以 `cos(tilt)` 压缩局部 x 轴，然后旋转到屏幕。三个环相位为 `a`、`-.85a+.8`、`.6a-.6`，其中 `a=(time-14.5)*gyroSpeed+.05`。这是拟合姿态，不是原产品的真实三维骨架。
 - 拖影半径为主环尺度的 `1.09`，位置偏移分别为 `sin(1.6t)` / `cos(1.3t)` 乘 `echoOffset`；宽度 `4*lineWidth`，强度 `0.9*echoOpacity`。
 - 最多展开 5 个扩散环；age 为 `(time/ripplePeriod+i/rippleCount) mod 1`，半径增加 `age*rippleTravel`；0–.15 渐入，.45–1 渐出。
 - 独立组件构图缩放 `.62`，原片对照为 1；设 edge=framing*min(aspect,1)，透明度在径向 .82*edge–edge 衰减到精确 0；源片比例和图标比例都没有方块背景。
 
-38 个采样时点的完整系数保存在 `reference/light-field-fit.json`。时点间用 `x²(3−2x)` 插值。颜色系数是数据拟合值，不是每帧视频像素缓存；无纹理上传。修改源码模型时需同步更新本说明。
+38 个采样时点的完整系数保存在 `reference/light-field-fit.json`。时点间用 `x²(3−2x)` 插值。颜色另存于 `reference/orb-color-samples.json`，不是每帧视频像素缓存；无纹理上传。修改源码模型时需同步更新本说明。
+
+## 原片颜色校准
+
+`python3 scripts/sample-orb-colors.py` 从 L10 原件无损解码 38 个采样时点，输出来源哈希与 sRGB 数据。每帧在半径 .35–.56 范围取 16 个角向区域（从 −π 逆时针，半宽 π/24），亮芯为亮度最高 5% 像素的 RGB 中位数。泛光只考虑亮度高于该区域峰值 75% 的像素，再按粉色 `R−G`、青色 `min(G,B)−R` 或中性色亮度选前 10% 的中位数。四个内部采样圆心为 `(±.18,±.18)`，半径 .035；球心为半径 .12 内中位数。
+
+所有采样转为线性 RGB 后插值；这些是原片合成后颜色，不是官方 shader 的原始发光值。默认青蓝、粉紫、珠白与蓝色球心跟随采样时点。五个色值参数表示相对采样色的**偏移基准**，默认偏移为零；不代表整个光球只有五种固定色。`warm` 保留原 JSON 键以兼容已有导入，但含义改为珠白高光。参考图的背景不进入透明画布。
+
+独立的伴随态边缘光使用另一套 TSL 圆角矩形距离场，见 [边缘光与复用](edge-light.md)。
 
 ## 时间轴
 
@@ -61,11 +69,11 @@
 | 环面角速度 / `gyroSpeed`     | 2.25    | 0.2–5 / rad/s     | 交错旋转阶段的几何运动速度。 拟合 · L10 14–16s                             |
 | 呼吸周期 / `breathPeriod`    | 3.4     | 1–8 / s           | 微弱半径呼吸的一个完整周期。 拟合 · L10                                    |
 | 呼吸幅度 / `breathAmount`    | 0.012   | 0–0.07 / ×radius  | 相对主环半径的呼吸幅度。 拟合 · L10                                        |
-| 青色光 / `cyan`              | #54f7ef | #RRGGBB / sRGB    | 主环青色段和冷色散射。 观感拟合 · L10                                      |
-| 粉色光 / `pink`              | #ffaadf | #RRGGBB / sRGB    | 主环粉色段与拖影暖色。 观感拟合 · L10                                      |
-| 暖白高光 / `warm`            | #fff1d4 | #RRGGBB / sRGB    | 主环最亮部分的暖白色。 观感拟合 · L10                                      |
-| 球心蓝 / `coreColor`         | #678ddd | #RRGGBB / sRGB    | 球心基础色，通过 coreDepth 混合。 观感拟合 · L10                           |
-| 环境紫 / `auraColor`         | #9184e6 | #RRGGBB / sRGB    | 主环外侧低频紫色光场。 观感拟合 · L10                                      |
+| 青色光 / `cyan`              | #70efff | #RRGGBB / sRGB    | 原片青蓝光带的色彩偏移基准；默认跟随逐时点采样。 观感拟合 · L10                                      |
+| 粉色光 / `pink`              | #f8c2f3 | #RRGGBB / sRGB    | 原片粉紫光带的色彩偏移基准；默认跟随逐时点采样。 观感拟合 · L10                                      |
+| 珠白高光 / `warm`            | #fff6ff | #RRGGBB / sRGB    | 偏粉白高光的色彩偏移基准，不加入黄色。 观感拟合 · L10                                      |
+| 球心蓝 / `coreColor`         | #588de6 | #RRGGBB / sRGB    | 原片蓝色球心的偏移基准；coreDepth 控制覆盖程度。 观感拟合 · L10                           |
+| 环境紫 / `auraColor`         | #8984eb | #RRGGBB / sRGB    | 球体外侧紫色的偏移基准；透明边界不变。 观感拟合 · L10                                      |
 | 播放倍率 / `speed`           | 1       | 0.1–2 / ×         | 整个 23.217 s 参考时间轴的速率，1 为原速。 复刻工具                        |
 | 渲染像素比 / `pixelRatio`    | 1.5     | 1–2 / DPR         | Canvas 像素密度上限；较大数值更锐利但增加 GPU 工作量。 实现参数            |
 | 帧率上限 / `maxFps`          | 60      | 15–60 / fps       | 限制重绘频率；暂停、不可见或减少动态效果时按需绘制。 实现参数              |
@@ -75,7 +83,7 @@
 ```jsx
 import { TslOrb } from './src/motion/TslOrb';
 <TslOrb state="listening" size={160}
-  parameters={{ radius: 0.46, cyan: '#54f7ef', maxFps: 30 }} />
+  parameters={{ radius: 0.46, cyan: '#70efff', maxFps: 30 }} />
 <TslOrb state="reference" reference time={14.5} paused />
 ```
 
@@ -101,7 +109,7 @@ npm test
 
 ## 透明合成 · 2.2
 
-所有光球采用 alpha 画布、透明清屏和紧支撑径向边缘。球心为 `G(radial, radius*.88)*coreDepth*.53`，光能为 `clamp(length(light)*.85,0,1)`；两者相加限制后乘边缘衰减得到 alpha。RGB 由球心/环境色与光带组合，按有效覆盖率归一化。录屏背景仅留在左侧 video 和分析数据里，不进入实时颜色合成。白、深、蓝、粉与棋盘格是宿主 CSS 背景，切换时不重建材质。半径调得过大时会在画布内柔和裁切；可增大宿主或用 reference 构图保留更宽扩散范围。
+所有光球采用 alpha 画布、透明清屏和紧支撑径向边缘。球体覆盖率为 `clamp(exp(-(radial/(radius*1.35))^4)*(coreDepth/.68)*.99,0,1)`；光能 `E=clamp(max(light.r,light.g,light.b),0,1)`。alpha 为 `(body+E*(1-body))*support`，RGB 为 `mix(core,clamp(light/max(E,.001),0,1),E)`。四个内部色点双线性插值，并用宽度 .2 的高斯权重混入原片球心色；颜色控件在此基础上施加偏移。录屏背景仅留在左侧 video 和分析数据里，不进入实时颜色合成。白、深、蓝、粉与棋盘格是宿主 CSS 背景，切换时不重建材质。半径调得过大时会在画布内柔和裁切；可增大宿主或用 reference 构图保留更宽扩散范围。
 
 ---
 
@@ -117,14 +125,22 @@ Origin: canvas center. Half-height: 1. Positive axes: right and up. In the 1118�
 - Archived background fit, no longer used in live output: `B=b0+b1*x+b2*y+b3*x*y+Σ bj*G(length(p-cj),wj)`. Four polynomial terms and six Gaussian lobes give ten RGB vectors per sample.
 - Archived lobe `(x,y,width)` values: `(0,0,.36)`, `(0,0,.7)`, `(-.45,.4,.7)`, `(.45,-.4,.7)`, `(.4,.45,1)`, `(-.4,-.45,1)`, stored in `light-field-fit.json.lobes`.
 - Main-ring center: `(.035,0)`. Radius: `r(θ)=c0+Σ(ck*cos(kθ)+sk*sin(kθ))`, k=1..4. Array order: constant, cos1, sin1…cos4, sin4, in half-height units. Higher-order coefficients are attenuated to reduce peak-detection noise; see the fitting script.
-- Radiance uses the same nine-term layout with RGB vectors to vary highlights around the ring.
-- Core, near and far profile weights are `.68 / .25 / .07`; widths and gains are exposed below.
+- Historical `radiance[]` residual fits are archived only. Ring and glow colors now use 16 directly sampled angular colors with non-negative interpolation weights, avoiding spurious green from background subtraction and Fourier overshoot.
+- Core, near and far profile weights are `.45 / .45 / .10`; widths and gains are exposed below.
 - Rotating rings compress local x by `cos(tilt)` and rotate in screen space. Phases: `a`, `-.85a+.8`, `.6a-.6`, where `a=(time-14.5)*gyroSpeed+.05`. This is a fitted projection, not the original product's 3D rig.
 - Echo radius is `1.09` times the main scale; offsets use `sin(1.6t)` / `cos(1.3t)` times echoOffset; width is `4*lineWidth`, intensity `0.9*echoOpacity`.
 - Up to five ripples are unrolled. Age: `(time/ripplePeriod+i/rippleCount) mod 1`; radius grows by `age*rippleTravel`; fade in 0–.15, fade out .45–1.
 - Standalone framing is `.62`; reference framing is 1. With `edge=framing*min(aspect,1)`, alpha fades over `.82*edge–edge` to exactly zero at the boundary in both modes.
 
-The 38 samples in `reference/light-field-fit.json` interpolate using `x²(3−2x)`. These are fitted coefficients, not cached video pixels; no texture upload occurs. Keep this document synchronized when changing the model.
+The 38 samples in `reference/light-field-fit.json` interpolate using `x²(3−2x)`. Colors are stored separately in `reference/orb-color-samples.json`. These are sparse numerical samples, not cached video frames; no texture upload occurs. Keep this document synchronized when changing the model.
+
+### Source color calibration
+
+`python3 scripts/sample-orb-colors.py` losslessly decodes 38 sampled times from original L10 and records its source hash with sRGB values. Each frame uses 16 angular sectors from −π counterclockwise, half-width π/24, over radii .35–.56. Bright-core colors are median RGB values among the brightest 5% of pixels. Glow candidates exceed 75% of sector peak luminance; the top 10% by pink `R−G`, cyan `min(G,B)−R`, or neutral luminance provide median colors. Four interior disks have centers `(±.18,±.18)` and radius .035; the core median uses radius .12.
+
+Samples convert to linear RGB before interpolation. They describe composited source colors, not proprietary shader emission values. Default cyan-blue, pink-violet, pearl highlights and blue core follow these times. The five hex controls are **offset baselines** relative to measured colors; defaults apply zero offset and do not restrict the orb to five flat colors. The `warm` JSON key remains for import compatibility but now means pearl highlights. Source background pixels are never placed in the transparent canvas.
+
+The independent companion edge light uses a separate TSL rounded-rectangle distance field. See [edge light and reuse](edge-light.md#english).
 
 ### Timeline
 
@@ -164,11 +180,11 @@ Idle/listening/thinking/speaking/error are demo semantics, distinct from observe
 | Ring angular speed / `gyroSpeed`     | 2.25    | 0.2–5 / rad/s     | Geometry speed during the intersecting-ring phase. Fitted · L10 14–16s                                         |
 | Breathing period / `breathPeriod`    | 3.4     | 1–8 / s           | Duration of one subtle radius-breathing cycle. Fitted · L10                                                    |
 | Breathing amplitude / `breathAmount` | 0.012   | 0–0.07 / ×radius  | Breathing amplitude relative to the main ring radius. Fitted · L10                                             |
-| Cyan light / `cyan`                  | #54f7ef | #RRGGBB / sRGB    | Cyan ring segments and cool scattering. Visual fit · L10                                                       |
-| Pink light / `pink`                  | #ffaadf | #RRGGBB / sRGB    | Pink ring segments and warm echoes. Visual fit · L10                                                           |
-| Warm highlights / `warm`             | #fff1d4 | #RRGGBB / sRGB    | Warm white in the brightest parts of the ring. Visual fit · L10                                                |
-| Core blue / `coreColor`              | #678ddd | #RRGGBB / sRGB    | Base core color, blended through coreDepth. Visual fit · L10                                                   |
-| Aura violet / `auraColor`            | #9184e6 | #RRGGBB / sRGB    | Low-frequency violet light around the main ring. Visual fit · L10                                              |
+| Cyan light / `cyan`                  | #70efff | #RRGGBB / sRGB    | Offset baseline for sampled cyan-blue light. Visual fit · L10                                                       |
+| Pink light / `pink`                  | #f8c2f3 | #RRGGBB / sRGB    | Offset baseline for sampled pink-violet light. Visual fit · L10                                                           |
+| Pearl highlights / `warm`             | #fff6ff | #RRGGBB / sRGB    | Offset baseline for pink-white highlights; no added yellow. Visual fit · L10                                                |
+| Core blue / `coreColor`              | #588de6 | #RRGGBB / sRGB    | Offset baseline for the measured blue core; coreDepth controls coverage. Visual fit · L10                                                   |
+| Aura violet / `auraColor`            | #8984eb | #RRGGBB / sRGB    | Offset baseline for outer violet tones; transparent borders remain unchanged. Visual fit · L10                                              |
 | Playback speed / `speed`             | 1       | 0.1–2 / ×         | Speed of the 23.217 s timeline; 1 is the original rate. Reconstruction tool                                    |
 | Pixel ratio / `pixelRatio`           | 1.5     | 1–2 / DPR         | Canvas pixel-density limit. Higher values sharpen the image but increase GPU work. Implementation parameter    |
 | Frame-rate limit / `maxFps`          | 60      | 15–60 / fps       | Limits redraw frequency. Paused, hidden or reduced-motion scenes render on demand. Implementation parameter    |
@@ -183,7 +199,7 @@ Rebuild analysis with `python3 scripts/analyze-motion.py` (Pillow + FFmpeg, pres
 
 ### Transparent composition in 2.2
 
-Every orb uses an alpha canvas, transparent clear and compact radial support. Core coverage is `G(radial,radius*.88)*coreDepth*.53`; light energy is `clamp(length(light)*.85,0,1)`. Their clamped sum is multiplied by edge falloff to obtain alpha. RGB combines core/aura color and the light bands, normalized by effective coverage. Recording backgrounds remain in source video and archived analysis only. White, dark, blue, pink and checkerboard surfaces are host CSS; changing them does not rebuild the material. Oversized radius settings softly clip within the canvas; increase host space or use reference framing for wider ripples.
+Every orb uses an alpha canvas, transparent clear and compact radial support. Body coverage is `clamp(exp(-(radial/(radius*1.35))^4)*(coreDepth/.68)*.99,0,1)`. Light energy is `E=clamp(max(light.r,light.g,light.b),0,1)`. Alpha is `(body+E*(1-body))*support`; RGB is `mix(core,clamp(light/max(E,.001),0,1),E)`. Four interior colors interpolate bilinearly, blended toward the measured center with a Gaussian width of .2. Color controls apply offsets to these measurements. Recording backgrounds remain in source video and archived analysis only. White, dark, blue, pink and checkerboard surfaces are host CSS; changing them does not rebuild the material. Oversized radius settings softly clip within the canvas; increase host space or use reference framing for wider ripples.
 
 ### Known differences
 
