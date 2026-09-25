@@ -1,9 +1,12 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import catalog from "./en.json" with { type: "json" };
-const LanguageContext = createContext({
+// Vite pre-bundles the custom JSX runtime in dev. Its module copy must share
+// the provider's context with the live application module.
+const contextKey = Symbol.for("xiaoyi.design-system.language-context");
+const LanguageContext = (globalThis[contextKey] ??= createContext({
   language: "zh",
   setLanguage: () => {},
-});
+}));
 const normalize = (s) => s.replace(/\s+/g, " ").trim();
 const keys = Object.keys(catalog).sort((a, b) => b.length - a.length);
 const escape = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");

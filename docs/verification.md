@@ -6,6 +6,12 @@
 
 日期：2026-09-25。环境：macOS，Node.js 24.11.1，Chrome 153.0.8010.54，Vite 7.3.6。
 
+## 开发预览语言修复 · 2026-09-25
+
+- 在 5197 开发服务器复现：`?lang=en` 和 English 选中状态正确，但正文仍为中文；5198 生产预览显示英文。Vite 将自定义 JSX 运行时预打包成独立模块，使它与应用的 `LanguageProvider` 各自创建一份 React context。
+- 翻译运行时现在通过共享的 Symbol 键复用同一份 context。直接检查用户打开的 5197 标签页，导航、标题、按钮和示例均显示英文；切换中文后再切回英文也正确。
+- `npm run build`、`npm run check` 和直接对 5197 运行的 `npm test` 通过，浏览器用例 **33/33**。此前仅在 5198 生产预览运行的英文测试未覆盖此开发模式差异。
+
 ## 英文交付复核 · 2026-09-25
 
 - README 调整为英文先读，新增面向设计师和开发者的入口；11 份 Markdown（含 README、AGENTS）均保留完整中英正文。英文区除语言按钮名称「中文」和原始目录路径 `../小艺/` 外无汉字。
@@ -106,6 +112,12 @@
 ## English
 
 Date: 2026-09-25. Environment: macOS, Node.js 24.11.1, Chrome 153.0.8010.54, Vite 7.3.6. This file distinguishes historical checks from the final 2.2 verification recorded below.
+
+### Development-preview language fix · 2026-09-25
+
+The 5197 development server reproduced the reported mismatch: `?lang=en` and the selected English control were correct, but page copy remained Chinese. The 5198 production preview rendered English. Vite pre-bundled the custom JSX runtime separately, so it and the application's `LanguageProvider` created different React context objects.
+
+The translation runtime now shares one context through a global Symbol key. The user's open 5197 tab was inspected directly: navigation, headings, buttons and specimens display English, and switching to Chinese and back works. `npm run build`, `npm run check` and the full `npm test` suite against 5197 passed **33/33**. The earlier English checks ran only against the 5198 production preview and missed this development-only difference.
 
 ### English handoff audit · 2026-09-25
 
