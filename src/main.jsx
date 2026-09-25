@@ -1,4 +1,9 @@
-import { LanguageProvider, LanguageSwitch, english } from "./i18n/runtime";
+import {
+  LanguageProvider,
+  LanguageSwitch,
+  english,
+  useLanguage,
+} from "./i18n/runtime";
 import React, { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
@@ -911,6 +916,7 @@ function Handoff() {
 }
 function ReferenceDialog({ item, onClose }) {
   const ref = useRef();
+  const { language } = useLanguage();
   const [frame, setFrame] = useState(null);
   useEffect(() => {
     setFrame(null);
@@ -931,14 +937,18 @@ function ReferenceDialog({ item, onClose }) {
           <header>
             <div>
               <small>
-                {item.id} / {item.category}
+                {item.id} /{" "}
+                {language === "en" ? item.categoryEn : item.category}
               </small>
-              <h2>{item.title}</h2>
+              <h2>{language === "en" ? item.titleEn : item.title}</h2>
             </div>
             <IconButton icon="X" label="关闭参考" onClick={onClose} />
           </header>
           <div className="dialog-image">
-            <img src={frame?.preview || item.preview} alt={item.title} />
+            <img
+              src={frame?.preview || item.preview}
+              alt={language === "en" ? item.titleEn : item.title}
+            />
           </div>
           {item.frames && (
             <div className="frame-strip">
@@ -954,7 +964,7 @@ function ReferenceDialog({ item, onClose }) {
               ))}
             </div>
           )}
-          <p>{item.observation}</p>
+          <p>{language === "en" ? item.observationEn : item.observation}</p>
           <dl>
             <dt>尺寸</dt>
             <dd>
@@ -963,7 +973,22 @@ function ReferenceDialog({ item, onClose }) {
             <dt>系统版本</dt>
             <dd>unknown · 未确认</dd>
             <dt>文件</dt>
-            <dd>{item.filename}</dd>
+            <dd>
+              {language === "en" && /[\u3400-\u9fff]/.test(item.filename) ? (
+                <>
+                  {item.id} · Original filename in{" "}
+                  <a
+                    href="/downloads/manifest.json"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    manifest.json ↗
+                  </a>
+                </>
+              ) : (
+                item.filename
+              )}
+            </dd>
             <dt>SHA-256</dt>
             <dd>{item.sha256}</dd>
             {item.duplicateOf && (
@@ -998,6 +1023,7 @@ function App() {
   useEffect(() => {
     const fn = () => {
       setPage(pageFromHash());
+      setReference(null);
       window.scrollTo(0, 0);
     };
     window.addEventListener("hashchange", fn);
@@ -1006,6 +1032,7 @@ function App() {
   function go(id) {
     location.hash = id;
     setPage(id);
+    setReference(null);
     setMenu(false);
     setSearch("");
     window.scrollTo(0, 0);

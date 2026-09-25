@@ -27,7 +27,7 @@ for i,p in enumerate(sorted(x for x in source.iterdir() if x.is_file() and not x
  im.thumbnail((1200,1000));im.save(out,quality=85)
  tile=Image.new('RGB',(360,300),'#f0f0f2');thumb=ImageOps.contain(im,(340,250));tile.paste(thumb,((360-thumb.width)//2,0));d=ImageDraw.Draw(tile);d.text((10,254),f'{id}  {p.name[:21]}',font=font,fill='black');d.text((10,277),f'{r["width"]} × {r["height"]}'+(f'  {r["duration"]:.1f}s' if video else ''),font=font,fill='black');tiles.append(tile)
  previous=old.get(p.name,{}) if old.get(p.name,{}).get('sha256')==r['sha256'] else {}
- for k in ['title','category','observation','evidence','duplicateOf']:
+ for k in ['title','titleEn','category','categoryEn','observation','observationEn','evidence','duplicateOf']:
   if k in previous:r[k]=previous[k]
  rows.append(r)
 canvas=Image.new('RGB',(360*4,300*((len(tiles)+3)//4)),'white')

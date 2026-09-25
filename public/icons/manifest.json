@@ -28,6 +28,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "End call",
       "categoryEn": "Sound",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -66,6 +67,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Flip camera",
       "categoryEn": "Input",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -104,6 +106,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Video call",
       "categoryEn": "Input",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -130,6 +133,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Up",
       "categoryEn": "Navigation",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -156,6 +160,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Down",
       "categoryEn": "Navigation",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -182,6 +187,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Back",
       "categoryEn": "Navigation",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -208,6 +214,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "Forward",
       "categoryEn": "Navigation",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -234,6 +241,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Chevron down",
       "categoryEn": "Navigation",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -260,6 +268,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "Chevron up",
       "categoryEn": "Navigation",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -286,6 +295,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "Previous",
       "categoryEn": "Navigation",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -312,6 +322,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Next",
       "categoryEn": "Navigation",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -338,6 +349,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Off",
       "categoryEn": "Navigation",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -364,6 +376,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Add",
       "categoryEn": "Navigation",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -390,6 +403,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "Subtract",
       "categoryEn": "Navigation",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -434,6 +448,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "More",
       "categoryEn": "Navigation",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -486,6 +501,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Four-dot menu",
       "categoryEn": "Navigation",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -512,6 +528,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "Menu",
       "categoryEn": "Navigation",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -538,6 +555,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Expand",
       "categoryEn": "Navigation",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -564,6 +582,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "Collapse",
       "categoryEn": "Navigation",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -590,6 +609,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Undo",
       "categoryEn": "Edit",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -616,6 +636,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Redo",
       "categoryEn": "Edit",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -652,6 +673,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Keyboard",
       "categoryEn": "Input",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -688,6 +710,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Microphone",
       "categoryEn": "Input",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -714,6 +737,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "Microphone off",
       "categoryEn": "Input",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -748,6 +772,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Camera",
       "categoryEn": "Input",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -774,6 +799,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Turn camera off",
       "categoryEn": "Input",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -820,6 +846,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Headphones",
       "categoryEn": "Sound",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -846,6 +873,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Sound",
       "categoryEn": "Sound",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -872,6 +900,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Mute",
       "categoryEn": "Sound",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -898,6 +927,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Sound wave",
       "categoryEn": "Sound",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -932,6 +962,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Send",
       "categoryEn": "Input",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -958,6 +989,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "Attachment",
       "categoryEn": "Input",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -1002,6 +1034,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Image",
       "categoryEn": "Content",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -1028,6 +1061,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Visual search",
       "categoryEn": "Intelligence",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -1062,6 +1096,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Read screen",
       "categoryEn": "Intelligence",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -1088,6 +1123,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Xiaoyi intelligence",
       "categoryEn": "Intelligence",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -1114,6 +1150,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Summary",
       "categoryEn": "Writing",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -1140,6 +1177,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Proofread",
       "categoryEn": "Writing",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -1166,6 +1204,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Polish",
       "categoryEn": "Writing",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -1192,6 +1231,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Change tone",
       "categoryEn": "Writing",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -1228,6 +1268,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Expand",
       "categoryEn": "Writing",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -1254,6 +1295,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Section summaries",
       "categoryEn": "Writing",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -1296,6 +1338,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Meeting format",
       "categoryEn": "Writing",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -1352,6 +1395,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "Create mind map",
       "categoryEn": "Intelligence",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -1378,6 +1422,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Translate",
       "categoryEn": "Intelligence",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -1404,6 +1449,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Circle selection",
       "categoryEn": "Intelligence",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -1448,6 +1494,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "Screen analysis",
       "categoryEn": "Intelligence",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -1474,6 +1521,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "Save",
       "categoryEn": "Content",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -1500,6 +1548,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Document",
       "categoryEn": "Content",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -1536,6 +1585,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "Clipboard",
       "categoryEn": "Content",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -1572,6 +1622,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Copy",
       "categoryEn": "Edit",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -1598,6 +1649,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "Reading",
       "categoryEn": "Content",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -1624,6 +1676,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "Folder",
       "categoryEn": "Content",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -1660,6 +1713,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "Calendar",
       "categoryEn": "Service",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -1694,6 +1748,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "Time",
       "categoryEn": "Service",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -1728,6 +1783,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "Location",
       "categoryEn": "Service",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -1762,6 +1818,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Search",
       "categoryEn": "Navigation",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -1788,6 +1845,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Edit",
       "categoryEn": "Edit",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -1814,6 +1872,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Done",
       "categoryEn": "Feedback",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -1840,6 +1899,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "Checklist",
       "categoryEn": "Feedback",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -1866,6 +1926,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Like",
       "categoryEn": "Feedback",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -1892,6 +1953,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Star",
       "categoryEn": "Feedback",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -1918,6 +1980,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Share",
       "categoryEn": "Content",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -1944,6 +2007,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "Regenerate",
       "categoryEn": "Feedback",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -1978,6 +2042,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "Settings",
       "categoryEn": "Navigation",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -2004,6 +2069,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "Download",
       "categoryEn": "Content",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -2030,6 +2096,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "Upload",
       "categoryEn": "Content",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -2056,6 +2123,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "Delete",
       "categoryEn": "Edit",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -2082,6 +2150,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "Link",
       "categoryEn": "Content",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -2132,6 +2201,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Conversation",
       "categoryEn": "Content",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -2162,6 +2232,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Stop",
       "categoryEn": "Sound",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -2188,6 +2259,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "Paragraph",
       "categoryEn": "Edit",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -2214,6 +2286,7 @@
       "note": "据参考中的语义与轮廓人工重绘，路径与笔画参数为拟合值，非官方矢量原件。",
       "labelEn": "Play",
       "categoryEn": "Sound",
+      "confidenceEn": "Reference redraw",
       "noteEn": "Hand-redrawn from the reference meaning and outline. Paths and strokes are fitted estimates, not official vectors."
     },
     {
@@ -2254,6 +2327,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "Pause",
       "categoryEn": "Sound",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -2280,6 +2354,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "History",
       "categoryEn": "Content",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -2314,6 +2389,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "Reminder",
       "categoryEn": "Feedback",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     },
     {
@@ -2356,6 +2432,7 @@
       "note": "为完整系统补充的图标，无直接小艺截图证据。",
       "labelEn": "Information",
       "categoryEn": "Feedback",
+      "confidenceEn": "Style extension",
       "noteEn": "An extension for system completeness, without direct Xiaoyi screenshot evidence."
     }
   ]

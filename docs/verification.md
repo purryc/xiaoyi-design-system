@@ -6,6 +6,13 @@
 
 日期：2026-09-25。环境：macOS，Node.js 24.11.1，Chrome 153.0.8010.54，Vite 7.3.6。
 
+## 英文交付复核 · 2026-09-25
+
+- README 调整为英文先读，新增面向设计师和开发者的入口；11 份 Markdown（含 README、AGENTS）均保留完整中英正文。英文区除语言按钮名称「中文」和原始目录路径 `../小艺/` 外无汉字。
+- 18 条本地参考、18 条网络来源、14 个颜色变量、77 枚图标和 5 个动效阶段均提供与翻译表一致的英文元数据；原始文件名、URL、ID 和哈希保持不变。`npm run inventory` 也会保留英文参考字段。下载副本与源 JSON 一致。
+- 英文参考弹窗显示英文标题、分类、观察和可追溯的清单入口；切换页面时关闭弹窗。动态检查六个交互范式及组件、参考、图标、动效、交付页面，唯一可见汉字是语言切换按钮「中文」。
+- 更新中英文站点预览图。生产构建、完整性与双语检查通过，原始媒体 18/18 哈希匹配；生产预览 33/33 浏览器测试通过，37.0s，覆盖英文参考弹窗与可下载元数据。
+
 ## 伴随边缘光交付 · 2026-09-25
 
 - 原件校验后测量 L11/L15/L16/L18 顶部 15 条色度剖面：内侧半峰 8–9 原图 px，10% 距离 14–18px；原高 1828px。L14 前 0–12s 提取 13 组动态配色，应用边界稳定在录屏 x=1667px。完整来源哈希、剖面和色点保存在 `reference/edge-light-analysis.json`。
@@ -99,6 +106,14 @@
 ## English
 
 Date: 2026-09-25. Environment: macOS, Node.js 24.11.1, Chrome 153.0.8010.54, Vite 7.3.6. This file distinguishes historical checks from the final 2.2 verification recorded below.
+
+### English handoff audit · 2026-09-25
+
+README now opens in English and offers separate designer and developer reading paths. All 11 Markdown files, including README and AGENTS, retain complete Chinese and English sections. In the English sections, the only Han characters are the language name “中文” and the preserved original directory path `../小艺/`.
+
+All 18 local references, 18 web sources, 14 color tokens, 77 icons and five motion segments now carry English metadata aligned with the translation catalog. Original filenames, URLs, IDs and hashes are preserved. The inventory command retains English fields, and generated downloads match the source JSON. The English reference dialog shows translated titles, categories and observations plus a link to the original-filename manifest; navigation closes the dialog.
+
+A dynamic English audit covered all six pattern states and the components, references, icons, motion and handoff pages. The only visible Han text was the intentional “中文” language-switch option. Fresh English and Chinese site previews were reviewed. Production build, integrity and bilingual checks passed, including 18/18 original-media hashes; the production preview passed **33/33 browser tests in 37.0 seconds**, including English reference details and downloadable metadata.
 
 ### Companion edge-light delivery · 2026-09-25
 

@@ -6,7 +6,10 @@
     "type": "official",
     "scope": "HarmonyOS 6.1.0.115+；页面列明 Pura X Max / X View 等适用产品，不能据此推定本地平板版本。圈选伴随在该页标注为 7.0+。",
     "note": "小屏、大屏、极简三形态；双击导航条进入、长按收音、显式退出。",
-    "accessed": "2026-09-25"
+    "accessed": "2026-09-25",
+    "titleEn": "Xiaoyi companion AI guide",
+    "scopeEn": "HarmonyOS 6.1.0.115+ on listed products including Pura X Max / X View. This does not identify the local tablet version. Circle-selection companion is listed as 7.0+.",
+    "noteEn": "Small, expanded and minimal forms; double-tap the navigation bar to enter, hold to listen, and explicitly exit."
   },
   {
     "id": "W02",
@@ -15,7 +18,10 @@
     "type": "official",
     "scope": "HarmonyOS 5.0+；本次搜索索引可读，直接打开返回 503。",
     "note": "指关节圈选后可问问小艺、识图搜索、保存或分享；本地 L12 为直接视觉依据。",
-    "accessed": "2026-09-25"
+    "accessed": "2026-09-25",
+    "titleEn": "Xiaoyi circle-selection guide",
+    "scopeEn": "HarmonyOS 5.0+. Search-index text was readable; direct opening returned 503.",
+    "noteEn": "After knuckle selection: ask Xiaoyi, search visually, save or share. Local L12 supplies direct visual evidence."
   },
   {
     "id": "W03",
@@ -24,7 +30,10 @@
     "type": "official",
     "scope": "HarmonyOS 5.0+；受导航方式及应用支持限制。",
     "note": "可将文本、图片、文件拖向输入框或导航条，交给小艺分析。",
-    "accessed": "2026-09-25"
+    "accessed": "2026-09-25",
+    "titleEn": "Drag to Xiaoyi guide",
+    "scopeEn": "HarmonyOS 5.0+; depends on navigation mode and application support.",
+    "noteEn": "Drag text, images or files to the input or navigation bar for Xiaoyi to analyze."
   },
   {
     "id": "W04",
@@ -33,7 +42,10 @@
     "type": "official",
     "scope": "通用 HarmonyOS 设计理念；非小艺组件规范。",
     "note": "蓝白基调、舒适圆角、HarmonyOS Sans 与跨设备卡片设计。",
-    "accessed": "2026-09-25"
+    "accessed": "2026-09-25",
+    "titleEn": "HarmonyOS design principles",
+    "scopeEn": "General HarmonyOS design principles, not a Xiaoyi component specification.",
+    "noteEn": "Blue and white, comfortable rounded shapes, HarmonyOS Sans and cross-device cards."
   },
   {
     "id": "W05",
@@ -42,7 +54,10 @@
     "type": "official",
     "scope": "访问时资源页列出 2026/06 与 2026/07 更新。",
     "note": "官方字体、图标和设计组件获取入口；本项目未捆绑这些授权资源。",
-    "accessed": "2026-09-25"
+    "accessed": "2026-09-25",
+    "titleEn": "HarmonyOS design resources",
+    "scopeEn": "The resource page listed June and July 2026 updates when accessed.",
+    "noteEn": "Access to official fonts, icons and design components. These licensed resources are not bundled here."
   },
   {
     "id": "W06",
@@ -51,7 +66,10 @@
     "type": "official",
     "scope": "动态营销页；功能需结合机型及系统版本确认。",
     "note": "补充多模态、办公、服务卡片与跨设备能力的范围。",
-    "accessed": "2026-09-25"
+    "accessed": "2026-09-25",
+    "titleEn": "Xiaoyi official site",
+    "scopeEn": "Dynamic marketing page; features must be checked against device and system version.",
+    "noteEn": "Supplemental scope for multimodal, work, service-card and cross-device capabilities."
   },
   {
     "id": "W07",
@@ -60,7 +78,10 @@
     "type": "official",
     "scope": "该页对应 HarmonyOS 4.0 / 4.2 / 4.3 输入法帮写。",
     "note": "只补充写作语义；不将旧版输入法的 19 类场景映射到 L09 备忘录面板。",
-    "accessed": "2026-09-25"
+    "accessed": "2026-09-25",
+    "titleEn": "Xiaoyi writing guide",
+    "scopeEn": "This page covers keyboard writing assistance in HarmonyOS 4.0 / 4.2 / 4.3.",
+    "noteEn": "Supports writing semantics only. The older keyboard's 19 scenarios are not mapped onto the L09 Notes sheet."
   },
   {
     "id": "W08",
@@ -69,7 +90,10 @@
     "type": "video-link",
     "scope": "华为终端，2025-10-22。已读页面信息，未逐帧审阅线上视频。",
     "note": "官方视频检索线索；不作为数值或动效时序依据。",
-    "accessed": "2026-09-25"
+    "accessed": "2026-09-25",
+    "titleEn": "HarmonyOS 6 · Get things done with Xiaoyi",
+    "scopeEn": "Huawei Consumer, 2025-10-22. Page information reviewed; online video not reviewed frame by frame.",
+    "noteEn": "Official video discovery lead, not evidence for values or timing."
   },
   {
     "id": "W09",
@@ -78,7 +102,10 @@
     "type": "video-link",
     "scope": "Tech News，2025-01-22。只检索到页面摘要，未观看完整视频。",
     "note": "第三方版本线索；不用于复刻定稿。",
-    "accessed": "2026-09-25"
+    "accessed": "2026-09-25",
+    "titleEn": "Huawei Celia Assistant gets Native HarmonyOS support",
+    "scopeEn": "Tech News, 2025-01-22. Page summary located; full video not watched.",
+    "noteEn": "Third-party version lead, not used to finalize the reconstruction."
   },
   {
     "id": "W10",
@@ -89,7 +116,11 @@
     "note": "卡片以结构化信息和核心操作为主，区分应用内、服务与小艺建议卡片。",
     "accessed": "2026-09-25",
     "publisher": "HUAWEI",
-    "evidence": "documentation"
+    "evidence": "documentation",
+    "titleEn": "HarmonyOS card design guide",
+    "scopeEn": "Official Huawei guide. Indexed body text was readable; direct fetching was restricted. Used for hierarchy, not device-specific Xiaoyi dimensions.",
+    "noteEn": "Cards emphasize structured information and core actions, distinguishing in-app, service and Xiaoyi suggestion cards.",
+    "evidenceEn": "documentation"
   },
   {
     "id": "W11",
@@ -111,7 +142,11 @@
       "attribution": "OpenHarmony contributors, docs official component example; CC BY 4.0. Representative frame, resized and JPEG encoded.",
       "license": "CC BY 4.0",
       "licenseUrl": "https://github.com/openharmony/docs/blob/master/LICENSE"
-    }
+    },
+    "titleEn": "OpenHarmony Slider",
+    "scopeEn": "OpenHarmony framework API. Defaults and behavior are verifiable; web pixel dimensions are engineering estimates.",
+    "noteEn": "Sliders support range, step, step markers and floating tips, including OutSet / InSet forms.",
+    "evidenceEn": "documentation-and-figure"
   },
   {
     "id": "W12",
@@ -133,7 +168,11 @@
       "attribution": "OpenHarmony contributors, docs official component example; CC BY 4.0. Representative frame, resized and JPEG encoded.",
       "license": "CC BY 4.0",
       "licenseUrl": "https://github.com/openharmony/docs/blob/master/LICENSE"
-    }
+    },
+    "titleEn": "OpenHarmony Chip",
+    "scopeEn": "OpenHarmony API 11+ component, used for general chip behavior. Dock arrangement follows local L09 / L15 and is not a new official layout.",
+    "noteEn": "Chips distinguish active and disabled states, leading/trailing icons and independent deletion.",
+    "evidenceEn": "documentation-and-figure"
   },
   {
     "id": "W13",
@@ -155,7 +194,11 @@
       "attribution": "OpenHarmony contributors, docs official component example; CC BY 4.0. Representative frame, resized and JPEG encoded.",
       "license": "CC BY 4.0",
       "licenseUrl": "https://github.com/openharmony/docs/blob/master/LICENSE"
-    }
+    },
+    "titleEn": "OpenHarmony Toast / PromptAction",
+    "scopeEn": "OpenHarmony primary documentation. API 12+ example appearance inspected. Web uses an 80 CSS px approximation; native keyboard avoidance is not implemented.",
+    "noteEn": "Immediate text feedback; default duration 1500ms, range 1500–10000ms; native default bottom is 80vp.",
+    "evidenceEn": "documentation-and-figure"
   },
   {
     "id": "W14",
@@ -166,7 +209,11 @@
     "note": "开关通过 isOn 表达状态，通过 onChange 响应切换。",
     "accessed": "2026-09-25",
     "publisher": "OpenHarmony",
-    "evidence": "documentation"
+    "evidence": "documentation",
+    "titleEn": "OpenHarmony Toggle",
+    "scopeEn": "Framework behavior reference; switch dimensions and web styling extend the shared visual language.",
+    "noteEn": "Switch state is expressed through isOn, with onChange handling toggles.",
+    "evidenceEn": "documentation"
   },
   {
     "id": "W15",
@@ -177,7 +224,11 @@
     "note": "同组单选互斥；API 12 起默认选中图案由圆点变为勾。",
     "accessed": "2026-09-25",
     "publisher": "OpenHarmony",
-    "evidence": "documentation"
+    "evidence": "documentation",
+    "titleEn": "OpenHarmony Radio",
+    "scopeEn": "Circular checkmark styling with native browser radio keyboard behavior, not an ArkUI binding.",
+    "noteEn": "Radio options in a group are exclusive. Since API 12, the default selected mark is a tick rather than a dot.",
+    "evidenceEn": "documentation"
   },
   {
     "id": "W16",
@@ -188,7 +239,11 @@
     "note": "多选表达独立选择状态；配合分组选择与取消。",
     "accessed": "2026-09-25",
     "publisher": "OpenHarmony",
-    "evidence": "documentation"
+    "evidence": "documentation",
+    "titleEn": "OpenHarmony Checkbox",
+    "scopeEn": "Checked and disabled states follow the framework; the web version adds an accessible mixed state.",
+    "noteEn": "Checkboxes represent independent choices, with group selection and deselection.",
+    "evidenceEn": "documentation"
   },
   {
     "id": "W17",
@@ -199,7 +254,11 @@
     "note": "进度以 value / total 表达；线形与环形用于不同空间和任务反馈。",
     "accessed": "2026-09-25",
     "publisher": "OpenHarmony",
-    "evidence": "documentation"
+    "evidence": "documentation",
+    "titleEn": "OpenHarmony Progress",
+    "scopeEn": "Framework form reference; progress values and document processing are local simulations.",
+    "noteEn": "Progress uses value / total; linear and circular forms suit different spaces and tasks.",
+    "evidenceEn": "documentation"
   },
   {
     "id": "W18",
@@ -251,6 +310,9 @@
         "transform": "Crop (410, 96, 765, 590) from official figure for simulated preview; JPEG quality 90."
       }
     ],
-    "attribution": "Huawei. Reference images and embedded photographs belong to their respective rights holders. Small derivatives for attributed interface research; no open-source media license is claimed."
+    "attribution": "Huawei. Reference images and embedded photographs belong to their respective rights holders. Small derivatives for attributed interface research; no open-source media license is claimed.",
+    "titleEn": "Look at the World: see and talk with Xiaoyi",
+    "scopeEn": "Official help and entry, captions and camera-flip figures inspected. The page distinguishes 5.1 / 6.0 entry paths. This example follows its full-screen visual-call layout without inferring a specific device version.",
+    "evidenceEn": "Observed: full-frame preview, title and captions/flip at the top, mute/camera/hang up at the bottom. The example simulates local states."
   }
 ]

@@ -3,7 +3,7 @@
   "version": "2.2.0",
   "private": true,
   "type": "module",
-  "description": "小艺设计系统研究复刻 / Xiaoyi design system reconstruction: bilingual React UI, transparent Three.js TSL motion, icons and references.",
+  "description": "Xiaoyi design system reconstruction: bilingual React UI, transparent Three.js TSL motion, icons and references. / 小艺设计系统研究复刻。",
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 5197",
     "build": "node scripts/build-tokens.mjs && node scripts/build-icons.mjs && vite build",

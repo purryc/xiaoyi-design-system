@@ -21,6 +21,7 @@ const manifest = JSON.stringify(
       ...i,
       labelEn: english[i.label],
       categoryEn: english[i.category],
+      confidenceEn: english[i.confidence],
       noteEn: english[i.note],
     })),
   },

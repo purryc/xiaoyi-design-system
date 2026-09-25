@@ -209,6 +209,4 @@ Run `node scripts/build-icons.mjs` to regenerate exports. Single-icon downloads 
 | warning        | Reminder            | Feedback     | Style extension      |
 | info           | Information         | Feedback     | Style extension      |
 
-W18 补充：`phone-end` 挂断电话、`camera-flip` 翻转摄像头、`video-camera` 视频通话，均为官方界面参考重绘。
-
 W18 additions: `phone-end` (end call), `camera-flip` (flip camera), `video-camera` (video call), all redrawn from the official interface figures.

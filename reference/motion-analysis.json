@@ -6,7 +6,7 @@
   "method": "Frames decoded at listed seconds. Four background 9x9 mean patches at (6%,8%), (94%,8%), (6%,92%), (94%,92%) on 620px preview. Color samples are measured, geometry and interpolation are fitted.",
   "frames": [
     {
-      "time": 0.0,
+      "time": 0,
       "preview": "/reference/motion/L10-00.00.jpg",
       "background": {
         "tl": "#c5e7f3",
@@ -17,7 +17,7 @@
       "centerColor": "#5e91e4"
     },
     {
-      "time": 1.0,
+      "time": 1,
       "preview": "/reference/motion/L10-01.00.jpg",
       "background": {
         "tl": "#c2e8f2",
@@ -28,7 +28,7 @@
       "centerColor": "#5e8ee4"
     },
     {
-      "time": 2.0,
+      "time": 2,
       "preview": "/reference/motion/L10-02.00.jpg",
       "background": {
         "tl": "#c1e9f3",
@@ -39,7 +39,7 @@
       "centerColor": "#5d8de2"
     },
     {
-      "time": 3.0,
+      "time": 3,
       "preview": "/reference/motion/L10-03.00.jpg",
       "background": {
         "tl": "#c5daf5",
@@ -72,7 +72,7 @@
       "centerColor": "#608ee3"
     },
     {
-      "time": 4.0,
+      "time": 4,
       "preview": "/reference/motion/L10-04.00.jpg",
       "background": {
         "tl": "#c6cbf3",
@@ -83,7 +83,7 @@
       "centerColor": "#618ee4"
     },
     {
-      "time": 5.0,
+      "time": 5,
       "preview": "/reference/motion/L10-05.00.jpg",
       "background": {
         "tl": "#c5c3f2",
@@ -94,7 +94,7 @@
       "centerColor": "#6290e4"
     },
     {
-      "time": 6.0,
+      "time": 6,
       "preview": "/reference/motion/L10-06.00.jpg",
       "background": {
         "tl": "#c7c0f4",
@@ -105,7 +105,7 @@
       "centerColor": "#618ee4"
     },
     {
-      "time": 7.0,
+      "time": 7,
       "preview": "/reference/motion/L10-07.00.jpg",
       "background": {
         "tl": "#c8bef3",
@@ -116,7 +116,7 @@
       "centerColor": "#618be4"
     },
     {
-      "time": 8.0,
+      "time": 8,
       "preview": "/reference/motion/L10-08.00.jpg",
       "background": {
         "tl": "#cacff5",
@@ -127,7 +127,7 @@
       "centerColor": "#5f8de4"
     },
     {
-      "time": 9.0,
+      "time": 9,
       "preview": "/reference/motion/L10-09.00.jpg",
       "background": {
         "tl": "#c3e4f5",
@@ -138,7 +138,7 @@
       "centerColor": "#5e8fe4"
     },
     {
-      "time": 10.0,
+      "time": 10,
       "preview": "/reference/motion/L10-10.00.jpg",
       "background": {
         "tl": "#c2e7f5",
@@ -149,7 +149,7 @@
       "centerColor": "#5d92e4"
     },
     {
-      "time": 11.0,
+      "time": 11,
       "preview": "/reference/motion/L10-11.00.jpg",
       "background": {
         "tl": "#c2e8f5",
@@ -160,7 +160,7 @@
       "centerColor": "#5d8fe4"
     },
     {
-      "time": 12.0,
+      "time": 12,
       "preview": "/reference/motion/L10-12.00.jpg",
       "background": {
         "tl": "#c2e8f4",
@@ -171,7 +171,7 @@
       "centerColor": "#5e8ee3"
     },
     {
-      "time": 13.0,
+      "time": 13,
       "preview": "/reference/motion/L10-13.00.jpg",
       "background": {
         "tl": "#c1e7f4",
@@ -215,7 +215,7 @@
       "centerColor": "#f6f0ec"
     },
     {
-      "time": 14.0,
+      "time": 14,
       "preview": "/reference/motion/L10-14.00.jpg",
       "background": {
         "tl": "#c4d6f5",
@@ -259,7 +259,7 @@
       "centerColor": "#fbe4fa"
     },
     {
-      "time": 15.0,
+      "time": 15,
       "preview": "/reference/motion/L10-15.00.jpg",
       "background": {
         "tl": "#c6c8f4",
@@ -303,7 +303,7 @@
       "centerColor": "#6491e5"
     },
     {
-      "time": 16.0,
+      "time": 16,
       "preview": "/reference/motion/L10-16.00.jpg",
       "background": {
         "tl": "#c5c3f3",
@@ -325,7 +325,7 @@
       "centerColor": "#638fe5"
     },
     {
-      "time": 17.0,
+      "time": 17,
       "preview": "/reference/motion/L10-17.00.jpg",
       "background": {
         "tl": "#c8bff4",
@@ -336,7 +336,7 @@
       "centerColor": "#628ee4"
     },
     {
-      "time": 18.0,
+      "time": 18,
       "preview": "/reference/motion/L10-18.00.jpg",
       "background": {
         "tl": "#c9c0f4",
@@ -358,7 +358,7 @@
       "centerColor": "#5f8de4"
     },
     {
-      "time": 19.0,
+      "time": 19,
       "preview": "/reference/motion/L10-19.00.jpg",
       "background": {
         "tl": "#c3e7f3",
@@ -369,7 +369,7 @@
       "centerColor": "#5c93e3"
     },
     {
-      "time": 20.0,
+      "time": 20,
       "preview": "/reference/motion/L10-20.00.jpg",
       "background": {
         "tl": "#c3e7f3",
@@ -380,7 +380,7 @@
       "centerColor": "#5d90e4"
     },
     {
-      "time": 21.0,
+      "time": 21,
       "preview": "/reference/motion/L10-21.00.jpg",
       "background": {
         "tl": "#c2eaf4",
@@ -391,7 +391,7 @@
       "centerColor": "#5f8de5"
     },
     {
-      "time": 22.0,
+      "time": 22,
       "preview": "/reference/motion/L10-22.00.jpg",
       "background": {
         "tl": "#c3e4f4",
@@ -402,7 +402,7 @@
       "centerColor": "#5e8de3"
     },
     {
-      "time": 23.0,
+      "time": 23,
       "preview": "/reference/motion/L10-23.00.jpg",
       "background": {
         "tl": "#c6d2f4",
@@ -428,27 +428,32 @@
     {
       "start": 0,
       "end": 3.3,
-      "label": "单环与拖影"
+      "label": "单环与拖影",
+      "labelEn": "Single ring & echo"
     },
     {
       "start": 3.3,
       "end": 13.4,
-      "label": "同心环扩散"
+      "label": "同心环扩散",
+      "labelEn": "Concentric expansion"
     },
     {
       "start": 13.4,
       "end": 15.8,
-      "label": "交错旋转环"
+      "label": "交错旋转环",
+      "labelEn": "Intersecting rings"
     },
     {
       "start": 15.8,
       "end": 18.6,
-      "label": "收束与余波"
+      "label": "收束与余波",
+      "labelEn": "Contraction & afterglow"
     },
     {
       "start": 18.6,
       "end": 23.217,
-      "label": "单环与拖影"
+      "label": "单环与拖影",
+      "labelEn": "Single ring & echo"
     }
   ],
   "proxy": {

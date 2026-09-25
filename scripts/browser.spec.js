@@ -534,6 +534,91 @@ test("language choice persists and preserves slider state and user input", async
   await expect(page.locator("html")).toHaveAttribute("lang", "zh-CN");
   await expect(page.locator(".xy-user-message")).toHaveText("阅读笔记");
 });
+test("English reference details and portable metadata stay readable", async ({
+  page,
+  request,
+}) => {
+  await page.goto("/?lang=en#reference");
+  await expect(page.locator(".language-switch")).toHaveAttribute(
+    "aria-label",
+    "Language",
+  );
+  await page.locator(".reference-card").filter({ hasText: "L18" }).click();
+  const dialog = page.locator("dialog.reference-dialog");
+  await expect(dialog).toBeVisible();
+  await expect(
+    dialog.getByRole("link", { name: /manifest.json/ }),
+  ).toBeVisible();
+  const visibleText = await dialog.innerText();
+  expect(visibleText).not.toMatch(/[\u3400-\u9fff]/);
+  const downloadedManifest = await (
+    await request.get("/downloads/manifest.json")
+  ).json();
+  const source = downloadedManifest.items.find((item) => item.id === "L18");
+  expect(source.filename).toMatch(/[\u3400-\u9fff]/);
+  expect(source.titleEn).toBeTruthy();
+  expect(source.observationEn).not.toMatch(/[\u3400-\u9fff]/);
+  const web = await (await request.get("/downloads/web-sources.json")).json();
+  expect(
+    web.every(
+      (item) => item.scopeEn && (item.note ? item.noteEn : item.evidenceEn),
+    ),
+  ).toBe(true);
+  const tokens = await (
+    await request.get("/downloads/xiaoyi.tokens.json")
+  ).json();
+  expect(
+    Object.values(tokens.color).every(
+      (color) => color.labelEn && color.descriptionEn,
+    ),
+  ).toBe(true);
+  await page.evaluate(() => {
+    location.hash = "motion";
+  });
+  await expect(dialog).not.toBeVisible();
+});
+test("all English pattern states keep visible copy and accessible names translated", async ({
+  page,
+}) => {
+  await page.goto("/?lang=en#patterns");
+  for (const label of [
+    "Look at the World",
+    "Companion reading",
+    "Contextual writing",
+    "Full-screen conversation",
+    "Circle to ask",
+    "Drag to Xiaoyi",
+  ]) {
+    await page
+      .getByRole("button", { name: label, exact: true })
+      .first()
+      .click();
+    const untranslated = await page.locator("main").evaluate((main) => {
+      const found = [];
+      const walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT);
+      while (walker.nextNode()) {
+        const node = walker.currentNode;
+        if (
+          node.parentElement.getClientRects().length &&
+          /[\u3400-\u9fff]/.test(node.textContent)
+        )
+          found.push(node.textContent.trim());
+      }
+      for (const element of main.querySelectorAll(
+        "[aria-label],[title],[placeholder],[alt]",
+      )) {
+        if (!element.getClientRects().length) continue;
+        for (const name of ["aria-label", "title", "placeholder", "alt"]) {
+          const value = element.getAttribute(name);
+          if (value && /[\u3400-\u9fff]/.test(value))
+            found.push(`${name}: ${value}`);
+        }
+      }
+      return found;
+    });
+    expect(untranslated, label).toEqual([]);
+  }
+});
 for (const language of ["zh", "en"])
   test(`vision example and reference controls in ${language}`, async ({
     page,

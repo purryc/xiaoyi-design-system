@@ -59,7 +59,7 @@ export function LanguageSwitch() {
     {
       className: "language-switch",
       role: "group",
-      "aria-label": "语言 / Language",
+      "aria-label": language === "en" ? "Language" : "语言",
     },
     ...[
       ["zh", "中文"],

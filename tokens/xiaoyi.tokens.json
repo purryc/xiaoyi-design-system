@@ -12,7 +12,9 @@
       "$description": "文档与应用背景",
       "label": "画布",
       "source": "L09",
-      "confidence": "estimated"
+      "confidence": "estimated",
+      "labelEn": "Canvas",
+      "descriptionEn": "Document and application background"
     },
     "surface": {
       "$type": "color",
@@ -20,7 +22,9 @@
       "$description": "正文、卡片、输入区",
       "label": "内容表面",
       "source": "L09",
-      "confidence": "estimated"
+      "confidence": "estimated",
+      "labelEn": "Content surface",
+      "descriptionEn": "Body, cards and input areas"
     },
     "surface-soft": {
       "$type": "color",
@@ -28,7 +32,9 @@
       "$description": "次级容器与按钮",
       "label": "柔和表面",
       "source": "L09",
-      "confidence": "estimated"
+      "confidence": "estimated",
+      "labelEn": "Soft surface",
+      "descriptionEn": "Secondary containers and buttons"
     },
     "text": {
       "$type": "color",
@@ -36,7 +42,9 @@
       "$description": "正文与标题",
       "label": "主要文字",
       "source": "L09",
-      "confidence": "estimated"
+      "confidence": "estimated",
+      "labelEn": "Primary text",
+      "descriptionEn": "Body and headings"
     },
     "text-secondary": {
       "$type": "color",
@@ -44,7 +52,9 @@
       "$description": "描述和元信息",
       "label": "次要文字",
       "source": "L09",
-      "confidence": "estimated"
+      "confidence": "estimated",
+      "labelEn": "Secondary text",
+      "descriptionEn": "Descriptions and metadata"
     },
     "text-inverse": {
       "$type": "color",
@@ -52,7 +62,9 @@
       "$description": "伴随态文本",
       "label": "反白文字",
       "source": "L11",
-      "confidence": "estimated"
+      "confidence": "estimated",
+      "labelEn": "Inverse text",
+      "descriptionEn": "Companion text"
     },
     "primary": {
       "$type": "color",
@@ -60,7 +72,9 @@
       "$description": "主要动作与选择",
       "label": "交互蓝",
       "source": "L15",
-      "confidence": "estimated"
+      "confidence": "estimated",
+      "labelEn": "Action blue",
+      "descriptionEn": "Primary actions and selection"
     },
     "companion": {
       "$type": "color",
@@ -68,7 +82,9 @@
       "$description": "深色侧栏",
       "label": "伴随底色",
       "source": "L15",
-      "confidence": "estimated"
+      "confidence": "estimated",
+      "labelEn": "Companion background",
+      "descriptionEn": "Dark sidebar"
     },
     "companion-glass": {
       "$type": "color",
@@ -76,7 +92,9 @@
       "$description": "建议与输入胶囊",
       "label": "伴随控件",
       "source": "L15",
-      "confidence": "estimated"
+      "confidence": "estimated",
+      "labelEn": "Companion controls",
+      "descriptionEn": "Suggestion and input pills"
     },
     "cyan": {
       "$type": "color",
@@ -84,7 +102,9 @@
       "$description": "光球亮部",
       "label": "光晕青",
       "source": "L10",
-      "confidence": "estimated"
+      "confidence": "estimated",
+      "labelEn": "Halo cyan",
+      "descriptionEn": "Orb highlights"
     },
     "violet": {
       "$type": "color",
@@ -92,7 +112,9 @@
       "$description": "光球与帮写面板",
       "label": "光晕紫",
       "source": "L10",
-      "confidence": "estimated"
+      "confidence": "estimated",
+      "labelEn": "Halo violet",
+      "descriptionEn": "Orb and writing sheet"
     },
     "pink": {
       "$type": "color",
@@ -100,7 +122,9 @@
       "$description": "光环高光",
       "label": "光晕粉",
       "source": "L10",
-      "confidence": "estimated"
+      "confidence": "estimated",
+      "labelEn": "Halo pink",
+      "descriptionEn": "Ring highlights"
     },
     "success": {
       "$type": "color",
@@ -108,7 +132,9 @@
       "$description": "研究样例的完成反馈",
       "label": "完成",
       "source": "inferred",
-      "confidence": "inferred"
+      "confidence": "inferred",
+      "labelEn": "Done",
+      "descriptionEn": "Completion feedback in research examples"
     },
     "error": {
       "$type": "color",
@@ -116,7 +142,9 @@
       "$description": "研究样例的错误反馈",
       "label": "错误",
       "source": "inferred",
-      "confidence": "inferred"
+      "confidence": "inferred",
+      "labelEn": "Error",
+      "descriptionEn": "Error feedback in research examples"
     }
   },
   "space": {
@@ -406,22 +434,12 @@
   "easing": {
     "standard": {
       "$type": "cubicBezier",
-      "$value": [
-        0.2,
-        0,
-        0,
-        1
-      ],
+      "$value": [0.2, 0, 0, 1],
       "confidence": "inferred"
     },
     "enter": {
       "$type": "cubicBezier",
-      "$value": [
-        0.16,
-        1,
-        0.3,
-        1
-      ],
+      "$value": [0.16, 1, 0.3, 1],
       "confidence": "inferred"
     }
   }

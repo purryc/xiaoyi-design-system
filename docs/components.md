@@ -59,6 +59,8 @@ return (
 
 `Orb` 是 `TslOrb` 的兼容导出，动态加载 `orb-renderer.js`；组件卸载时销毁 geometry / material / renderer 和观察器。`time` 为秒，传入时采用受控时间轴；`reference` 仅使用原片比例，背景仍透明。尺寸由宿主决定，不创建真实麦克风输入。
 
+`CompanionEdgeGlow` 从 `src/motion/CompanionEdgeGlow.jsx` 单独导出。将其放在有实际尺寸和统一圆角的相对定位宿主内；参数单位、透明叠加和完整 React 示例见[伴随边缘光复用说明](edge-light.md)。
+
 `<Icon name="summarize" size={24} strokeWidth={1.65}/>` 可使用规范英文 ID 或旧名称别名。单枚 SVG、sprite 与来源见 `public/icons/`。[图标规格](icons.md)与[动效模型](motion.md)记录全部参数。
 
 ## 常用控件补全 · 2.1
@@ -105,6 +107,8 @@ Not included: native ArkUI / ArkTS, a Figma library, official icon fonts, real s
 ### Motion, icons and common controls
 
 `Orb` is a compatible export of `TslOrb` and dynamically loads its renderer. Unmounting disposes geometry, material, renderer, animation frame and observers. `time` is controlled seconds; `reference` changes framing only and keeps transparency. The host sets dimensions; no microphone is accessed.
+
+`CompanionEdgeGlow` is exported separately from `src/motion/CompanionEdgeGlow.jsx`. Place it inside a positioned host with real dimensions and a uniform corner radius. See the [edge-light reuse guide](edge-light.md#english) for units, transparent composition, all six parameters and a complete React example.
 
 Use `<Icon name="summarize" size={24} strokeWidth={1.65}/>` with a canonical ID or legacy alias. SVGs, sprite and manifest are under `public/icons/`. See [icons](icons.md#english) and [motion](motion.md#english).
 

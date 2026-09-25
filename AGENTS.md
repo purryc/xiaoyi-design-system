@@ -46,7 +46,7 @@ Use Huawei design guidance and OpenHarmony primary component documentation as su
 
 ## Bilingual, transparent motion and vision extension
 
-All UI copy and Markdown documentation must be available in Chinese and English. Use a persistent language switch and shared translation catalog; preserve source filenames, IDs, code identifiers and user-entered text. Keep both languages complete in each Markdown file. `src/i18n/` owns translation runtime and catalogs; `scripts/check-i18n.mjs` validates coverage. Live orb canvases must have transparent borders on every host surface; recorded backgrounds remain confined to source media. Vision examples must link the inspected source and distinguish observed layout from simulated behavior. The user explicitly authorized the current update to the existing GitHub repository, including a commit, push and bilingual repository description.
+All UI copy and Markdown documentation must be available in Chinese and English. Use a persistent language switch and shared translation catalog; preserve source filenames, IDs, code identifiers and user-entered text. Keep both languages complete in each Markdown file. Standalone reference, web-source, token, icon and motion-stage JSON must expose English metadata beside the original Chinese fields, including in portable download copies. `src/i18n/` owns translation runtime and catalogs; `scripts/check-i18n.mjs` validates coverage. Live orb canvases must have transparent borders on every host surface; recorded backgrounds remain confined to source media. Vision examples must link the inspected source and distinguish observed layout from simulated behavior. The user explicitly authorized the current update to the existing GitHub repository, including a commit, push and bilingual repository description.
 `src/vision/` contains the simulated Look at the World specimen. `public/reference/vision/` stores attributed W18 source figures and documented scene crops; previews are never presented as live camera input.
 
 ---
@@ -80,7 +80,7 @@ All UI copy and Markdown documentation must be available in Chinese and English.
 
 ### 双语与 GitHub
 
-所有 UI 文案和 Markdown 文档提供中文与英文。UI 语言切换应持久化，共用完整翻译表；保留状态键、源文件名、URL、代码标识符与用户输入。每份 Markdown 同时包含完整两种语言。看世界展示已查看的来源，区分观察布局与模拟行为。
+所有 UI 文案和 Markdown 文档提供中文与英文。UI 语言切换应持久化，共用完整翻译表；保留状态键、源文件名、URL、代码标识符与用户输入。每份 Markdown 同时包含完整两种语言。独立使用的参考、网络来源、设计变量、图标及动效阶段 JSON 应与中文原字段并列提供英文字段，便携下载副本同步保持双语。看世界展示已查看的来源，区分观察布局与模拟行为。
 新仓库默认私有；现有仓库已核对为公开，本轮按用户明确授权更新并保持可见性。保存代码、规格、变量、来源元数据及紧凑派生图；排除原视频、node_modules、密钥、生成站点和 QA。不得自动部署或合并。先前授权只覆盖创建和首次推送；用户本轮明确要求更新本地和 GitHub，授权本轮提交、推送及双语仓库介绍。以后推送仍须新指令。
 
 ### 伴随边缘光扩展
