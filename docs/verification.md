@@ -4,6 +4,12 @@
 
 ## 中文
 
+### 6.0 浅色与 7.0 深色分类 · 2026-09-30
+
+顶部版本选择使用用户指定的「小艺 6.0 · 浅色」与「小艺 7.0 · 深色」。参考页可独立选择，两份下载清单分别包含 18 与 1 条本地来源；原件版本元数据与哈希保留。旧 `design=legacy` 地址及偏好兼容为 `v6`。
+
+`npm run check`、`npm run build` 与 `git diff --check` 通过。5197 开发页完整浏览器测试 **54/54** 通过；5198 生产预览本轮针对路由、语言、版本、独立参考选择及旧链接的 **8/8** 项检查通过。覆盖刷新、深链接、语言切换保持选择和系统版本切换重置参考；英文参考页截图已人工复核。19 个原件哈希、97 个 SVG 与 1066 条英文文案检查通过。本次未重复完整生产测试，也未做真机测试。
+
 ### 3.0 / 用户标记为 7.0 — 2026-09-30
 
 - 环境：macOS、Node.js 24.11.1、Chrome 154.0.8037.58、Vite 7.3.6。构建、完整性/双语检查与 git diff --check 通过。应用和 Three.js 包存在非阻断体积提醒，没有宣称满足特定性能预算。
@@ -130,6 +136,12 @@
 原 shader 文件、已认可的光球及边缘光参数未改。取样为录屏合成色，不是恢复出的原生 token；图标为人工拟合。以上为本地浏览器证据，不等于华为真机验证。
 
 ## English
+
+### 6.0 Light and 7.0 Dark collections · 2026-09-30
+
+The system selector uses the user-defined names Xiaoyi 6.0 · Light and Xiaoyi 7.0 · Dark. References can be selected independently, with separate downloads containing 18 and 1 local sources. Original version metadata and hashes remain intact. Old `design=legacy` links and preferences resolve to `v6`.
+
+`npm run check`, `npm run build` and `git diff --check` passed. The full development-browser suite on 5197 passed **54/54**; production preview on 5198 passed **8/8** focused checks for routes, languages, editions, independent reference selection and legacy links. Coverage includes refresh, deep links, language-switch persistence and reference reset on system-edition changes. The English reference-page screenshot was visually reviewed. Checks passed for 19 original hashes, 97 SVGs and 1066 English entries. This update did not repeat the full production suite or perform physical-device testing.
 
 ### 3.0 / user-labelled 7.0 — 2026-09-30
 

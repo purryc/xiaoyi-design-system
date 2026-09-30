@@ -6,7 +6,7 @@
 
 ### 3.0 — user-labelled Xiaoyi 7.0
 
-The default edition now follows L19: dark floating cards, a separate voice dock, skills, selection and contextual writing. Companion mode, the accepted orb, its edge light and vision remain directly available in the current edition. The edition selector also preserves the earlier catalog. Start with the [bilingual 7.0 evidence and integration guide](docs/v7-guide.md). New TSL effects and 12 annotated parameters are isolated from the accepted legacy orb and edge light. There are now 19 local references and 97 editable SVG icons. `?design=v7&lang=en` opens the English edition; `?design=legacy` restores the earlier reference edition. Original version numbers remain unconfirmed.
+The default edition now follows L19: dark floating cards, a separate voice dock, skills, selection and contextual writing. Companion mode, the accepted orb, its edge light and vision remain directly available in the current edition. The edition selector also preserves the earlier catalog. Start with the [bilingual 7.0 evidence and integration guide](docs/v7-guide.md). New TSL effects and 12 annotated parameters are isolated from the accepted legacy orb and edge light. There are now 19 local references and 97 editable SVG icons. `?design=v7&lang=en` opens the English edition; `?design=v6` opens Xiaoyi 6.0 Light; `design=legacy` remains a compatible alias. The reference page independently selects the 6.0 or 7.0 collection with `reference=v6|v7`. Original version numbers remain unconfirmed.
 
 
 An evidence-led reconstruction of Xiaoyi for design research, interaction review and prototyping. It includes a documentation website, React components, CSS variables, editable JSON tokens, Three.js TSL motion, 97 SVG icons and five new interaction flows alongside six legacy examples.
@@ -92,7 +92,7 @@ Every live orb uses real Three.js TSL with transparent borders; the source recor
 
 ### 3.0 — 用户标记为小艺 7.0
 
-默认展示 L19 的深色浮卡、独立输入条、技能、圈选与帮写；当前版本也直接保留伴随态、原有光球、边缘光及看世界，版本切换仍可查看旧版。先读[双语 7.0 证据与接入说明](docs/v7-guide.md)。新增 TSL 光效及 12 项参数独立于原有光球和边缘光。当前共 19 个本地参考、97 枚 SVG 图标。使用 `?design=v7&lang=en` 打开英文，`?design=legacy` 查看旧版。录制时版本号保持待确认。
+默认展示 L19 的深色浮卡、独立输入条、技能、圈选与帮写；当前版本也直接保留伴随态、原有光球、边缘光及看世界，版本切换仍可查看旧版。先读[双语 7.0 证据与接入说明](docs/v7-guide.md)。新增 TSL 光效及 12 项参数独立于原有光球和边缘光。当前共 19 个本地参考、97 枚 SVG 图标。使用 `?design=v7&lang=en` 打开英文，`?design=v6` 打开小艺 6.0 浅色版，旧 design=legacy 地址继续兼容。参考页可通过 reference=v6|v7 独立选择 6.0 或 7.0 素材。录制时版本号保持待确认。
 
 
 基于真实截图和录屏复刻的小艺设计系统，用于设计研究、交互审阅和原型开发。包含可浏览的文档站点、React 组件、CSS 变量、可编辑 JSON Tokens 、Three.js TSL 动效、97 枚 SVG 图标和 5 个新版流程及 6 个旧版交互样例。

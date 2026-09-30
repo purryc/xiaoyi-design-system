@@ -10,18 +10,26 @@ const Context = (globalThis[key] ??= createContext({
   design: "v7",
   setDesign: () => {},
 }));
+export const normalizeDesign = (value) =>
+  value === "legacy" || value === "v6" ? "v6" : value === "v7" ? "v7" : null;
 export function DesignProvider({ children }) {
-  const [design, setDesign] = useState(() => {
+  const [design, updateDesign] = useState(() => {
     const query = new URLSearchParams(location.search).get("design");
-    if (["v7", "legacy"].includes(query)) return query;
+    if (normalizeDesign(query)) return normalizeDesign(query);
     try {
-      return localStorage.getItem("xiaoyi-design") === "legacy"
-        ? "legacy"
-        : "v7";
+      return normalizeDesign(localStorage.getItem("xiaoyi-design")) || "v7";
     } catch {
       return "v7";
     }
   });
+  function setDesign(value) {
+    const next = normalizeDesign(value);
+    if (!next || next === design) return;
+    const url = new URL(location.href);
+    url.searchParams.delete("reference");
+    history.replaceState(null, "", url);
+    updateDesign(next);
+  }
   useEffect(() => {
     try {
       localStorage.setItem("xiaoyi-design", design);
@@ -48,8 +56,8 @@ export function DesignSwitch() {
       value={design}
       onChange={(e) => setDesign(e.target.value)}
     >
+      <option value="v6">{t("v6")}</option>
       <option value="v7">{t("v7")}</option>
-      <option value="legacy">{t("legacy")}</option>
     </select>
   );
 }

@@ -1,7 +1,7 @@
 {
   "version": ["设计版本", "Design edition"],
-  "legacy": ["旧版参考", "Legacy references"],
-  "v7": ["7.0 深色参考", "7.0 dark references"],
+  "legacy": ["小艺 6.0 · 浅色", "Xiaoyi 6.0 · Light"],
+  "v7": ["小艺 7.0 · 深色", "Xiaoyi 7.0 · Dark"],
   "heading": ["小艺 7.0，随场景展开。", "Xiaoyi 7.0. Present in context."],
   "intro": [
     "保留伴随态、光球与看世界，按 L19 更新 sheet、chip、彩色图标及相关流程。",
@@ -275,5 +275,26 @@
   "memo": ["帮记", "Memory"],
   "automation": ["自动任务", "Automated tasks"],
   "agents": ["智能体", "Agents"],
-  "iconColors": ["参考配色", "Reference colors"]
+  "iconColors": ["参考配色", "Reference colors"],
+  "v6": ["小艺 6.0 · 浅色", "Xiaoyi 6.0 · Light"],
+  "referenceEdition": ["参考版本", "Reference edition"],
+  "v6References": ["小艺 6.0 · 浅色参考", "Xiaoyi 6.0 · Light references"],
+  "v7References": ["小艺 7.0 · 深色参考", "Xiaoyi 7.0 · Dark references"],
+  "v6ReferencesIntro": [
+    "上一版浅色设计的 18 份本地参考，包含伴随态、光球与组件。",
+    "18 local references for the earlier light design, including companion mode, the orb and components."
+  ],
+  "editionNote": [
+    "6.0 / 7.0 为本系统的版本分类；原素材的系统与应用版本信息保持原记录。",
+    "6.0 / 7.0 identify this system’s design collections; original OS and app-version metadata is preserved."
+  ],
+  "openRecording": ["查看 7.0 录屏资料", "Open 7.0 recording details"],
+  "v6ReferenceDownload": [
+    "下载 6.0 参考清单",
+    "Download 6.0 reference manifest"
+  ],
+  "v7ReferenceDownload": [
+    "下载 7.0 参考清单",
+    "Download 7.0 reference manifest"
+  ]
 }

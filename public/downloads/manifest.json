@@ -19,7 +19,8 @@
       "evidence": "marketing",
       "titleEn": "Home-screen suggestion cards",
       "categoryEn": "Phone / Suggestions",
-      "observationEn": "Light-blue information cards, rounded containers and widgets in several sizes. Low-resolution image; no type-size measurements."
+      "observationEn": "Light-blue information cards, rounded containers and widgets in several sizes. Low-resolution image; no type-size measurements.",
+      "designEdition": "v6"
     },
     {
       "id": "L02",
@@ -38,7 +39,8 @@
       "evidence": "marketing",
       "titleEn": "Suggestion card settings",
       "categoryEn": "Phone / Suggestions",
-      "observationEn": "Card settings on the left and home-screen layout on the right; duplicates L03."
+      "observationEn": "Card settings on the left and home-screen layout on the right; duplicates L03.",
+      "designEdition": "v6"
     },
     {
       "id": "L03",
@@ -58,7 +60,8 @@
       "duplicateOf": "L02",
       "titleEn": "Suggestion card settings · Duplicate",
       "categoryEn": "Phone / Suggestions",
-      "observationEn": "Duplicate visual source retained with its own filename and checksum; not independent evidence."
+      "observationEn": "Duplicate visual source retained with its own filename and checksum; not independent evidence.",
+      "designEdition": "v6"
     },
     {
       "id": "L04",
@@ -77,7 +80,8 @@
       "evidence": "marketing",
       "titleEn": "Cross-device ecosystem",
       "categoryEn": "Cross-device / Marketing",
-      "observationEn": "Brand marketing image used only for device context, not component details."
+      "observationEn": "Brand marketing image used only for device context, not component details.",
+      "designEdition": "v6"
     },
     {
       "id": "L05",
@@ -96,7 +100,8 @@
       "evidence": "marketing",
       "titleEn": "Work & task cards",
       "categoryEn": "Phone / Services",
-      "observationEn": "Information cards within a light conversation surface, with clear semantics and left-aligned content."
+      "observationEn": "Information cards within a light conversation surface, with clear semantics and left-aligned content.",
+      "designEdition": "v6"
     },
     {
       "id": "L06",
@@ -115,7 +120,8 @@
       "evidence": "marketing",
       "titleEn": "Conversation & live vision",
       "categoryEn": "Phone / Multimodal",
-      "observationEn": "Conversation, camera-off and camera-on states. Low-resolution source; visual mode is schematic."
+      "observationEn": "Conversation, camera-off and camera-on states. Low-resolution source; visual mode is schematic.",
+      "designEdition": "v6"
     },
     {
       "id": "L07",
@@ -158,7 +164,8 @@
       "evidence": "video",
       "titleEn": "Foldable conversation transitions",
       "categoryEn": "Foldable / Conversation",
-      "observationEn": "Transitions among full-screen conversation, side-by-side apps and a floating window. 1.276s conversation; 3.987s split view; 10.366s floating."
+      "observationEn": "Transitions among full-screen conversation, side-by-side apps and a floating window. 1.276s conversation; 3.987s split view; 10.366s floating.",
+      "designEdition": "v6"
     },
     {
       "id": "L08",
@@ -177,7 +184,8 @@
       "evidence": "marketing",
       "titleEn": "Long-article summary promotion",
       "categoryEn": "Phone / Reading",
-      "observationEn": "Article summary and bottom orb; supports layout direction only."
+      "observationEn": "Article summary and bottom orb; supports layout direction only.",
+      "designEdition": "v6"
     },
     {
       "id": "L09",
@@ -196,7 +204,8 @@
       "evidence": "capture",
       "titleEn": "Writing assistant",
       "categoryEn": "Phone / Writing",
-      "observationEn": "Pale violet-blue bottom sheet; 3+4 tools, title, handle, four-dot menu, close and input. The background document stays bright."
+      "observationEn": "Pale violet-blue bottom sheet; 3+4 tools, title, handle, four-dot menu, close and input. The background document stays bright.",
+      "designEdition": "v6"
     },
     {
       "id": "L10",
@@ -239,7 +248,8 @@
       "evidence": "video",
       "titleEn": "Xiaoyi orb motion",
       "categoryEn": "Orb / Motion",
-      "observationEn": "1.857s single ring; 5.804s concentric rings; 15.091s rotating ellipses; 19.734s return to a ring. The clip does not label semantic states."
+      "observationEn": "1.857s single ring; 5.804s concentric rings; 15.091s rotating ellipses; 19.734s return to a ring. The clip does not label semantic states.",
+      "designEdition": "v6"
     },
     {
       "id": "L11",
@@ -258,7 +268,8 @@
       "evidence": "capture",
       "titleEn": "Cross-app companion",
       "categoryEn": "Tablet / Companion",
-      "observationEn": "App roughly 71%, dark companion 29%; title, mute and close above the conversation and listening bar."
+      "observationEn": "App roughly 71%, dark companion 29%; title, mute and close above the conversation and listening bar.",
+      "designEdition": "v6"
     },
     {
       "id": "L12",
@@ -301,7 +312,8 @@
       "evidence": "video",
       "titleEn": "Circle an image",
       "categoryEn": "Tablet / Circle selection",
-      "observationEn": "1.770s circle; 5.530s scrim, object glow and menu; 9.955s visual search panel; 14.379s results; 18.804s back to selection."
+      "observationEn": "1.770s circle; 5.530s scrim, object glow and menu; 9.955s visual search panel; 14.379s results; 18.804s back to selection.",
+      "designEdition": "v6"
     },
     {
       "id": "L13",
@@ -320,7 +332,8 @@
       "evidence": "capture",
       "titleEn": "Text-selection menu",
       "categoryEn": "Tablet / Selection",
-      "observationEn": "Blue text selection and white floating toolbar; the companion sidebar remains visible."
+      "observationEn": "Blue text selection and white floating toolbar; the companion sidebar remains visible.",
+      "designEdition": "v6"
     },
     {
       "id": "L14",
@@ -363,7 +376,8 @@
       "evidence": "video",
       "titleEn": "Article analysis sequence",
       "categoryEn": "Tablet / Companion",
-      "observationEn": "7.589s / 13.661s listening; 19.732s sidebar expansion; 25.803s conversation result."
+      "observationEn": "7.589s / 13.661s listening; 19.732s sidebar expansion; 25.803s conversation result.",
+      "designEdition": "v6"
     },
     {
       "id": "L15",
@@ -382,7 +396,8 @@
       "evidence": "capture",
       "titleEn": "Article analysis entry",
       "categoryEn": "Tablet / Companion",
-      "observationEn": "App roughly 87%, companion 13%; shortcut suggestions, screen-analysis pill and bottom orb."
+      "observationEn": "App roughly 87%, companion 13%; shortcut suggestions, screen-analysis pill and bottom orb.",
+      "designEdition": "v6"
     },
     {
       "id": "L16",
@@ -401,7 +416,8 @@
       "evidence": "capture",
       "titleEn": "Article shortcuts",
       "categoryEn": "Tablet / Companion",
-      "observationEn": "Summarize, mind map, reading guide and save, in dark-gray pills."
+      "observationEn": "Summarize, mind map, reading guide and save, in dark-gray pills.",
+      "designEdition": "v6"
     },
     {
       "id": "L17",
@@ -444,7 +460,8 @@
       "evidence": "video",
       "titleEn": "Article questions & exit",
       "categoryEn": "Tablet / Companion",
-      "observationEn": "2.491s light blurred transition; 4.483s sidebar; 8.469s exit and restore full width."
+      "observationEn": "2.491s light blurred transition; 4.483s sidebar; 8.469s exit and restore full width.",
+      "designEdition": "v6"
     },
     {
       "id": "L18",
@@ -463,7 +480,8 @@
       "evidence": "capture",
       "titleEn": "Voice listening",
       "categoryEn": "Tablet / Companion",
-      "observationEn": "Listening label, multi-ring orb and top listening indicator; the main app remains visible."
+      "observationEn": "Listening label, multi-ring orb and top listening indicator; the main app remains visible.",
+      "designEdition": "v6"
     },
     {
       "id": "L19",
@@ -655,7 +673,12 @@
       "categoryEn": "Phone / 7.0",
       "observation": "用户标记为 7.0。末尾是待安装系统更新，不证明当前系统版本。包含浮卡、技能、圈选、帮写。公开帧已遮蔽账号与电话号码。",
       "observationEn": "User-labelled 7.0. The available OS update does not prove the installed version. Floating assistant, skills, selection and writing are observed. Account and phone details are redacted in public frames.",
-      "evidence": "recording"
+      "evidence": "recording",
+      "designEdition": "v7"
     }
-  ]
+  ],
+  "editionNaming": {
+    "zh": "6.0 浅色 / 7.0 深色为用户指定的设计分类，非原片安装版本验证。",
+    "en": "6.0 Light / 7.0 Dark are user-defined design collections, not verification of installed versions."
+  }
 }

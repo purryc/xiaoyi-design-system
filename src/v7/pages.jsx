@@ -606,7 +606,7 @@ export function V7Foundations() {
     </>
   );
 }
-export function V7Page({ page, controlRequest, legacyReference, onOpen }) {
+export function V7Page({ page, controlRequest, onOpen }) {
   const t = useV7Copy(),
     titles = {
       overview: "heading",
@@ -625,15 +625,6 @@ export function V7Page({ page, controlRequest, legacyReference, onOpen }) {
       {["overview", "components", "patterns"].includes(page) && <V7Showcase />}
       {page === "foundations" && <V7Foundations />}
       {page === "motion" && <V7MotionWorkspace onOpen={onOpen} />}
-      {page === "reference" && (
-        <>
-          <V7Evidence />
-          <details>
-            <summary>{t("legacy")}</summary>
-            {legacyReference}
-          </details>
-        </>
-      )}
       {page === "components" && (
         <>
           <V7SurfaceReview />

@@ -10,11 +10,15 @@ Reconstruct Xiaoyi for shinoyan's UX design, interface prototyping, and reusable
 
 ## 7.0 update rules
 
-The user authorizes this update and its commit/push to the existing repository. Default the documentation specimens to the user-labelled 7.0 recording, retain a separately selectable legacy edition (actual version unknown), and keep legacy exports stable. New components live in `src/v7/`, scoped tokens in `tokens/xiaoyi-v7.tokens.json`, evidence in `reference/v7-analysis.json`, and compact redacted derivatives in `public/reference/v7/`. Original media remains untouched. Never infer installed OS version from an available-update screen. Host applications use fictional fixtures; no real microphone, camera, messaging or image recognition. Unobserved controls are adaptations, not verified 7.0 specimens.
+The user authorizes this update and its commit/push to the existing repository. Default the documentation specimens to the user-labelled 7.0 recording, retain the separately selectable Xiaoyi 6.0 light edition (user-defined catalog label; recorded app version unknown), and keep legacy exports stable. New components live in `src/v7/`, scoped tokens in `tokens/xiaoyi-v7.tokens.json`, evidence in `reference/v7-analysis.json`, and compact redacted derivatives in `public/reference/v7/`. Original media remains untouched. Never infer installed OS version from an available-update screen. Host applications use fictional fixtures; no real microphone, camera, messaging or image recognition. Unobserved controls are adaptations, not verified 7.0 specimens.
 
 ## Visual continuity review
 
 The 7.0 edition is an incremental surface, chip and semantic-icon update, not removal of established capabilities. Keep companion mode, its measured edge light, the accepted blue-violet orb and vision available directly in the current edition. Retained specimens keep their original evidence IDs; user-confirmed continuity does not establish new L19 tablet geometry. Distinguish neutral translucent assistant glass, violet-gray writing sheets, filled style chips and outlined tool chips. Preserve source-observed colored semantic icons alongside monochrome utility icons, including in SVG exports.
+
+## Edition naming and reference selection
+
+The user explicitly names the earlier light catalog **Xiaoyi 6.0 · Light** and the newer dark catalog **Xiaoyi 7.0 · Dark**. Use canonical `design=v6|v7`; accept old `design=legacy` URLs and stored preferences as aliases for `v6`. Reference selection is available in both editions with `reference=v6|v7`, defaulting to the current design. Explicit reference choices survive refresh and language changes; changing the system edition resets the reference choice to that edition. Keep L01–L18 in the 6.0 collection and L19 in the 7.0 collection. These are user-defined design/reference groupings, not newly verified application/OS metadata. Preserve original assets and stable component exports.
 
 ## Structure
 
@@ -97,8 +101,12 @@ All UI copy and Markdown documentation must be available in Chinese and English.
 
 ### 7.0 更新约定
 
-本轮授权提交并推送现有仓库。默认展示用户标记为 7.0 的录屏风格，保留版本未知的旧版与原有接口。新增组件放 src/v7/，独立 token 与证据分开存放；公开派生图遮蔽账号与号码，原视频保持原样。不能根据待安装更新页推断当前系统版本。宿主使用虚构内容，不接入真实麦克风、摄像头、消息或识图；未观察的控件注明适配扩展。
+本轮授权提交并推送现有仓库。默认展示用户标记为 7.0 的录屏风格，保留用户命名的「小艺 6.0 · 浅色」与原有接口，原片实际版本元数据仍为未知。新增组件放 src/v7/，独立 token 与证据分开存放；公开派生图遮蔽账号与号码，原视频保持原样。不能根据待安装更新页推断当前系统版本。宿主使用虚构内容，不接入真实麦克风、摄像头、消息或识图；未观察的控件注明适配扩展。
 
 ### 视觉延续复核
 
 7.0 为表面、chip 与功能图标的增量更新，不删除既有能力。伴随态、已测边缘光、已认可的蓝紫光球与看世界在当前版本直接可用；沿用各自来源编号，用户确认能力延续不代表 L19 验证了平板布局。区分中性透明浮卡、灰紫帮写面板、填充类型 chip 与描边工具 chip。彩色功能图标和灰白操作图标分别保留，SVG 导出也保存颜色。
+
+### 版本命名与参考选择
+
+用户指定上一版浅色目录为「小艺 6.0 · 浅色」，本次深色目录为「小艺 7.0 · 深色」。使用 design=v6|v7，兼容旧 design=legacy 地址和保存偏好。两个版本的参考页都可以通过 reference=v6|v7 切换素材，默认跟随系统版本；明确选中的参考集合刷新、换语言后保留，切换系统版本时重新跟随。L01–L18 归入 6.0，L19 归入 7.0。此为用户指定的设计／素材分类，不修改未知的原始系统与应用版本字段；原素材与组件接口不变。

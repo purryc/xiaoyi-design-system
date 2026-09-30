@@ -285,3 +285,12 @@ for (const icon of colored) {
   );
 }
 console.log("PASS: color-review crop hash and 10 source-color SVG exports.");
+
+for (const edition of ["v6", "v7"]) {
+  const grouped = JSON.parse(fs.readFileSync(`public/downloads/manifest-${edition}.json`));
+  const expected = manifest.items.filter(item => item.designEdition === edition);
+  assert.equal(expected.length, edition === "v6" ? 18 : 1);
+  assert.deepEqual(grouped.items, expected);
+  assert(grouped.editionNaming.en && grouped.editionNaming.zh);
+}
+console.log("PASS: 6.0 / 7.0 reference grouping and download parity.");

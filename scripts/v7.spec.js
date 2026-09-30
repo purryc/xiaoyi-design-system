@@ -52,11 +52,11 @@ test("v7 is default; version and language persist independently", async ({
   await page.goto("/");
   await expect(page.locator("html")).toHaveAttribute("data-design", "v7");
   await page.getByRole("button", { name: "English", exact: true }).click();
-  await page.getByLabel("Design edition").selectOption("legacy");
-  await expect(page).toHaveURL(/design=legacy/);
+  await page.getByLabel("Design edition").selectOption("v6");
+  await expect(page).toHaveURL(/design=v6/);
   await page.reload();
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
-  await expect(page.getByLabel("Design edition")).toHaveValue("legacy");
+  await expect(page.getByLabel("Design edition")).toHaveValue("v6");
   await page.goto("/?design=v7&lang=zh#patterns");
   await expect(page.getByLabel("设计版本")).toHaveValue("v7");
   await expect(page.locator("html")).toHaveAttribute("lang", "zh-CN");
@@ -325,7 +325,7 @@ test("reduced motion pauses v7 GPU time and switching edition disposes demo", as
   const time = await canvas.getAttribute("data-time");
   await page.waitForTimeout(200);
   expect(await canvas.getAttribute("data-time")).toBe(time);
-  await page.getByLabel("Design edition").selectOption("legacy");
+  await page.getByLabel("Design edition").selectOption("v6");
   await expect(page.locator(".xy-v7-phone")).toHaveCount(0);
   await expect(page.locator("main h1")).toBeVisible();
 });
@@ -478,4 +478,88 @@ test("semantic colors survive filtering, sidebar rendering and SVG downloads", a
     path: "qa/color-review/conversation-en.png",
     fullPage: true,
   });
+});
+
+for (const lang of ["zh", "en"])
+  test(`6.0 and 7.0 references switch independently and persist in ${lang}`, async ({
+    page,
+    request,
+  }) => {
+    await page.goto(`/?design=v6&lang=${lang}#reference`);
+    const picker = page.getByLabel(
+      lang === "en" ? "Design edition" : "设计版本",
+    );
+    const references = page.getByRole("group", {
+      name: lang === "en" ? "Reference edition" : "参考版本",
+    });
+    await expect(picker).toHaveValue("v6");
+    await expect(page.locator("[data-reference-edition]")).toHaveAttribute(
+      "data-reference-edition",
+      "v6",
+    );
+    await expect(page.locator(".reference-card")).toHaveCount(18);
+    await references
+      .getByRole("button", {
+        name: lang === "en" ? "Xiaoyi 7.0 · Dark" : "小艺 7.0 · 深色",
+        exact: true,
+      })
+      .click();
+    await expect(picker).toHaveValue("v6");
+    await expect(page.locator(".xy-v7-frame-list")).toBeVisible();
+    await expect(page).toHaveURL(/reference=v7/);
+    await page.reload();
+    await expect(page.locator("[data-reference-edition]")).toHaveAttribute(
+      "data-reference-edition",
+      "v7",
+    );
+    await picker.selectOption("v7");
+    await expect(page).not.toHaveURL(/reference=/);
+    await references
+      .getByRole("button", {
+        name: lang === "en" ? "Xiaoyi 6.0 · Light" : "小艺 6.0 · 浅色",
+        exact: true,
+      })
+      .click();
+    await expect(page.locator(".reference-card")).toHaveCount(18);
+    await page
+      .getByRole("button", {
+        name: lang === "en" ? "中文" : "English",
+        exact: true,
+      })
+      .click();
+    await expect(page.locator("[data-reference-edition]")).toHaveAttribute(
+      "data-reference-edition",
+      "v6",
+    );
+    await page.getByLabel(lang === "en" ? "设计版本" : "Design edition").selectOption("v6");
+    await expect(page.locator("[data-reference-edition]")).toHaveAttribute(
+      "data-reference-edition",
+      "v6",
+    );
+    const v6 = await (await request.get("/downloads/manifest-v6.json")).json();
+    const v7 = await (await request.get("/downloads/manifest-v7.json")).json();
+    expect(v6.items).toHaveLength(18);
+    expect(v6.items.every((i) => i.designEdition === "v6")).toBeTruthy();
+    expect(v7.items.map((i) => i.id)).toEqual(["L19"]);
+    if (lang === "zh")
+      await page.screenshot({
+        path: "qa/edition-reference-selector.png",
+        fullPage: false,
+      });
+  });
+
+test("legacy bookmarks and stored preferences migrate to Xiaoyi 6.0", async ({
+  page,
+}) => {
+  await page.goto("/?design=legacy&lang=en#foundations");
+  await expect(page.getByLabel("Design edition")).toHaveValue("v6");
+  await expect(page).toHaveURL(/design=v6/);
+  await page.goto("/?lang=en#patterns");
+  await expect(page.getByLabel("Design edition")).toHaveValue("v6");
+  await page.goto("/?design=v7&reference=v6&lang=en#reference");
+  await expect(page.getByLabel("Design edition")).toHaveValue("v7");
+  await expect(page.locator("[data-reference-edition]")).toHaveAttribute(
+    "data-reference-edition",
+    "v6",
+  );
 });

@@ -1053,5 +1053,16 @@
   "帮记": "Memory",
   "自动任务": "Automated tasks",
   "智能体": "Agents",
-  "参考配色": "Reference colors"
+  "参考配色": "Reference colors",
+  "小艺 6.0 · 浅色": "Xiaoyi 6.0 · Light",
+  "小艺 7.0 · 深色": "Xiaoyi 7.0 · Dark",
+  "参考版本": "Reference edition",
+  "小艺 6.0 · 浅色参考": "Xiaoyi 6.0 · Light references",
+  "小艺 7.0 · 深色参考": "Xiaoyi 7.0 · Dark references",
+  "上一版浅色设计的 18 份本地参考，包含伴随态、光球与组件。": "18 local references for the earlier light design, including companion mode, the orb and components.",
+  "6.0 / 7.0 为本系统的版本分类；原素材的系统与应用版本信息保持原记录。": "6.0 / 7.0 identify this system’s design collections; original OS and app-version metadata is preserved.",
+  "查看 7.0 录屏资料": "Open 7.0 recording details",
+  "下载 6.0 参考清单": "Download 6.0 reference manifest",
+  "下载 7.0 参考清单": "Download 7.0 reference manifest",
+  "6.0 浅色 / 7.0 深色为用户指定的设计分类，非原片安装版本验证。": "6.0 Light / 7.0 Dark are user-defined design collections, not verification of installed versions."
 }

@@ -28,7 +28,7 @@ The floating card uses measured content height, grows to a cap, then scrolls int
 
 ### Version and language migration
 
-Use `?design=v7&lang=en` or `?design=legacy&lang=zh`, followed by the existing page hash. Design precedence is valid URL selection, saved local preference, then `v7`. Language selection is independent and preserves typed drafts and selected requirements. Changing editions unmounts demos and releases renderers/timers. Legacy source exports and token names remain stable. Legacy is not relabelled as version 6.0 because its source versions are unknown.
+Use `?design=v7&lang=en` or `?design=v6&lang=zh`, followed by the existing page hash. Design precedence is valid URL selection, saved local preference, then `v7`. Language selection is independent and preserves typed drafts and selected requirements. Changing editions unmounts demos and releases renderers/timers. Legacy source exports and token names remain stable. The user names the earlier light catalog Xiaoyi 6.0 and the newer dark catalog Xiaoyi 7.0. These are design-collection labels; source OS/app metadata remains unchanged. Old `design=legacy` links and saved preferences resolve to `v6`. On the reference page, `reference=v6|v7` selects either collection independently and survives refresh/language changes. Changing the system edition resets references to that edition. L01–L18 belong to 6.0; L19 belongs to 7.0. Download their separate manifests from the reference page.
 
 `tokens/xiaoyi-v7.tokens.json` generates `src/v7/tokens.css` and portable downloads. All new visual variables are scoped under `.xy-v7-theme`. Run `npm run build` after token or icon changes. No published npm package or backend service is implied.
 
@@ -120,7 +120,7 @@ Ten additional `v7-*-color` SVGs store colors per path. React, individual downlo
 
 ### 版本与语言迁移
 
-使用 `?design=v7&lang=en` 或 `?design=legacy&lang=zh`，后接既有页面 hash。设计版本优先级：有效 URL、保存偏好、默认 v7。语言独立，切换语言保留已输入草稿和所选要求。切换版本卸载组件并释放计时器/GPU；旧组件与变量名保持不变，旧版不冒称 6.0。
+使用 `?design=v7&lang=en` 或 `?design=v6&lang=zh`，后接既有页面 hash。设计版本优先级：有效 URL、保存偏好、默认 v7。语言独立，切换语言保留已输入草稿和所选要求。切换版本卸载组件并释放计时器/GPU；旧组件与变量名保持不变。用户将此前浅色目录命名为小艺 6.0，本次深色目录命名为小艺 7.0；此为设计分类，原始系统／应用版本字段不变。旧 design=legacy 链接与保存偏好映射到 v6。参考页用 reference=v6|v7 独立选择素材，刷新／换语言保留选择，切换系统版本时参考重新跟随。L01–L18 属于 6.0，L19 属于 7.0；可分别下载清单。
 
 `tokens/xiaoyi-v7.tokens.json` 生成 `src/v7/tokens.css` 和下载副本，作用域为 `.xy-v7-theme`。修改 token 或图标后执行 `npm run build`。项目没有发布 npm 包，也不接入真实服务。
 

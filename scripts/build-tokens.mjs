@@ -55,3 +55,23 @@ fs.writeFileSync(
     2,
   ) + "\n",
 );
+
+const referenceManifest = JSON.parse(
+  fs.readFileSync("reference/manifest.json", "utf8"),
+);
+for (const edition of ["v6", "v7"]) {
+  fs.writeFileSync(
+    `public/downloads/manifest-${edition}.json`,
+    JSON.stringify(
+      {
+        ...referenceManifest,
+        designEdition: edition,
+        items: referenceManifest.items.filter(
+          (item) => item.designEdition === edition,
+        ),
+      },
+      null,
+      2,
+    ) + "\n",
+  );
+}

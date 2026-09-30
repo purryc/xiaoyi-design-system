@@ -1,5 +1,11 @@
-import { DesignProvider, DesignSwitch, useDesign } from "./v7/runtime";
-import { V7Page } from "./v7/pages";
+import {
+  DesignProvider,
+  DesignSwitch,
+  useDesign,
+  useV7Copy,
+  normalizeDesign,
+} from "./v7/runtime";
+import { V7Page, V7Evidence } from "./v7/pages";
 import "./v7/tokens.css";
 import "./v7/v7.css";
 import {
@@ -681,11 +687,78 @@ function Patterns({ onOpen }) {
     </>
   );
 }
+function ReferenceWorkspace({ onOpen }) {
+  const { design } = useDesign(),
+    t = useV7Copy();
+  const [edition, setEdition] = useState(
+    () =>
+      normalizeDesign(new URLSearchParams(location.search).get("reference")) ||
+      design,
+  );
+  function selectEdition(value) {
+    setEdition(value);
+    const url = new URL(location.href);
+    url.searchParams.set("reference", value);
+    history.replaceState(null, "", url);
+  }
+  return (
+    <>
+      <div
+        className="xy-reference-switch"
+        role="group"
+        aria-label={t("referenceEdition")}
+      >
+        {["v6", "v7"].map((value) => (
+          <button
+            key={value}
+            aria-pressed={edition === value}
+            onClick={() => selectEdition(value)}
+          >
+            {t(value)}
+          </button>
+        ))}
+      </div>
+      <div key={edition} data-reference-edition={edition}>
+        {edition === "v6" ? (
+          <References onOpen={onOpen} />
+        ) : (
+          <>
+            <PageTitle
+              eyebrow="06 / XIAOYI 7.0 REFERENCES"
+              title={t("v7References")}
+              description={t("editionNote")}
+            />
+            <div className="xy-reference-actions">
+              <button
+                className="xy-button secondary"
+                onClick={() =>
+                  onOpen(manifest.items.find((item) => item.id === "L19"))
+                }
+              >
+                {t("openRecording")}
+              </button>
+              <a
+                className="xy-button secondary"
+                href="/downloads/manifest-v7.json"
+                download
+              >
+                {t("v7ReferenceDownload")}
+              </a>
+            </div>
+            <V7Evidence />
+          </>
+        )}
+      </div>
+    </>
+  );
+}
 function References({ onOpen }) {
+  const t = useV7Copy();
   const [filter, setFilter] = useState("all"),
     [query, setQuery] = useState("");
   const items = manifest.items.filter(
     (r) =>
+      r.designEdition === "v6" &&
       (filter === "all" || r.kind === filter || r.evidence === filter) &&
       (
         r.title +
@@ -702,18 +775,19 @@ function References({ onOpen }) {
     <>
       <PageTitle
         eyebrow="06 / REFERENCE LIBRARY"
-        title="参考与证据"
-        description="19 份本地素材，逐项归档。看得到来源，也看得到还原的边界。"
+        title={t("v6References")}
+        description={t("v6ReferencesIntro")}
       >
         <a
           className="xy-button secondary"
-          href="/downloads/manifest.json"
+          href="/downloads/manifest-v6.json"
           download
         >
           <Icon name="ArrowDown" size={17} />
-          下载清单
+          {t("v6ReferenceDownload")}
         </a>
       </PageTitle>
+      <p className="xy-reference-note">{t("editionNote")}</p>
       <div className="reference-toolbar">
         <div className="filter-row">
           {[
@@ -1202,12 +1276,13 @@ function App() {
           </div>
         </header>
         <main id="main-content" key={`${page}-${design}`}>
-          {design === "v7" && page !== "icons" ? (
+          {page === "reference" ? (
+            <ReferenceWorkspace {...common} />
+          ) : design === "v7" && page !== "icons" ? (
             <V7Page
               page={page}
               onOpen={common.onOpen}
               controlRequest={controlRequest}
-              legacyReference={<References {...common} />}
             />
           ) : page === "overview" ? (
             <Overview {...common} />
@@ -1221,8 +1296,6 @@ function App() {
             <IconLibrary />
           ) : page === "patterns" ? (
             <Patterns {...common} />
-          ) : page === "reference" ? (
-            <References {...common} />
           ) : (
             <Handoff />
           )}

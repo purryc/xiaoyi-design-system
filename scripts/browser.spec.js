@@ -51,9 +51,9 @@ for (const width of [1440, 390])
   });
 test("reference filtering, detail frames and Escape", async ({ page }) => {
   await page.goto("/#reference");
-  await expect(page.locator(".reference-card")).toHaveCount(19);
+  await expect(page.locator(".reference-card")).toHaveCount(18);
   await page.getByRole("button", { name: "录屏 / 动效", exact: true }).click();
-  await expect(page.locator(".reference-card")).toHaveCount(6);
+  await expect(page.locator(".reference-card")).toHaveCount(5);
   await page.getByLabel("搜索参考").fill("L10");
   await expect(page.locator(".reference-card")).toHaveCount(1);
   await page.locator(".reference-card").click();
