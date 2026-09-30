@@ -6,7 +6,11 @@
 
 ## Purpose and design context
 
-Reconstruct Xiaoyi for shinoyan's UX design, interface prototyping, and reusable research. The supplied Xiaoyi screenshots and recordings are the visual authority: calm light surfaces, restrained typography, contextual assistant sheets, and the observed blue-violet orb. Do not redesign the brand. This is an independent research reconstruction, not Huawei's official design specification.
+Reconstruct Xiaoyi for shinoyan's UX design, interface prototyping, and reusable research. The supplied Xiaoyi screenshots and recordings are the visual authority: source-specific light and dark surfaces, restrained typography, contextual assistant sheets, and separately evidenced orb treatments. Do not redesign the brand. This is an independent research reconstruction, not Huawei's official design specification.
+
+## 7.0 update rules
+
+The user authorizes this update and its commit/push to the existing repository. Default the documentation specimens to the user-labelled 7.0 recording, retain a separately selectable legacy edition (actual version unknown), and keep legacy exports stable. New components live in `src/v7/`, scoped tokens in `tokens/xiaoyi-v7.tokens.json`, evidence in `reference/v7-analysis.json`, and compact redacted derivatives in `public/reference/v7/`. Original media remains untouched. Never infer installed OS version from an available-update screen. Host applications use fictional fixtures; no real microphone, camera, messaging or image recognition. Unobserved controls are adaptations, not verified 7.0 specimens.
 
 ## Structure
 
@@ -55,7 +59,7 @@ All UI copy and Markdown documentation must be available in Chinese and English.
 
 ### 目的与设计语境
 
-为 shinoyan 的体验设计、原型与研究复刻小艺。用户提供的截图和录屏是视觉依据：浅色表面、克制排版、上下文助手面板和蓝紫光球。不得重新设计品牌。本项目为独立研究重建，不是华为官方规范。
+为 shinoyan 的体验设计、原型与研究复刻小艺。用户提供的截图和录屏是视觉依据：按来源区分的深浅表面、克制排版、上下文助手面板和分别取证的光球。不得重新设计品牌。本项目为独立研究重建，不是华为官方规范。
 
 ### 目录约定
 
@@ -86,3 +90,7 @@ All UI copy and Markdown documentation must be available in Chinese and English.
 ### 伴随边缘光扩展
 
 `src/motion/edge-*` 与 `CompanionEdgeGlow.jsx` 管理可复用圆角矩形 TSL 叠加层；`EdgeGlowLab.jsx` 管理独立示例与参数。保持内容可交互、中心透明，效果不依赖伴随侧栏布局。依据 L11/L15/L16/L18 与 L14 时间采样区分亮边、向内扩散和外侧余光，分清原图像素、参考缩放和拟合估值。伴随边缘含浅暖色，不套用光球配色。测量写入 `reference/edge-light-analysis.json`，参数导出放 `public/downloads/`，双语复用说明放 `docs/edge-light.md`。用户本轮授权将边缘光和已认可的光球颜色修正一同提交并推送 GitHub。
+
+### 7.0 更新约定
+
+本轮授权提交并推送现有仓库。默认展示用户标记为 7.0 的录屏风格，保留版本未知的旧版与原有接口。新增组件放 src/v7/，独立 token 与证据分开存放；公开派生图遮蔽账号与号码，原视频保持原样。不能根据待安装更新页推断当前系统版本。宿主使用虚构内容，不接入真实麦克风、摄像头、消息或识图；未观察的控件注明适配扩展。

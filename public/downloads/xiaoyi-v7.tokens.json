@@ -1,0 +1,100 @@
+{
+  "meta": {
+    "source": "L19",
+    "label": "7.0 深色重建",
+    "labelEn": "7.0 dark reconstruction",
+    "evidence": "Fitted estimates from 720x1504 recording; CSS dimensions use half-scale, not native vp."
+  },
+  "values": {
+    "canvas": {
+      "$value": "#000000",
+      "confidence": "estimate",
+      "source": "L19"
+    },
+    "surface": {
+      "$value": "#202020",
+      "confidence": "estimate",
+      "source": "L19"
+    },
+    "glass": {
+      "$value": "#303034",
+      "confidence": "estimate",
+      "source": "L19"
+    },
+    "writing": {
+      "$value": "#27283d",
+      "confidence": "estimate",
+      "source": "L19"
+    },
+    "text": {
+      "$value": "#f3f2f6",
+      "confidence": "estimate",
+      "source": "L19"
+    },
+    "muted": {
+      "$value": "#a7a6ae",
+      "confidence": "estimate",
+      "source": "L19"
+    },
+    "primary": {
+      "$value": "#5795ff",
+      "confidence": "estimate",
+      "source": "L19"
+    },
+    "violet": {
+      "$value": "#cba6ed",
+      "confidence": "estimate",
+      "source": "L19"
+    },
+    "pink": {
+      "$value": "#e2adc8",
+      "confidence": "estimate",
+      "source": "L19"
+    },
+    "inset": {
+      "$value": "14px",
+      "confidence": "estimate",
+      "source": "L19"
+    },
+    "radius": {
+      "$value": "30px",
+      "confidence": "estimate",
+      "source": "L19"
+    },
+    "dock-height": {
+      "$value": "46px",
+      "confidence": "estimate",
+      "source": "L19"
+    },
+    "dock-gap": {
+      "$value": "8px",
+      "confidence": "estimate",
+      "source": "L19"
+    },
+    "writing-radius": {
+      "$value": "28px",
+      "confidence": "estimate",
+      "source": "L19"
+    },
+    "body-size": {
+      "$value": "14px",
+      "confidence": "estimate",
+      "source": "L19"
+    },
+    "line-height": {
+      "$value": "1.65",
+      "confidence": "estimate",
+      "source": "L19"
+    },
+    "enter": {
+      "$value": "360ms",
+      "confidence": "estimate",
+      "source": "L19"
+    },
+    "exit": {
+      "$value": "240ms",
+      "confidence": "estimate",
+      "source": "L19"
+    }
+  }
+}

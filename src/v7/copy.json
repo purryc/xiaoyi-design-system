@@ -1,0 +1,242 @@
+{
+  "version": ["设计版本", "Design edition"],
+  "legacy": ["旧版参考", "Legacy references"],
+  "v7": ["7.0 深色参考", "7.0 dark references"],
+  "heading": ["小艺 7.0，随场景展开。", "Xiaoyi 7.0. Present in context."],
+  "intro": [
+    "浮动内容、独立输入与柔和光感，来自 L19 录屏的逐段重建。",
+    "Floating content, independent input and soft light, reconstructed from recording L19."
+  ],
+  "evidence": [
+    "用户标记为 7.0 · 系统与应用版本待确认",
+    "User-labelled 7.0 · installed OS and app versions unconfirmed"
+  ],
+  "flows": ["交互流程", "Interaction flows"],
+  "assistant": ["浮动助手", "Floating assistant"],
+  "conversation": ["全屏对话", "Conversation"],
+  "skills": ["技能目录", "Skills gallery"],
+  "selection": ["圈选追问", "Select and ask"],
+  "writing": ["小艺帮写", "Writing assistant"],
+  "launch": ["唤起小艺", "Activate Xiaoyi"],
+  "listen": ["我在听，请说…", "Listening…"],
+  "recognize": ["介绍一下这座城市", "Tell me about this city"],
+  "ask": ["问问小艺", "Ask Xiaoyi"],
+  "search": ["识图搜索", "Visual search"],
+  "send": ["发送", "Send"],
+  "speak": ["点击或按住说话", "Tap or hold to speak"],
+  "input": ["发送给小艺", "Message Xiaoyi"],
+  "stop": ["停止生成", "Stop generating"],
+  "close": ["关闭", "Close"],
+  "back": ["返回", "Back"],
+  "expand": ["展开对话", "Expand conversation"],
+  "collapse": ["收起对话", "Collapse conversation"],
+  "querying": ["查询信息", "Finding information"],
+  "summarize": ["生成总结", "Generating summary"],
+  "sources": ["参考来源", "Sources"],
+  "sourceCount": ["参考 3 篇资料", "Based on 3 sources"],
+  "suggest": ["继续问", "Follow up"],
+  "deep": ["深度思考", "Deep thinking"],
+  "claw": ["小艺 Claw 免费体验", "Try Xiaoyi Claw"],
+  "retouch": ["修图", "Retouch"],
+  "capture": ["看世界", "Look at the World"],
+  "mute": ["静音", "Mute"],
+  "unmute": ["取消静音", "Unmute"],
+  "keyboard": ["切换键盘输入", "Type a message"],
+  "voice": ["切换语音输入", "Voice input"],
+  "greeting": ["晚上好，Alex", "Good evening, Alex"],
+  "welcome": ["有什么想了解的，尽管问吧！", "What would you like to explore?"],
+  "prompt1": ["周末去哪里走走？", "Where could I go this weekend?"],
+  "prompt2": ["找一下去年今天的照片", "Find photos from this day last year"],
+  "prompt3": ["手机充满电时，提醒我", "Let me know when my phone is charged"],
+  "answer": [
+    "这座湖畔城市适合用步行和公共交通慢慢探索。\n\n城市漫步\n从湖边步道开始，经过公共花园和社区市场，在街角咖啡馆稍作休息。\n\n周末安排\n上午参观艺术馆，午后沿湖骑行，傍晚在公园欣赏日落。出发前记得确认开放时间和天气。\n\n出行建议\n选择舒适的鞋子，提前规划返程路线。景点之间可以乘坐公共交通，把更多时间留给沿途的风景。",
+    "This lakeside city is best explored on foot and by public transit.\n\nA city walk\nStart along the waterfront, pass through public gardens and a neighborhood market, then pause at a corner cafe.\n\nA weekend itinerary\nVisit a gallery in the morning, cycle by the lake in the afternoon and watch the sunset from a park. Check opening hours and the weather before leaving.\n\nGetting around\nWear comfortable shoes and plan your return journey. Public transit connects the sights, leaving more time to enjoy the scenery."
+  ],
+  "productAnswer": [
+    "这款示例手机的人像表现可以从镜头、光线和背景三个方面比较。\n\n镜头与构图\n选择适合人像的焦段，让人物保持自然比例。\n\n光线与细节\n柔和侧光通常更有层次，夜间拍摄时需要保持稳定。\n\n背景分离\n观察头发和眼镜边缘，比较虚化是否自然。实际效果需要使用真实样张评估。",
+    "Compare this sample phone through its lens, lighting and background separation.\n\nLens and framing\nChoose a portrait focal length that preserves natural proportions.\n\nLight and detail\nSoft side lighting adds depth. Keep the camera steady at night.\n\nBackground separation\nInspect hair and glasses for natural blur boundaries. Real photographs are needed to assess actual performance."
+  ],
+  "photoQuestion": [
+    "这款手机拍人像效果如何？",
+    "How does this phone handle portraits?"
+  ],
+  "weightQuestion": ["日常携带方便吗？", "Is it easy to carry every day?"],
+  "screenQuestion": [
+    "屏幕适合看照片吗？",
+    "Is the screen good for viewing photos?"
+  ],
+  "copy": ["复制", "Copy"],
+  "copied": ["已复制", "Copied"],
+  "share": ["分享", "Share"],
+  "save": ["保存", "Save"],
+  "shape": ["选区形状", "Selection shape"],
+  "retry": ["重新生成", "Regenerate"],
+  "like": ["有帮助", "Helpful"],
+  "dislike": ["没帮助", "Not helpful"],
+  "read": ["朗读", "Read aloud"],
+  "saved": ["已保存选区", "Selection saved"],
+  "shared": ["已复制分享内容", "Share text copied"],
+  "rect": ["矩形", "Rectangle"],
+  "object": ["物体轮廓", "Object contour"],
+  "choosePhone": ["选择手机", "Select phone"],
+  "chooseShoe": ["选择鞋子", "Select shoe"],
+  "featured": ["精选", "Featured"],
+  "tasks": ["任务", "Tasks"],
+  "work": ["职场提效", "Work"],
+  "study": ["学习", "Learning"],
+  "popular": ["本周热门技能", "Popular this week"],
+  "everyone": ["大家都在用", "Trending"],
+  "try": ["试试", "Try"],
+  "scene1": ["请查收秋日骑行好去处", "Find your next autumn ride"],
+  "scene2": ["打卡身边绝美夜色", "Discover the night nearby"],
+  "guide": ["小艺做攻略", "Plan with Xiaoyi"],
+  "skill1": ["扬声器清灰", "Speaker cleaning"],
+  "skill2": ["智能充电模式", "Smart charging"],
+  "skill3": ["整理手机桌面小技巧", "Organize your home screen"],
+  "skill4": ["打车去公司", "Get a ride to work"],
+  "skillSearch": ["搜索技能", "Search skills"],
+  "noSkills": ["没有匹配的技能", "No matching skills"],
+  "next": ["下一张", "Next slide"],
+  "previous": ["上一张", "Previous slide"],
+  "host": ["湖畔日常", "Lakeside journal"],
+  "hostSubtitle": ["留一点时间，给眼前的风景。", "Make room for the view."],
+  "shopping": ["发现好物", "Discover"],
+  "phone": ["示例手机", "Sample phone"],
+  "shoe": ["日常运动鞋", "Everyday sneakers"],
+  "note": ["新建信息", "New message"],
+  "recipient": ["收件人：Alex", "To: Alex"],
+  "hostMessage": [
+    "周末社区活动，等你一起参加。",
+    "Join us for a neighborhood gathering this weekend."
+  ],
+  "category": ["风格", "Style"],
+  "requirements": ["要求", "Requirements"],
+  "summary": ["工作总结", "Work summary"],
+  "social": ["朋友圈", "Social post"],
+  "greetingType": ["祝福语", "Greeting"],
+  "plan": ["方案策划", "Event plan"],
+  "essay": ["作文", "Essay"],
+  "story": ["故事", "Story"],
+  "poem": ["诗歌", "Poem"],
+  "review": ["评论", "Review"],
+  "more": ["更多类型", "More types"],
+  "tone": ["语气", "Tone"],
+  "audience": ["对象", "Audience"],
+  "length": ["长度", "Length"],
+  "warm": ["温暖", "Warm"],
+  "formal": ["正式", "Formal"],
+  "friends": ["朋友", "Friends"],
+  "colleagues": ["同事", "Colleagues"],
+  "short": ["简短", "Short"],
+  "long": ["详细", "Detailed"],
+  "writePrompt": ["写一篇方案策划", "Write an event plan"],
+  "generate": ["生成", "Generate"],
+  "apply": ["添加", "Add"],
+  "disclaimer": [
+    "由小艺 AI 生成，仅供参考",
+    "AI-generated content for reference"
+  ],
+  "writingText": [
+    "《秋日时光》社区活动方案\n\n一、活动背景\n用一个轻松的周末下午，让邻里在交流中熟悉彼此，共同发现社区的温暖。\n\n二、活动主题\n秋日时光，邻里共享。\n\n三、时间与地点\n周六 14:00–17:00，社区公共花园。\n\n四、活动安排\n14:00 欢迎与签到\n14:30 手作交流与旧物分享\n15:30 邻里故事会\n16:30 合影与场地整理\n\n五、参与方式\n居民可携带一本书或一件手工作品，现场自由交流。提前登记所需材料，照顾儿童与长者的参与体验。\n\n六、后续安排\n收集建议，整理活动记录，为下一次相聚做好准备。",
+    "Autumn Together — Neighborhood Event Plan\n\n1. Purpose\nBring neighbors together for a relaxed weekend afternoon of conversation and shared discoveries.\n\n2. Theme\nAutumn moments, shared by the neighborhood.\n\n3. Time and place\nSaturday, 2–5 pm, in the community garden.\n\n4. Schedule\n2:00 Welcome and arrival\n2:30 Craft exchange and reuse market\n3:30 Neighborhood storytelling\n4:30 Group photo and cleanup\n\n5. Participation\nBring a book or a handmade object to share. Register materials in advance and make the experience welcoming for children and older residents.\n\n6. Follow-up\nCollect suggestions and document the afternoon to prepare for the next gathering."
+  ],
+  "baseline": ["7.0 视觉基础", "7.0 visual foundations"],
+  "componentsTitle": ["7.0 组件与状态", "7.0 components and states"],
+  "patternsTitle": ["7.0 交互范式", "7.0 interaction patterns"],
+  "motionTitle": ["7.0 光感实验室", "7.0 light laboratory"],
+  "referenceTitle": ["7.0 参考与证据", "7.0 references and evidence"],
+  "handoffTitle": ["7.0 使用与迁移", "7.0 integration and migration"],
+  "newControls": ["新版可见控件", "Observed 7.0 controls"],
+  "adaptation": [
+    "通用控件适配扩展：下方控件未全部出现在 L19 中，不能当作已验证的 7.0 样式。",
+    "Common-control adaptations: not every control below appears in L19; these are not verified 7.0 specimens."
+  ],
+  "legacyVision": [
+    "看世界沿用此前来源，L19 未展示新的完整流程。",
+    "Look at the World retains earlier evidence; L19 does not show a new complete flow."
+  ],
+  "observed": ["已观察", "Observed"],
+  "estimated": ["复刻估值", "Reconstruction estimate"],
+  "unknown": ["未确认", "Unconfirmed"],
+  "sourceNote": [
+    "原视频保留在本地；公开帧遮蔽账号与号码。录屏时间均以文件起点为准。",
+    "The original video remains local. Public frames redact account and phone details. Timestamps are relative to the file start."
+  ],
+  "timingNote": [
+    "生成内容、加载时长与宿主应用为本地模拟；光效数值为拟合估值。",
+    "Generated content, loading times and host applications are local simulations; effect values are fitted estimates."
+  ],
+  "unobserved": [
+    "未确认：浅色主题、完整小球运动、识图搜索成功结果。",
+    "Unconfirmed: light theme, full orb motion and successful visual-search results."
+  ],
+  "bloom": ["唤起柔光", "Activation bloom"],
+  "edge": ["浮卡高光", "Surface highlight"],
+  "contour": ["圈选轮廓光", "Selection contour"],
+  "wash": ["帮写光场", "Writing light field"],
+  "orb": ["多彩标识", "Multicolor emblem"],
+  "pause": ["暂停", "Pause"],
+  "play": ["播放", "Play"],
+  "time": ["效果时间", "Effect time"],
+  "reset": ["重置参数", "Reset parameters"],
+  "export": ["导出参数", "Export parameters"],
+  "background": ["宿主背景", "Host background"],
+  "white": ["白色", "White"],
+  "black": ["黑色", "Black"],
+  "color": ["彩色", "Color"],
+  "picture": ["图片", "Image"],
+  "referenceFrame": ["参考时间点", "Reference timestamp"],
+  "comparison": ["参考与重建", "Reference and reconstruction"],
+  "comparisonNote": [
+    "左侧为遮蔽后的原片帧；右侧为同阶段的可复用重建。参数循环与时长为复刻处理。",
+    "Left: redacted source frame. Right: reusable reconstruction of the same stage. Looping and timing are reconstruction choices."
+  ],
+  "standalone": ["独立组件入口", "Standalone component entry"],
+  "migration": [
+    "旧组件接口保持不变。7.0 组件从独立入口导入，并使用单独的作用域样式和参数。",
+    "Legacy interfaces are unchanged. Import 7.0 components from the separate entry with scoped styles and parameters."
+  ],
+  "downloads": ["下载与说明", "Downloads and guidance"],
+  "openSources": ["查看 L19 证据", "View L19 evidence"],
+  "settings": ["参数", "Parameters"],
+  "stopState": ["已停止", "Stopped"],
+  "ready": ["已完成", "Complete"],
+  "jump": ["回到最新内容", "Jump to latest"],
+  "selectedTool": ["已选择", "Selected"],
+  "permissionNote": [
+    "演示不请求麦克风、摄像头或系统权限。",
+    "The demo requests no microphone, camera or system permissions."
+  ],
+  "source1": ["湖畔游客指南", "Lakeside visitor guide"],
+  "source2": ["社区花园目录", "Community garden directory"],
+  "source3": ["社区交通指南", "Neighborhood transit guide"],
+  "writingSample": [
+    "一起留意生活中的美好，也把善意分享给身边的人。让我们从一次交流、一次合作开始，把想法变成可以完成的小事。",
+    "Notice the good things in everyday life and share that kindness with the people around you. Start with a conversation and a small collaboration, then turn an idea into something achievable."
+  ],
+  "warmEnding": [
+    "期待与你分享这段时光。",
+    "Looking forward to sharing this moment with you."
+  ],
+  "formalEnding": [
+    "敬请关注后续安排，感谢支持与参与。",
+    "Please follow the upcoming arrangements. Thank you for your support and participation."
+  ],
+  "writingDetails": [
+    "具体安排：提前确认时间与地点，准备所需材料，分配参与职责。结束后整理反馈，记录值得保留的经验，并约定下一次交流的时间。",
+    "Details: confirm the time and place, prepare materials and agree on responsibilities. Afterwards, gather feedback, document useful lessons and schedule the next conversation."
+  ],
+  "shoeQuestion": [
+    "这双鞋适合日常步行吗？",
+    "Are these shoes suitable for everyday walking?"
+  ],
+  "shoeFitQuestion": ["如何选择合适尺码？", "How should I choose the size?"],
+  "shoeCareQuestion": [
+    "日常怎么清洁保养？",
+    "How should I clean and care for them?"
+  ],
+  "shoeAnswer": [
+    "日常步行可以从合脚程度、缓震和防滑表现三个方面评估。\n\n合脚程度\n试穿时给脚趾留出活动空间，确认后跟稳定。\n\n缓震与支撑\n选择符合使用场景的鞋底，避免仅凭外观判断舒适程度。\n\n清洁保养\n按材料选择清洁方式，阴凉通风处晾干。图片不能验证实际穿着体验。",
+    "For everyday walking, assess fit, cushioning and grip.\n\nFit\nLeave room for your toes and check that the heel stays secure.\n\nCushioning and support\nChoose a sole suited to your activity. Appearance alone cannot establish comfort.\n\nCare\nUse a cleaning method suited to the material and air dry in the shade. An image cannot verify the real wearing experience."
+  ]
+}

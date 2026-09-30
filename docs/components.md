@@ -4,6 +4,11 @@
 
 ## 中文
 
+### 7.0 入口
+
+下文旧版接口保持可用。新受控组件从 `src/v7/index.js` 导出，契约与回调见 [7.0 接入说明](v7-guide.md#中文)。
+
+
 导入入口 `src/components.jsx`。样式依赖 `src/tokens.css` 与 `src/styles.css`。目前为源码组件库，不是独立发布的软件包。
 
 | 导出               | 主要属性                                                                        | 状态/行为                               | 来源                      |
@@ -74,6 +79,11 @@ return (
 ---
 
 ## English
+
+### 7.0 entry
+
+Legacy APIs below remain available. New controlled components are exported from `src/v7/index.js`; contracts and callback behavior are in the [7.0 integration guide](v7-guide.md#english).
+
 
 Import from `src/components.jsx`, with `src/tokens.css` and `src/styles.css`. This is a source library, not a separately published package.
 

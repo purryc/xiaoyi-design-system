@@ -4,6 +4,11 @@
 
 ## 中文
 
+### 7.0 边界
+
+下文通用控件保留为适配扩展，L19 不验证所有 slider、toast 或复选框的外观。已观察的胶囊、要求选择、来源行和输入控件见 [7.0 说明](v7-guide.md#中文)。
+
+
 已在组件库新增六组示例、九个可复用 React 导出：Card、Slider、ActionChip、BottomChips、Toast、Switch、Checkbox、RadioGroup、Progress。入口为 `#components`，可按类别筛选或从顶部搜索。原有按钮、消息、服务卡片和交互面板继续保留。
 
 ## Reference 与还原范围
@@ -87,6 +92,11 @@ CSS px 与原生 vp 并不构成设备无关的精确换算。Toast bottom=80 �
 ---
 
 ## English
+
+### 7.0 boundary
+
+The common controls below are retained adaptations. L19 does not validate every slider, toast or checkbox appearance. Observed 7.0 pills, requirement selectors, source rows and input controls are documented in the [7.0 guide](v7-guide.md#english).
+
 
 Six specimen groups and nine reusable React exports are available under `#components`: Card, Slider, ActionChip, BottomChips, Toast, Switch, Checkbox, RadioGroup and Progress. Category filters and global search locate them. Existing buttons, messages, service cards and assistant panels remain available.
 

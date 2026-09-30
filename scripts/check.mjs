@@ -6,8 +6,8 @@ const root = process.cwd(),
   manifest = JSON.parse(fs.readFileSync("reference/manifest.json")),
   web = JSON.parse(fs.readFileSync("reference/web-sources.json")),
   tokens = JSON.parse(fs.readFileSync("tokens/xiaoyi.tokens.json"));
-assert.equal(manifest.items.length, 18);
-assert.equal(new Set(manifest.items.map((r) => r.id)).size, 18);
+assert.equal(manifest.items.length, 19);
+assert.equal(new Set(manifest.items.map((r) => r.id)).size, 19);
 let checked = 0,
   local = 0;
 for (const item of manifest.items) {
@@ -30,7 +30,7 @@ for (const item of manifest.items) {
     local++;
   }
   if (item.frames) {
-    assert.equal(item.frames.length, 5);
+    assert.equal(item.frames.length, item.id === "L19" ? 19 : 5);
     assert(item.frames.every((f) => f.time > 0 && f.time < item.duration));
   }
 }
@@ -71,14 +71,14 @@ console.log(
   `PASS: ${manifest.items.length} reference records, ${checked} derivatives, ${count} tokens, ${web.length} web sources, portable download parity.`,
 );
 console.log(
-  `Original media hashes verified: ${local}/18${local < 18 ? " (originals are local-only and optional on other machines)" : ""}.`,
+  `Original media hashes verified: ${local}/19${local < 19 ? " (originals are local-only and optional on other machines)" : ""}.`,
 );
 
 const { iconLibrary, iconSvg } = await import("../src/icons/icon-data.js");
 const { parameterSchema, sanitizeParameters } =
   await import("../src/motion/parameters.js");
-assert.equal(iconLibrary.length, 77);
-assert.equal(new Set(iconLibrary.map((i) => i.id)).size, 77);
+assert.equal(iconLibrary.length, 87);
+assert.equal(new Set(iconLibrary.map((i) => i.id)).size, 87);
 const aliases = iconLibrary.flatMap((i) => [i.id, ...i.aliases]);
 assert.equal(new Set(aliases).size, aliases.length);
 for (const i of iconLibrary) {
@@ -148,7 +148,7 @@ assert.equal(
 );
 assert(!fs.readFileSync("src/styles.css", "utf8").includes(".xy-orb::after"));
 console.log(
-  "PASS: 77 unique SVGs and aliases, 28 annotated parameters, 38 finite light-field fits and comparison proxy SHA-256.",
+  "PASS: 87 unique SVGs and aliases, 28 annotated parameters, 38 finite light-field fits and comparison proxy SHA-256.",
 );
 
 const { controlItems } = await import("../src/controls/catalog.js");
@@ -221,4 +221,48 @@ assert.deepEqual(edgeExport.parameters, edgeDefaults);
 assert(edgeExport.schema.every((p) => p.unit && p.labelEn && p.descriptionEn));
 console.log(
   "PASS: 15 measured edge profiles, 13 palette frames, 6 bounded parameters and bilingual edge export.",
+);
+
+const v7 = JSON.parse(fs.readFileSync("reference/v7-analysis.json"));
+assert.equal(
+  v7.sourceSha256,
+  manifest.items.find((x) => x.id === "L19").sha256,
+);
+assert.equal(v7.frames.length, 19);
+for (const f of [...v7.frames, ...v7.assets]) {
+  assert.equal(
+    crypto
+      .createHash("sha256")
+      .update(fs.readFileSync("public" + (f.preview || f.path)))
+      .digest("hex"),
+    f.sha256,
+  );
+}
+for (const f of v7.frames.filter((f) =>
+  [37, 273, 276, 280, 297].includes(f.time),
+))
+  assert(f.redactions.length, "Public account/phone frame must be redacted");
+const { v7Defaults, v7ParameterSchema, sanitizeV7Parameters } =
+  await import("../src/v7/parameters.js");
+assert.equal(v7ParameterSchema.length, 12);
+for (const p of v7ParameterSchema)
+  assert(p.labelEn && p.descriptionEn && p.evidence && p.unit);
+assert.equal(sanitizeV7Parameters({ innerWidth: 1e8 }).innerWidth, 30);
+assert.equal(sanitizeV7Parameters({ blue: "invalid" }).blue, v7Defaults.blue);
+assert.equal(sanitizeV7Parameters({ speed: NaN }).speed, v7Defaults.speed);
+for (const file of [
+  "reference/v7-analysis.json",
+  "tokens/xiaoyi-v7.tokens.json",
+])
+  assert.equal(
+    fs.readFileSync(file, "utf8"),
+    fs.readFileSync("public/downloads/" + path.basename(file), "utf8"),
+  );
+assert.deepEqual(
+  JSON.parse(fs.readFileSync("public/downloads/xiaoyi-v7.parameters.json"))
+    .parameters,
+  v7Defaults,
+);
+console.log(
+  "PASS: L19 original, 19 redacted keyframes, 3 crops, 12 bounded bilingual TSL parameters and v7 portable parity.",
 );

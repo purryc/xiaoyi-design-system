@@ -4,6 +4,11 @@
 
 ## 中文
 
+### L19 — 用户标记为 7.0
+
+第 19 份本地来源新增 19 张遮蔽关键帧及 3 张可追溯场景裁切。见 `reference/v7-analysis.json` 和[双语观察矩阵](v7-guide.md#中文)。待安装系统更新不证明录制版本。
+
+
 所有本地参考已读取并生成轻量预览。原图经过缩放，视频按 8%、25%、45%、65%、85% 时点抽帧；视频证据来自这些已审阅时点，不等于逐帧人工检查。
 
 ## 本地来源
@@ -130,6 +135,11 @@ L10 额外抽取 38 个时点（`reference/motion-analysis.json`），包括 13.
 ---
 
 ## English
+
+### L19 — user-labelled 7.0
+
+The 19th local source adds 19 redacted keyframes and three traced scene crops. See `reference/v7-analysis.json` and the [bilingual observation matrix](v7-guide.md#english). The offered system update is not proof of the installed version.
+
 
 All local references were read and converted to lightweight previews. Original images were resized; video frames were sampled at 8%, 25%, 45%, 65% and 85%. Evidence concerns reviewed samples, not exhaustive frame-by-frame review.
 

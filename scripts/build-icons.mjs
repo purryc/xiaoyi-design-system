@@ -13,7 +13,7 @@ for (const icon of iconLibrary) {
 }
 const manifest = JSON.stringify(
   {
-    version: "2.2",
+    version: "3.0",
     grid: 24,
     defaultStroke: 1.65,
     count: iconLibrary.length,

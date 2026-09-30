@@ -4,6 +4,11 @@
 
 ## 中文
 
+### 7.0 版本
+
+下文保留旧版基线。默认站点使用独立作用域的 [7.0 规格](v7-guide.md#中文)，依据 L19，不把旧版浅色 token 全局套入新深色示例。
+
+
 ## 证据定义
 
 - **观察**：源图或视频采样时点中直接可见的结构和状态。
@@ -100,6 +105,11 @@ L12 提供轮廓、顶部工具条、底部问答/识图与结果面板；L13 �
 ---
 
 ## English
+
+### 7.0 edition
+
+This document below preserves the legacy baseline. The default website now uses the independently scoped [7.0 specification](v7-guide.md#english), grounded in L19. Do not apply old light-surface tokens globally to new dark specimens.
+
 
 ### Evidence definitions
 

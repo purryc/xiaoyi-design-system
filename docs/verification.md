@@ -4,6 +4,17 @@
 
 ## 中文
 
+### 3.0 / 用户标记为 7.0 — 2026-09-30
+
+- 环境：macOS、Node.js 24.11.1、Chrome 154.0.8037.58、Vite 7.3.6。构建、完整性/双语检查与 git diff --check 通过。应用和 Three.js 包存在非阻断体积提醒，没有宣称满足特定性能预算。
+- 用户使用的 **5197 开发页面 48/48 通过**，66.8 秒；**5198 生产预览 48/48 通过**，63.2 秒。最终两轮均无跳过、无不稳定重试。JSON 记录保存在被忽略的 qa/v7-development-results.json 与 qa/v7-production-results.json。
+- 覆盖八个页面、1440/390 px、中英文与新旧版本、URL/偏好优先级、输入草稿保留、键盘真实聚焦与重排、停止/关闭取消、帮写回填、技能/圈选、参考状态稳定与参数下载。旧版回归保持启用。
+- WebGPU 和 WebGL2 均渲染五类新 TSL 效果；所测画布外边界 alpha=0 且光效非空，切换白、黑、彩色、图片宿主。减少动态效果下时间保持静止。旧版光球颜色及伴随态边缘剖面测试仍通过。
+- 19/19 原素材 SHA-256 一致；L19 新增 19 张关键帧（可见账号/号码处遮蔽）、3 张场景裁切和版本/来源边界。下载副本与源码一致。新增独立 token 18 个、光效参数 12 项；图标总数 87，英文翻译表 1024 项。
+- 修复开发模式旧 JSX 副本持有过期翻译表的问题：共享 Provider 同时提供当前翻译函数。旧文案译法保留，新示例用语不覆盖旧版。
+- 已检查概览抽帧、L19 细节帧及浮卡、技能、帮写浏览器效果。实现为浏览器重建：宿主/内容虚构，材质/时长为估值，圈选使用预设，参考为关键帧对照。不宣称真实 HarmonyOS 设备等价、拥有原 shader、真实语音识别、全片逐像素一致或已验证新版浅色主题。原视频与 QA 不进 Git。
+
+
 日期：2026-09-25。环境：macOS，Node.js 24.11.1，Chrome 153.0.8010.54，Vite 7.3.6。
 
 ## 开发预览语言修复 · 2026-09-25
@@ -110,6 +121,17 @@
 ---
 
 ## English
+
+### 3.0 / user-labelled 7.0 — 2026-09-30
+
+- Environment: macOS, Node.js 24.11.1, Chrome 154.0.8037.58, Vite 7.3.6. `npm run build`, `npm run check`, and `git diff --check` pass. Vite reports a non-blocking chunk-size warning for the application and Three.js bundles; no bundle performance budget is claimed.
+- Exact development URL at **5197: 48/48 passed**, 66.8 s. Production preview at **5198: 48/48 passed**, 63.2 s. No skipped or flaky tests in either final run. Local JSON evidence is retained in ignored `qa/v7-development-results.json` and `qa/v7-production-results.json`.
+- Coverage includes all eight pages at 1440 and 390 px, both languages and editions, URL/storage precedence, preserved user drafts, active keyboard focus/reflow, stop/close cancellation, writing insertion, skills and selection paths, source keyframe stability, and annotated parameter downloads. The legacy suite remains active.
+- Both WebGPU and WebGL2 rendered all five new TSL effects. Every tested canvas had an alpha-zero outer border and nonempty visible effect pixels; white, black, colored and photographic hosts were exercised. Reduced-motion time remained stationary. The accepted legacy orb color and companion-edge profile tests also pass.
+- 19/19 original source SHA-256 values match. L19 adds 19 keyframes (account/phone details redacted where visible), three scene crops and explicit source/version limits. New downloads match the source files. There are 18 scoped new tokens, 12 annotated new light parameters, 87 SVG icons and 1024 English catalog entries.
+- Fixed the remaining dev-runtime stale-catalog path by passing the live translation function through the shared language provider. Existing translations are preserved instead of being overwritten by new specimen wording.
+- Visual review covered the reference contact sheets, detailed L19 frames, rendered floating assistant, skills and writing pages. This is a browser reconstruction with fictional host/content fixtures, estimated timing/materials, preset selection contours and discrete keyframe comparison. No native HarmonyOS/device equivalence, original proprietary shader, real speech recognition, full-video pixel identity or new light theme is claimed. Raw videos and QA output are excluded from Git.
+
 
 Date: 2026-09-25. Environment: macOS, Node.js 24.11.1, Chrome 153.0.8010.54, Vite 7.3.6. This file distinguishes historical checks from the final 2.2 verification recorded below.
 

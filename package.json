@@ -1,9 +1,9 @@
 {
   "name": "xiaoyi-design-system",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "private": true,
   "type": "module",
-  "description": "Xiaoyi design system reconstruction: bilingual React UI, transparent Three.js TSL motion, icons and references. / 小艺设计系统研究复刻。",
+  "description": "Xiaoyi design system reconstruction: bilingual React UI, transparent Three.js TSL motion, icons and references. / \u5c0f\u827a\u8bbe\u8ba1\u7cfb\u7edf\u7814\u7a76\u590d\u523b\u3002",
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 5197",
     "build": "node scripts/build-tokens.mjs && node scripts/build-icons.mjs && vite build",

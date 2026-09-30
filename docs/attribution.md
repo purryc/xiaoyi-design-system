@@ -4,6 +4,11 @@
 
 ## 中文
 
+### L19 派生素材
+
+用户提供并标记为 7.0 的录屏。公开派生物为遮蔽关键帧与三张场景裁切，不声称获得研究语境之外的授权。原始字节不进 Git，哈希与处理记录见 `reference/v7-analysis.json`。
+
+
 - 小艺 / Celia / HarmonyOS / HUAWEI 的品牌与产品界面属于相关权利人。本项目独立整理并实现研究性界面复刻，不宣称由华为提供或认可。
 - 本地参考由用户提供，来源路径与 SHA-256 记录在 `reference/manifest.json`。其中部分为网页宣传截图、第三方示意或录屏；这些文件的原始创作者未全部确认。
 - 原始视频和图片不上传仓库。仓库包含 43 张目录缩略图/采样帧，以及 38 张 L10 动效采样图与一个 3.14 MB 对照代理视频，供署名研究追溯。禁止将其自动转为公开素材库；若需公开或商业分发，应先审查相关素材使用范围。
@@ -20,6 +25,11 @@
 ---
 
 ## English
+
+### L19 derivatives
+
+User-supplied recording, user-labelled 7.0. Public derivatives include redacted keyframes and three scene crops; no license beyond the existing research context is claimed. Original bytes are excluded from Git. SHA-256 and transformations are recorded in `reference/v7-analysis.json`.
+
 
 - Xiaoyi / Celia / HarmonyOS / HUAWEI and their product interfaces belong to the relevant rights holders. This independent research reconstruction is not supplied or endorsed by Huawei.
 - Local references were supplied by the user. Paths and SHA-256 hashes are recorded in `reference/manifest.json`. Some are marketing, third-party illustrations or recordings; not every original creator is known.

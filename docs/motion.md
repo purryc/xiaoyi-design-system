@@ -4,6 +4,11 @@
 
 ## 中文
 
+### 7.0 光场
+
+新增柔光、玻璃高光、轮廓光、帮写光场和标识，独立管理 12 项参数。见 [7.0 动效复用](v7-guide.md#中文)。下文旧光球不变；宿主绿色透色和新标识配色不覆盖既有采样。
+
+
 本实现使用 Three.js 0.186.1 的 `WebGPURenderer` 与 `MeshBasicNodeMaterial.fragmentNode`。主环、拖影、扩散环、旋转环、球心与透明衰减由 TSL 数学节点在 GPU 绘制；没有视频/图片纹理，没有 CSS 环形叠层。左侧视频仅供同步对照。
 
 ## 坐标、单位与模型
@@ -114,6 +119,11 @@ npm test
 ---
 
 ## English
+
+### 7.0 light fields
+
+New bloom, glass-edge, selection-contour, writing-field and emblem effects have an independent 12-field schema. See [7.0 motion reuse](v7-guide.md#english). The legacy orb below is unchanged; neither green host blur nor the new emblem palette replaces its accepted samples.
+
 
 This implementation uses Three.js 0.186.1, `WebGPURenderer` and `MeshBasicNodeMaterial.fragmentNode`. TSL math nodes draw the main ring, echo, ripples, rotating rings, core and transparent falloff on the GPU. There are no image/video textures or CSS ring layers. The separate video on the left is a synchronized reference only.
 

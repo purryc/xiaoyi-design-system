@@ -9,6 +9,10 @@ next_id=max([int(x['id'][1:]) for x in old.values()]+[0])+1
 rows=[]; tiles=[]
 for i,p in enumerate(sorted(x for x in source.iterdir() if x.is_file() and not x.name.startswith('.')),1):
  previous=old.get(p.name,{})
+ if previous.get('id')=='L19':
+  assert hashlib.sha256(p.read_bytes()).hexdigest()==previous['sha256'], 'L19 changed; rerun prepare-v7-reference.py and review redactions'
+  rows.append(previous)
+  continue
  id=previous.get('id')
  if id is None:
   id=f'L{next_id:02}';next_id+=1

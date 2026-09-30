@@ -51,7 +51,9 @@ export function LanguageProvider({ children }) {
   }, [language]);
   return React.createElement(
     LanguageContext.Provider,
-    { value: { language, setLanguage } },
+    // The pre-bundled JSX runtime must use the live provider's translator too.
+    // A shared language alone still leaves a stale English catalog after HMR.
+    { value: { language, setLanguage, translate: english } },
     children,
   );
 }
@@ -84,7 +86,7 @@ export function LanguageSwitch() {
 // Translate only presentation, never state keys, option values, URLs or event data.
 // This boundary is compiled by the JSX runtime; it does not mutate the DOM.
 export function LocalizedElement({ element, ...props }) {
-  const { language } = useLanguage();
+  const { language, translate = english } = useLanguage();
   const out = { ...props };
   if (
     element === "option" &&
@@ -95,7 +97,7 @@ export function LocalizedElement({ element, ...props }) {
   if (language === "en" && props.translate !== "no") {
     const children = (v) =>
       typeof v === "string"
-        ? english(v)
+        ? translate(v)
         : Array.isArray(v)
           ? v.map(children)
           : v;
@@ -108,7 +110,7 @@ export function LocalizedElement({ element, ...props }) {
       "placeholder",
       "alt",
     ])
-      if (typeof props[key] === "string") out[key] = english(props[key]);
+      if (typeof props[key] === "string") out[key] = translate(props[key]);
   }
   return React.createElement(element, out);
 }

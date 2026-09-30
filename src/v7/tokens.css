@@ -1,0 +1,21 @@
+/* L19 reconstruction estimates; scoped, legacy tokens are unchanged. */
+.xy-v7-theme {
+  --xy-v7-canvas: #000000;
+  --xy-v7-surface: #202020;
+  --xy-v7-glass: #303034;
+  --xy-v7-writing: #27283d;
+  --xy-v7-text: #f3f2f6;
+  --xy-v7-muted: #a7a6ae;
+  --xy-v7-primary: #5795ff;
+  --xy-v7-violet: #cba6ed;
+  --xy-v7-pink: #e2adc8;
+  --xy-v7-inset: 14px;
+  --xy-v7-radius: 30px;
+  --xy-v7-dock-height: 46px;
+  --xy-v7-dock-gap: 8px;
+  --xy-v7-writing-radius: 28px;
+  --xy-v7-body-size: 14px;
+  --xy-v7-line-height: 1.65;
+  --xy-v7-enter: 360ms;
+  --xy-v7-exit: 240ms;
+}

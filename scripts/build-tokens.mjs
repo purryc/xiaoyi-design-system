@@ -30,3 +30,28 @@ for (const file of [
 ])
   fs.copyFileSync(file, "public/downloads/" + file.split("/").pop());
 console.log("Generated CSS and portable downloads.");
+
+const v7 = JSON.parse(fs.readFileSync("tokens/xiaoyi-v7.tokens.json", "utf8"));
+const v7Css =
+  "/* L19 reconstruction estimates; scoped, legacy tokens are unchanged. */\n.xy-v7-theme {\n" +
+  Object.entries(v7.values)
+    .map(([key, t]) => `  --xy-v7-${key}: ${t.$value};`)
+    .join("\n") +
+  "\n}\n";
+fs.writeFileSync("src/v7/tokens.css", v7Css);
+for (const file of [
+  "tokens/xiaoyi-v7.tokens.json",
+  "reference/v7-analysis.json",
+])
+  fs.copyFileSync(file, "public/downloads/" + file.split("/").pop());
+fs.writeFileSync("public/downloads/xiaoyi-v7.css", v7Css);
+const { v7Defaults, v7ParameterSchema } =
+  await import("../src/v7/parameters.js");
+fs.writeFileSync(
+  "public/downloads/xiaoyi-v7.parameters.json",
+  JSON.stringify(
+    { source: "L19", parameters: v7Defaults, schema: v7ParameterSchema },
+    null,
+    2,
+  ) + "\n",
+);

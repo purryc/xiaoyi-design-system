@@ -5,6 +5,11 @@ const orbColors = JSON.parse(
     new URL("../reference/orb-color-samples.json", import.meta.url),
   ),
 );
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() =>
+    localStorage.setItem("xiaoyi-design", "legacy"),
+  );
+});
 const pages = [
   "overview",
   "foundations",
@@ -46,9 +51,9 @@ for (const width of [1440, 390])
   });
 test("reference filtering, detail frames and Escape", async ({ page }) => {
   await page.goto("/#reference");
-  await expect(page.locator(".reference-card")).toHaveCount(18);
+  await expect(page.locator(".reference-card")).toHaveCount(19);
   await page.getByRole("button", { name: "录屏 / 动效", exact: true }).click();
-  await expect(page.locator(".reference-card")).toHaveCount(5);
+  await expect(page.locator(".reference-card")).toHaveCount(6);
   await page.getByLabel("搜索参考").fill("L10");
   await expect(page.locator(".reference-card")).toHaveCount(1);
   await page.locator(".reference-card").click();
@@ -223,7 +228,7 @@ test("icon library search, controls, SVG and ZIP downloads", async ({
   request,
 }) => {
   await page.goto("/#icons");
-  await expect(page.locator(".icon-tile")).toHaveCount(77);
+  await expect(page.locator(".icon-tile")).toHaveCount(87);
   await page.getByLabel("搜索图标").fill("摘要");
   await expect(page.locator(".icon-tile")).toHaveCount(1);
   await page.locator(".icon-tile").click();
@@ -240,9 +245,9 @@ test("icon library search, controls, SVG and ZIP downloads", async ({
   await page.getByLabel("搜索图标").fill("nothing");
   await expect(page.getByText("没有匹配的图标。")).toBeVisible();
   await page.getByRole("button", { name: "清除筛选" }).click();
-  await expect(page.locator(".icon-tile")).toHaveCount(77);
+  await expect(page.locator(".icon-tile")).toHaveCount(87);
   const manifest = await (await request.get("/icons/manifest.json")).json();
-  expect(manifest.icons).toHaveLength(77);
+  expect(manifest.icons).toHaveLength(87);
   expect((await request.get("/downloads/xiaoyi-icons.zip")).ok()).toBeTruthy();
 });
 test("portable token downloads match count", async ({ request }) => {

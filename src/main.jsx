@@ -1,3 +1,7 @@
+import { DesignProvider, DesignSwitch, useDesign } from "./v7/runtime";
+import { V7Page } from "./v7/pages";
+import "./v7/tokens.css";
+import "./v7/v7.css";
 import {
   LanguageProvider,
   LanguageSwitch,
@@ -699,7 +703,7 @@ function References({ onOpen }) {
       <PageTitle
         eyebrow="06 / REFERENCE LIBRARY"
         title="参考与证据"
-        description="18 份本地素材，逐项归档。看得到来源，也看得到还原的边界。"
+        description="19 份本地素材，逐项归档。看得到来源，也看得到还原的边界。"
       >
         <a
           className="xy-button secondary"
@@ -1011,6 +1015,7 @@ function ReferenceDialog({ item, onClose }) {
   );
 }
 function App() {
+  const { design } = useDesign();
   const pageFromHash = () =>
     nav.some((n) => n[0] === location.hash.slice(1))
       ? location.hash.slice(1)
@@ -1142,6 +1147,7 @@ function App() {
             <strong>{nav.find((n) => n[0] === page)[1]}</strong>
           </div>
           <div className="topbar-actions">
+            <DesignSwitch />
             <LanguageSwitch />
             <div className="global-search">
               <Icon name="Search" size={16} />
@@ -1192,11 +1198,17 @@ function App() {
                 </div>
               )}
             </div>
-            <span className="top-version">v2.2</span>
+            <span className="top-version">v3.0</span>
           </div>
         </header>
-        <main id="main-content" key={page}>
-          {page === "overview" ? (
+        <main id="main-content" key={`${page}-${design}`}>
+          {design === "v7" && page !== "icons" ? (
+            <V7Page
+              page={page}
+              controlRequest={controlRequest}
+              legacyReference={<References {...common} />}
+            />
+          ) : page === "overview" ? (
             <Overview {...common} />
           ) : page === "foundations" ? (
             <Foundations {...common} />
@@ -1226,6 +1238,8 @@ function App() {
 }
 createRoot(document.getElementById("root")).render(
   <LanguageProvider>
-    <App />
+    <DesignProvider>
+      <App />
+    </DesignProvider>
   </LanguageProvider>,
 );

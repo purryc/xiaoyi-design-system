@@ -2,7 +2,7 @@ import { defineConfig } from "@playwright/test";
 const target = process.env.PLAYWRIGHT_BASE_URL;
 export default defineConfig({
   testDir: "./scripts",
-  testMatch: "browser.spec.js",
+  testMatch: "*.spec.js",
   timeout: 30000,
   fullyParallel: false,
   workers: 1,
