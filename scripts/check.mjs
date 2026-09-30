@@ -77,8 +77,8 @@ console.log(
 const { iconLibrary, iconSvg } = await import("../src/icons/icon-data.js");
 const { parameterSchema, sanitizeParameters } =
   await import("../src/motion/parameters.js");
-assert.equal(iconLibrary.length, 87);
-assert.equal(new Set(iconLibrary.map((i) => i.id)).size, 87);
+assert.equal(iconLibrary.length, 97);
+assert.equal(new Set(iconLibrary.map((i) => i.id)).size, 97);
 const aliases = iconLibrary.flatMap((i) => [i.id, ...i.aliases]);
 assert.equal(new Set(aliases).size, aliases.length);
 for (const i of iconLibrary) {
@@ -148,7 +148,7 @@ assert.equal(
 );
 assert(!fs.readFileSync("src/styles.css", "utf8").includes(".xy-orb::after"));
 console.log(
-  "PASS: 87 unique SVGs and aliases, 28 annotated parameters, 38 finite light-field fits and comparison proxy SHA-256.",
+  "PASS: 97 unique SVGs and aliases, 28 annotated parameters, 38 finite light-field fits and comparison proxy SHA-256.",
 );
 
 const { controlItems } = await import("../src/controls/catalog.js");
@@ -266,3 +266,22 @@ assert.deepEqual(
 console.log(
   "PASS: L19 original, 19 redacted keyframes, 3 crops, 12 bounded bilingual TSL parameters and v7 portable parity.",
 );
+
+assert.equal(
+  crypto
+    .createHash("sha256")
+    .update(fs.readFileSync("public" + v7.visualReview.preview))
+    .digest("hex"),
+  v7.visualReview.sha256,
+);
+const colored = iconLibrary.filter((i) => i.colorMode === "source-color");
+assert.equal(colored.length, 10);
+for (const icon of colored) {
+  const svg = iconSvg(icon, { color: "#000000" });
+  assert(/(?:fill|stroke)="#[a-f0-9]{6}"/i.test(svg));
+  assert.equal(
+    fs.readFileSync(`public/icons/${icon.id}.svg`, "utf8"),
+    iconSvg(icon),
+  );
+}
+console.log("PASS: color-review crop hash and 10 source-color SVG exports.");

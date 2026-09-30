@@ -6,10 +6,10 @@
 
 ### 3.0 — user-labelled Xiaoyi 7.0
 
-The default edition now follows L19: dark floating cards, a separate voice dock, skills, selection and contextual writing. Use the edition selector to retain the legacy specimens. Start with the [bilingual 7.0 evidence and integration guide](docs/v7-guide.md). New TSL effects and 12 annotated parameters are isolated from the accepted legacy orb and edge light. There are now 19 local references and 87 editable SVG icons. `?design=v7&lang=en` opens the English edition; `?design=legacy` restores the earlier reference edition. Original version numbers remain unconfirmed.
+The default edition now follows L19: dark floating cards, a separate voice dock, skills, selection and contextual writing. Companion mode, the accepted orb, its edge light and vision remain directly available in the current edition. The edition selector also preserves the earlier catalog. Start with the [bilingual 7.0 evidence and integration guide](docs/v7-guide.md). New TSL effects and 12 annotated parameters are isolated from the accepted legacy orb and edge light. There are now 19 local references and 97 editable SVG icons. `?design=v7&lang=en` opens the English edition; `?design=legacy` restores the earlier reference edition. Original version numbers remain unconfirmed.
 
 
-An evidence-led reconstruction of Xiaoyi for design research, interaction review and prototyping. It includes a documentation website, React components, CSS variables, editable JSON tokens, Three.js TSL motion, 87 SVG icons and five new interaction flows alongside six legacy examples.
+An evidence-led reconstruction of Xiaoyi for design research, interaction review and prototyping. It includes a documentation website, React components, CSS variables, editable JSON tokens, Three.js TSL motion, 97 SVG icons and five new interaction flows alongside six legacy examples.
 
 This is an independent research project, **not Huawei's official design system**. Observed structure, estimated values and inferred semantics are distinguished. AI, voice, camera, visual search and cross-app actions are local simulations, without real Xiaoyi services.
 
@@ -48,7 +48,7 @@ Original media is not uploaded. A clone runs independently; integrity checks exp
 | Common controls | 9 reusable exports: Card, Slider, ActionChip, BottomChips, Toast, Switch, Checkbox, RadioGroup, Progress; 6 interactive groups                                                                           |
 | Motion          | Three.js TSL / WebGPU with WebGL2 fallback; transparent composition; 23.217 s timeline, 28 annotated parameters and 38 samples                                                                           |
 | Companion edge  | Reusable transparent TSL overlay; 15 measured width profiles, 13 color samples, six controls and reuse documentation                                                                                     |
-| Icons           | 87 SVGs, React component, symbol sprite, provenance manifest and ZIP; searchable with size, stroke and color controls                                                                                    |
+| Icons           | 97 SVGs, React component, symbol sprite, provenance manifest and ZIP; searchable with size, stroke and color controls                                                                                    |
 | Patterns        | Companion reading, contextual writing, full-screen conversation, circle to ask, drag to Xiaoyi and Look at the World                                                                                     |
 | References      | 19 local files (13 images, 6 videos, one duplicate image); 43 legacy catalog previews plus 19 new keyframes and 3 scene crops, 38 legacy motion samples, one local comparison proxy; 18 web sources, 3 OpenHarmony figures and 5 attributed vision derivatives |
 | Documentation   | Design specification, component API, evidence, reconstruction limits and verification                                                                                                                    |
@@ -92,10 +92,10 @@ Every live orb uses real Three.js TSL with transparent borders; the source recor
 
 ### 3.0 — 用户标记为小艺 7.0
 
-默认展示 L19 的深色浮卡、独立输入条、技能、圈选与帮写；版本切换保留旧版。先读[双语 7.0 证据与接入说明](docs/v7-guide.md)。新增 TSL 光效及 12 项参数独立于原有光球和边缘光。当前共 19 个本地参考、87 枚 SVG 图标。使用 `?design=v7&lang=en` 打开英文，`?design=legacy` 查看旧版。录制时版本号保持待确认。
+默认展示 L19 的深色浮卡、独立输入条、技能、圈选与帮写；当前版本也直接保留伴随态、原有光球、边缘光及看世界，版本切换仍可查看旧版。先读[双语 7.0 证据与接入说明](docs/v7-guide.md)。新增 TSL 光效及 12 项参数独立于原有光球和边缘光。当前共 19 个本地参考、97 枚 SVG 图标。使用 `?design=v7&lang=en` 打开英文，`?design=legacy` 查看旧版。录制时版本号保持待确认。
 
 
-基于真实截图和录屏复刻的小艺设计系统，用于设计研究、交互审阅和原型开发。包含可浏览的文档站点、React 组件、CSS 变量、可编辑 JSON Tokens 、Three.js TSL 动效、87 枚 SVG 图标和 5 个新版流程及 6 个旧版交互样例。
+基于真实截图和录屏复刻的小艺设计系统，用于设计研究、交互审阅和原型开发。包含可浏览的文档站点、React 组件、CSS 变量、可编辑 JSON Tokens 、Three.js TSL 动效、97 枚 SVG 图标和 5 个新版流程及 6 个旧版交互样例。
 
 这是独立研究复刻，**不是华为官方设计系统**。结构依据参考还原；数值和动效语义的推断均有标注。AI、麦克风、摄像头、识图、跨应用操作为本地模拟，不调用真实小艺服务。
 
@@ -131,7 +131,7 @@ npm test         # Chrome 中检查页面、交互、下载与减少动态效果
 | 常用控件   | 信息/操作卡片、Slider、底部 Chip、Toast、Switch、Checkbox、RadioGroup、Progress；状态与来源逐项标注                                                        |
 | 动效       | Three.js TSL / WebGPU；23.217 s 原片时间轴、28 个注释参数、38 个采样时点；WebGL2 兼容                                                                      |
 | 伴随边缘光 | 独立透明 TSL 叠加层；15 条原图宽度剖面、13 组动态配色、6 个可调参数与复用说明                                                                              |
-| 图标       | 87 枚自绘 SVG、React 组件、symbol sprite、来源清单、ZIP；搜索及笔画/尺寸/色彩调节                                                                          |
+| 图标       | 97 枚自绘 SVG、React 组件、symbol sprite、来源清单、ZIP；搜索及笔画/尺寸/色彩调节                                                                          |
 | 交互范式   | 伴随阅读、上下文帮写、全屏对话、圈选问答、拖给小艺、小艺看世界                                                                                             |
 | 参考       | 19 个本地文件（13 图、6 视频；其中两图是同一内容），43 张旧版目录预览 + 19 张新版关键帧及 3 张场景裁切 + 38 张旧版动效采样图 + 1 个本地对照代理视频，18 条网络资料（含 8 条控件补充及看世界官方图） |
 | 文档       | 设计规格、组件 API、状态与来源、还原边界、验证报告                                                                                                         |

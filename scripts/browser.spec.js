@@ -228,7 +228,7 @@ test("icon library search, controls, SVG and ZIP downloads", async ({
   request,
 }) => {
   await page.goto("/#icons");
-  await expect(page.locator(".icon-tile")).toHaveCount(87);
+  await expect(page.locator(".icon-tile")).toHaveCount(97);
   await page.getByLabel("搜索图标").fill("摘要");
   await expect(page.locator(".icon-tile")).toHaveCount(1);
   await page.locator(".icon-tile").click();
@@ -245,9 +245,9 @@ test("icon library search, controls, SVG and ZIP downloads", async ({
   await page.getByLabel("搜索图标").fill("nothing");
   await expect(page.getByText("没有匹配的图标。")).toBeVisible();
   await page.getByRole("button", { name: "清除筛选" }).click();
-  await expect(page.locator(".icon-tile")).toHaveCount(87);
+  await expect(page.locator(".icon-tile")).toHaveCount(97);
   const manifest = await (await request.get("/icons/manifest.json")).json();
-  expect(manifest.icons).toHaveLength(87);
+  expect(manifest.icons).toHaveLength(97);
   expect((await request.get("/downloads/xiaoyi-icons.zip")).ok()).toBeTruthy();
 });
 test("portable token downloads match count", async ({ request }) => {

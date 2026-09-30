@@ -12,6 +12,10 @@ Reconstruct Xiaoyi for shinoyan's UX design, interface prototyping, and reusable
 
 The user authorizes this update and its commit/push to the existing repository. Default the documentation specimens to the user-labelled 7.0 recording, retain a separately selectable legacy edition (actual version unknown), and keep legacy exports stable. New components live in `src/v7/`, scoped tokens in `tokens/xiaoyi-v7.tokens.json`, evidence in `reference/v7-analysis.json`, and compact redacted derivatives in `public/reference/v7/`. Original media remains untouched. Never infer installed OS version from an available-update screen. Host applications use fictional fixtures; no real microphone, camera, messaging or image recognition. Unobserved controls are adaptations, not verified 7.0 specimens.
 
+## Visual continuity review
+
+The 7.0 edition is an incremental surface, chip and semantic-icon update, not removal of established capabilities. Keep companion mode, its measured edge light, the accepted blue-violet orb and vision available directly in the current edition. Retained specimens keep their original evidence IDs; user-confirmed continuity does not establish new L19 tablet geometry. Distinguish neutral translucent assistant glass, violet-gray writing sheets, filled style chips and outlined tool chips. Preserve source-observed colored semantic icons alongside monochrome utility icons, including in SVG exports.
+
 ## Structure
 
 - `src/`: reusable React components, styles, and documentation application.
@@ -94,3 +98,7 @@ All UI copy and Markdown documentation must be available in Chinese and English.
 ### 7.0 更新约定
 
 本轮授权提交并推送现有仓库。默认展示用户标记为 7.0 的录屏风格，保留版本未知的旧版与原有接口。新增组件放 src/v7/，独立 token 与证据分开存放；公开派生图遮蔽账号与号码，原视频保持原样。不能根据待安装更新页推断当前系统版本。宿主使用虚构内容，不接入真实麦克风、摄像头、消息或识图；未观察的控件注明适配扩展。
+
+### 视觉延续复核
+
+7.0 为表面、chip 与功能图标的增量更新，不删除既有能力。伴随态、已测边缘光、已认可的蓝紫光球与看世界在当前版本直接可用；沿用各自来源编号，用户确认能力延续不代表 L19 验证了平板布局。区分中性透明浮卡、灰紫帮写面板、填充类型 chip 与描边工具 chip。彩色功能图标和灰白操作图标分别保留，SVG 导出也保存颜色。

@@ -190,6 +190,9 @@ export function IconLibrary() {
               </dd>
             </dl>
             <p>{selected.note}</p>
+            {selected.colorMode === "source-color" && (
+              <p>参考配色保存在 SVG 路径中，颜色选择器仅影响单色图标。</p>
+            )}
             <div className="icon-inspector-actions">
               <button
                 className="xy-button primary"

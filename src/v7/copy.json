@@ -4,8 +4,8 @@
   "v7": ["7.0 深色参考", "7.0 dark references"],
   "heading": ["小艺 7.0，随场景展开。", "Xiaoyi 7.0. Present in context."],
   "intro": [
-    "浮动内容、独立输入与柔和光感，来自 L19 录屏的逐段重建。",
-    "Floating content, independent input and soft light, reconstructed from recording L19."
+    "保留伴随态、光球与看世界，按 L19 更新 sheet、chip、彩色图标及相关流程。",
+    "Retain companion mode, the orb and vision; update sheets, chips, colored icons and related flows from L19."
   ],
   "evidence": [
     "用户标记为 7.0 · 系统与应用版本待确认",
@@ -146,7 +146,7 @@
   "motionTitle": ["7.0 光感实验室", "7.0 light laboratory"],
   "referenceTitle": ["7.0 参考与证据", "7.0 references and evidence"],
   "handoffTitle": ["7.0 使用与迁移", "7.0 integration and migration"],
-  "newControls": ["新版可见控件", "Observed 7.0 controls"],
+  "newControls": ["通用控件", "Common controls"],
   "adaptation": [
     "通用控件适配扩展：下方控件未全部出现在 L19 中，不能当作已验证的 7.0 样式。",
     "Common-control adaptations: not every control below appears in L19; these are not verified 7.0 specimens."
@@ -238,5 +238,42 @@
   "shoeAnswer": [
     "日常步行可以从合脚程度、缓震和防滑表现三个方面评估。\n\n合脚程度\n试穿时给脚趾留出活动空间，确认后跟稳定。\n\n缓震与支撑\n选择符合使用场景的鞋底，避免仅凭外观判断舒适程度。\n\n清洁保养\n按材料选择清洁方式，阴凉通风处晾干。图片不能验证实际穿着体验。",
     "For everyday walking, assess fit, cushioning and grip.\n\nFit\nLeave room for your toes and check that the heel stays secure.\n\nCushioning and support\nChoose a sole suited to your activity. Appearance alone cannot establish comfort.\n\nCare\nUse a cleaning method suited to the material and air dry in the shade. An image cannot verify the real wearing experience."
-  ]
+  ],
+  "companion": ["小艺伴随", "Companion mode"],
+  "retainedMotion": [
+    "小艺光球与伴随边缘光",
+    "Xiaoyi orb and companion edge light"
+  ],
+  "newMotion": ["7.0 表面光效", "7.0 surface effects"],
+  "continuity": ["保留的能力", "Retained capabilities"],
+  "continuityNote": [
+    "伴随态、蓝紫光球与看世界继续保留。此处沿用原有来源与参数；本次录屏主要补充 sheet、chip 和功能图标样式。",
+    "Companion mode, the blue-violet orb and vision remain available. Their original evidence and parameters are retained; this recording updates sheet, chip and semantic-icon treatments."
+  ],
+  "companionEvidence": [
+    "L11 / L14–L18 · 伴随布局与边缘光",
+    "L11 / L14–L18 · companion layout and edge light"
+  ],
+  "visionEvidence": ["W18 · 看世界", "W18 · Look at the World"],
+  "iconColorNote": [
+    "功能图标保留各自配色；返回、静音等操作图标继续使用灰白线条。",
+    "Semantic icons retain their individual colors; utility icons such as back and mute keep neutral strokes."
+  ],
+  "colorReview": ["Sheet、chip 与彩色图标", "Sheets, chips and colored icons"],
+  "colorReviewNote": [
+    "按表面分别取样：浮卡保留宿主透色，帮写类型使用灰紫填充，工具使用深色描边。取样是录屏合成色，不能等同于原始 token。",
+    "Samples are surface-specific: floating glass transmits host colors, writing types use violet-gray fills, and tools use dark outlined pills. Samples are recorded composites, not recovered native tokens."
+  ],
+  "sidebar": ["对话侧栏", "Conversation sidebar"],
+  "agentRetouch": ["小艺修图", "Xiaoyi Retouch"],
+  "agentHelp": ["小艺帮帮忙", "Xiaoyi Helper"],
+  "agentTime": ["小艺时光机", "Xiaoyi Time Machine"],
+  "agentNote": [
+    "彩色智能体图标 · L19 01:15；这里只展示外观，不模拟未观察的智能体结果。",
+    "Colored agent icons · L19 01:15. Appearance specimens only; unobserved agent results are not simulated."
+  ],
+  "memo": ["帮记", "Memory"],
+  "automation": ["自动任务", "Automated tasks"],
+  "agents": ["智能体", "Agents"],
+  "iconColors": ["参考配色", "Reference colors"]
 }

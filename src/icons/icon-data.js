@@ -3,17 +3,284 @@ const P = (d) => ["path", { d }],
   C = (cx, cy, r) => ["circle", { cx, cy, r }],
   R = (x, y, width, height, rx = 0) => ["rect", { x, y, width, height, rx }],
   L = (x1, y1, x2, y2) => ["line", { x1, y1, x2, y2 }];
+// Explicit per-path colors survive React, standalone SVG and sprite exports.
+const painted = (d, fill, stroke = "none") => ["path", { d, fill, stroke }];
+const disc = (fill, radius = 10) => [
+  "circle",
+  { cx: 12, cy: 12, r: radius, fill, stroke: "none" },
+];
+const strokeColor = (nodes, color) =>
+  nodes.map(([tag, attrs]) => [tag, { ...attrs, stroke: color }]);
+const colorEntries = [
+  [
+    "v7-news-color",
+    "彩色资讯",
+    "彩色功能",
+    [],
+    [
+      [
+        "rect",
+        {
+          x: 3,
+          y: 2,
+          width: 17,
+          height: 20,
+          rx: 4,
+          fill: "#a16bec",
+          stroke: "none",
+        },
+      ],
+      ...strokeColor([P("M7 7h3m4 0h2M7 11h9M7 15h5")], "#f3e5ff"),
+      painted("m18 13 1.5 2.5 3 .5-2 2 .5 3-3-1-2 1 .2-3-2-2 3-.5Z", "#d6b4ff"),
+    ],
+    "L19",
+  ],
+  [
+    "v7-sparkles-color",
+    "彩色建议",
+    "彩色功能",
+    [],
+    [
+      painted("M8 1 10 7 15 9 10 11 8 17 6 11 1 9 6 7Z", "#b590f4"),
+      painted("m17 10 2 4 4 2-4 2-2 5-2-5-4-2 4-2Z", "#ad7bef"),
+    ],
+    "L19",
+  ],
+  [
+    "v7-claw-color",
+    "彩色 Claw",
+    "彩色功能",
+    [],
+    strokeColor(
+      [
+        P(
+          "M20 5C15-1 4 3 3 12c-1 7 5 11 11 9l5-4-5-1-5 4-5-4 5-8 11-3ZM14 16l4-5",
+        ),
+      ],
+      "#ee512e",
+    ),
+    "L19",
+  ],
+  [
+    "v7-clean-color",
+    "彩色清灰",
+    "彩色功能",
+    [],
+    [
+      disc("#5da9bd"),
+      ...strokeColor(
+        [P("M5 18h14M7 17v-6h10v6M10 11V6h4v5M10 6l2-3M10 14v2m4-2v2")],
+        "#d3f2f7",
+      ),
+    ],
+    "L19",
+  ],
+  [
+    "v7-charge-color",
+    "彩色充电",
+    "彩色功能",
+    [],
+    [
+      disc("#6ab5bc"),
+      ...strokeColor([P("m13 4-7 9h5l-1 7 8-10h-5Z")], "#d6f8fb"),
+    ],
+    "L19",
+  ],
+  [
+    "v7-settings-color",
+    "彩色整理",
+    "彩色功能",
+    [],
+    [
+      disc("#bb849f"),
+      ...strokeColor(
+        [
+          P("m10 5 4 0 1 2 2 1 2 2v4l-2 1-1 2-2 2h-4l-1-2-2-1-2-2v-4l2-1 1-2Z"),
+          C(12, 12, 3),
+        ],
+        "#f8dced",
+      ),
+    ],
+    "L19",
+  ],
+  [
+    "v7-car-color",
+    "彩色出行",
+    "彩色功能",
+    [],
+    [
+      disc("#6bb4c7"),
+      ...strokeColor(
+        [P("M6 10 8 6h8l2 4M5 10h14v7H5ZM7 17v2m10-2v2M7 12h2m6 0h2M9 15h6")],
+        "#d6f0f8",
+      ),
+    ],
+    "L19",
+  ],
+  [
+    "v7-retouch-color",
+    "彩色修图",
+    "彩色功能",
+    [],
+    [
+      disc("#def5ff"),
+      painted("M6 5h12v15H6Z", "#27b9f4"),
+      painted("m6 18 5-7 3 4 2-2 3 6Z", "#f5fcff"),
+      painted("m7 2 .8 2.4L10 5l-2.2.6L7 8l-.8-2.4L4 5l2.2-.6Z", "#287ae8"),
+    ],
+    "L19",
+  ],
+  [
+    "v7-helper-color",
+    "彩色帮帮忙",
+    "彩色功能",
+    [],
+    [
+      disc("#c1b6ee"),
+      painted("M3 9C5 1 15 0 20 5L18 12Z", "#efb9c3"),
+      painted("M3 14c3 9 14 10 18-1L18 8Z", "#8dd6f2"),
+      [
+        "rect",
+        {
+          x: 5,
+          y: 6,
+          width: 14,
+          height: 13,
+          rx: 6,
+          fill: "#effcff",
+          stroke: "none",
+        },
+      ],
+      [
+        "ellipse",
+        { cx: 9, cy: 12, rx: 1.3, ry: 2.4, fill: "#243a59", stroke: "none" },
+      ],
+      [
+        "ellipse",
+        { cx: 15, cy: 12, rx: 1.3, ry: 2.4, fill: "#243a59", stroke: "none" },
+      ],
+    ],
+    "L19",
+  ],
+  [
+    "v7-time-color",
+    "彩色时光机",
+    "彩色功能",
+    [],
+    [
+      disc("#f6a025"),
+      painted("M3 8C5 1 17 0 21 9L12 12Z", "#ffd35b"),
+      [
+        "rect",
+        {
+          x: 6,
+          y: 8,
+          width: 12,
+          height: 11,
+          rx: 2,
+          fill: "#fff0c9",
+          stroke: "none",
+        },
+      ],
+      ...strokeColor([P("M8 12h8M8 15h5")], "#ffd266"),
+    ],
+    "L19",
+  ],
+];
 const entries = [
-  ["v7-keyboard", "智能键盘", "输入", [], [P("M4 8h16v12H4ZM7 12h1m3 0h1m3 0h1M7 16h10M6 2l1 3 3 1-3 1-1 3-1-3-3-1 3-1Z")], "L19"],
-  ["v7-voice", "语音输入环", "输入", [], [P("M8 9v6m3-9v12m3-10v8m3-6v4"), C(12,12,10)], "L19"],
-  ["v7-reasoning", "深度思考结", "输入", [], [P("M6 4c7-5 17 12 11 16S-2 8 4 5s18 6 16 12S2 19 4 10s15-12 16-5S7 23 4 17 12 0 18 4")], "L19"],
-  ["v7-menu", "对话侧栏", "输入", [], [P("M3 5h18M3 12h10M3 19h18m-4-11 4 4-4 4")], "L19"],
-  ["v7-call", "智能通话", "输入", [], [P("M5 4 2 7c0 7 8 15 15 15l4-4-5-4-3 3-6-6 2-3ZM17 1l1 3 3 1-3 1-1 3-1-3-3-1 3-1Z")], "L19"],
-  ["v7-clean", "扬声器清理", "输入", [], [P("M3 19h18M5 19v-7h14v7M9 12V6h6v6M9 6l2-3 3 2M9 15v3m6-3v3")], "L19"],
-  ["v7-charge", "充电模式", "输入", [], [P("m13 2-9 12h7l-1 8 10-13h-7Z")], "L19"],
-  ["v7-car", "出行技能", "输入", [], [P("M4 10 6 4h12l2 6M3 10h18v9H3ZM6 19v2m12-2v2M6 13h2m8 0h2M8 16h8")], "L19"],
-  ["thumbs-up", "赞同", "输入", [], [P("M8 11 12 3c3 0 2 5 2 6h6v5l-3 7H8ZM3 11h5v10H3Z")], "L19"],
-  ["thumbs-down", "不赞同", "输入", [], [P("M8 13 12 21c3 0 2-5 2-6h6V10l-3-7H8ZM3 13h5V3H3Z")], "L19"],
+  ...colorEntries,
+  [
+    "v7-keyboard",
+    "智能键盘",
+    "输入",
+    [],
+    [
+      P(
+        "M4 8h16v12H4ZM7 12h1m3 0h1m3 0h1M7 16h10M6 2l1 3 3 1-3 1-1 3-1-3-3-1 3-1Z",
+      ),
+    ],
+    "L19",
+  ],
+  [
+    "v7-voice",
+    "语音输入环",
+    "输入",
+    [],
+    [P("M8 9v6m3-9v12m3-10v8m3-6v4"), C(12, 12, 10)],
+    "L19",
+  ],
+  [
+    "v7-reasoning",
+    "深度思考结",
+    "输入",
+    [],
+    [
+      P(
+        "M6 4c7-5 17 12 11 16S-2 8 4 5s18 6 16 12S2 19 4 10s15-12 16-5S7 23 4 17 12 0 18 4",
+      ),
+    ],
+    "L19",
+  ],
+  [
+    "v7-menu",
+    "对话侧栏",
+    "输入",
+    [],
+    [P("M3 5h18M3 12h10M3 19h18m-4-11 4 4-4 4")],
+    "L19",
+  ],
+  [
+    "v7-call",
+    "智能通话",
+    "输入",
+    [],
+    [
+      P(
+        "M5 4 2 7c0 7 8 15 15 15l4-4-5-4-3 3-6-6 2-3ZM17 1l1 3 3 1-3 1-1 3-1-3-3-1 3-1Z",
+      ),
+    ],
+    "L19",
+  ],
+  [
+    "v7-clean",
+    "扬声器清理",
+    "输入",
+    [],
+    [P("M3 19h18M5 19v-7h14v7M9 12V6h6v6M9 6l2-3 3 2M9 15v3m6-3v3")],
+    "L19",
+  ],
+  [
+    "v7-charge",
+    "充电模式",
+    "输入",
+    [],
+    [P("m13 2-9 12h7l-1 8 10-13h-7Z")],
+    "L19",
+  ],
+  [
+    "v7-car",
+    "出行技能",
+    "输入",
+    [],
+    [P("M4 10 6 4h12l2 6M3 10h18v9H3ZM6 19v2m12-2v2M6 13h2m8 0h2M8 16h8")],
+    "L19",
+  ],
+  [
+    "thumbs-up",
+    "赞同",
+    "输入",
+    [],
+    [P("M8 11 12 3c3 0 2 5 2 6h6v5l-3 7H8ZM3 11h5v10H3Z")],
+    "L19",
+  ],
+  [
+    "thumbs-down",
+    "不赞同",
+    "输入",
+    [],
+    [P("M8 13 12 21c3 0 2-5 2-6h6V10l-3-7H8ZM3 13h5V3H3Z")],
+    "L19",
+  ],
   [
     "phone-end",
     "挂断电话",
@@ -743,6 +1010,7 @@ export const iconLibrary = entries.map(
     aliases,
     nodes,
     source,
+    colorMode: id.endsWith("-color") ? "source-color" : "currentColor",
     viewBox: "0 0 24 24",
     strokeWidth: 1.65,
     cap: "round",

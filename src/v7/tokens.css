@@ -2,8 +2,8 @@
 .xy-v7-theme {
   --xy-v7-canvas: #000000;
   --xy-v7-surface: #202020;
-  --xy-v7-glass: #303034;
-  --xy-v7-writing: #27283d;
+  --xy-v7-glass: #242426;
+  --xy-v7-writing: #27293a;
   --xy-v7-text: #f3f2f6;
   --xy-v7-muted: #a7a6ae;
   --xy-v7-primary: #5795ff;
@@ -18,4 +18,11 @@
   --xy-v7-line-height: 1.65;
   --xy-v7-enter: 360ms;
   --xy-v7-exit: 240ms;
+  --xy-v7-tool-chip: #20202080;
+  --xy-v7-tool-stroke: #ffffff2b;
+  --xy-v7-style-chip: #3b3e4c;
+  --xy-v7-requirement-chip: #2a283b;
+  --xy-v7-dock: #202020cc;
+  --xy-v7-writing-output: #343337;
+  --xy-v7-suggestion-chip: #302c2cc9;
 }

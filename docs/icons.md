@@ -6,7 +6,7 @@
 
 ### L19 扩展
 
-图标库现有 87 枚可编辑 SVG，新加 10 枚 L19 图标：智能键盘、语音环、思考结、会话侧栏、智能通话、清灰、充电、出行、赞同与不赞同。原 ID 保持稳定，均为人工拟合而非官方矢量。
+图标库现有 97 枚可编辑 SVG，新加 10 枚 L19 图标：智能键盘、语音环、思考结、会话侧栏、智能通话、清灰、充电、出行、赞同与不赞同。原 ID 保持稳定，均为人工拟合而非官方矢量。
 
 
 77 枚手绘 SVG；47 枚参考重绘、30 枚风格扩展。统一 24 × 24 坐标、1.65 默认笔画、圆端点和圆连接。参考重绘是轮廓拟合，不是官方 Symbol 文件。只见文字功能名、未确认图形的项目归为扩展。
@@ -120,11 +120,20 @@ import { Icon } from "./src/icons/Icon";
 
 ---
 
+
+### 彩色变体
+
+新增 10 枚 `v7-*-color`，含建议、Claw、技能与智能体，按 L19 00:27 / 00:37 / 01:15 重绘。颜色固定在路径中；其他图标继续支持 currentColor。共 97 枚。
+
 ## English
+
+### Colored variants
+
+Ten additional `v7-*-color` icons cover suggestions, Claw, skills and agents from L19 00:27 / 00:37 / 01:15. Per-path colors are retained in all exports; other icons retain currentColor. Total: 97 editable icons. See the surface review in the bilingual v7 guide for evidence and limits.
 
 ### L19 additions
 
-The library now contains 87 editable SVG icons, including 10 L19 additions: smart keyboard, voice ring, reasoning knot, conversation sidebar, AI call, cleaning, charging, travel, helpful and not-helpful. Original IDs remain stable. Geometry is a manual fit, not official vectors.
+The library now contains 97 editable SVG icons, including 10 L19 additions: smart keyboard, voice ring, reasoning knot, conversation sidebar, AI call, cleaning, charging, travel, helpful and not-helpful. Original IDs remain stable. Geometry is a manual fit, not official vectors.
 
 
 77 hand-drawn SVGs: 47 reference redraws and 30 style extensions. Shared 24×24 coordinates, default stroke 1.65, round caps and joins. Redraws fit observed contours; they are not official Symbol files. Functions whose labels are visible but whose glyphs are unconfirmed are classified as extensions.

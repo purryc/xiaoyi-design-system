@@ -276,5 +276,136 @@
       "sha256": "c6aa9c12d670e65b4edf4f391593cccdb08d44d51e583015f47ddbed17ab6a0a",
       "transformation": "Scene crop; supplied recording; no invented source photography"
     }
-  ]
+  ],
+  "visualReview": {
+    "zh": "7.0 增量更新 sheet、chip 与功能图标；伴随态、蓝紫光球和看世界保留。原有来源继续适用，不据手机录屏推断平板参数。",
+    "en": "7.0 incrementally updates sheets, chips and semantic icons. Companion mode, the blue-violet orb and vision remain available with their original evidence; phone footage does not establish tablet parameters.",
+    "iconEvidence": {
+      "times": [
+        27,
+        37,
+        75
+      ],
+      "zh": "紫色建议、橙红 Claw、青/粉技能与彩色智能体。操作图标仍为灰白。",
+      "en": "Violet suggestions, orange-red Claw, cyan/rose skills and colored agents. Utility icons remain neutral."
+    },
+    "colorSamples": [
+      {
+        "time": 37,
+        "surface": "tool-chip",
+        "rect": [
+          285,
+          846,
+          325,
+          860
+        ],
+        "median": "#1b1617"
+      },
+      {
+        "time": 37,
+        "surface": "input-dock",
+        "rect": [
+          380,
+          978,
+          480,
+          988
+        ],
+        "median": "#1f1f1f"
+      },
+      {
+        "time": 273,
+        "surface": "writing-base",
+        "rect": [
+          350,
+          1015,
+          480,
+          1040
+        ],
+        "median": "#26293a"
+      },
+      {
+        "time": 273,
+        "surface": "style-chip",
+        "rect": [
+          328,
+          1087,
+          365,
+          1097
+        ],
+        "median": "#3b3e4c"
+      },
+      {
+        "time": 273,
+        "surface": "requirement",
+        "rect": [
+          200,
+          1310,
+          230,
+          1320
+        ],
+        "median": "#2a283b"
+      },
+      {
+        "time": 292,
+        "surface": "writing-result",
+        "rect": [
+          575,
+          805,
+          608,
+          880
+        ],
+        "median": "#424148"
+      },
+      {
+        "time": 12,
+        "surface": "glass-composite",
+        "rect": [
+          575,
+          1020,
+          620,
+          1060
+        ],
+        "median": "#3d4b6f"
+      }
+    ],
+    "preview": "/reference/v7/L19-color-details.jpg",
+    "sha256": "2e455d5efe2cb7cac69f7380b764b9c3e349d81d35dde660e03670a1855d5c73",
+    "processing": {
+      "zh": "原始像素裁切拼板，仅选择不含账号、号码的区域；各裁切原坐标见 crops。",
+      "en": "Original-pixel crop board selecting areas without accounts or phone numbers; source rectangles are listed in crops."
+    },
+    "crops": [
+      {
+        "time": 37,
+        "rect": [
+          36,
+          490,
+          700,
+          900
+        ]
+      },
+      {
+        "time": 75,
+        "rect": [
+          25,
+          645,
+          520,
+          895
+        ]
+      },
+      {
+        "time": 273,
+        "rect": [
+          25,
+          1030,
+          680,
+          1340
+        ]
+      }
+    ],
+    "sampleMeaning": {
+      "zh": "sRGB 通道中位数，为录屏合成色。玻璃色受宿主影响，不能逆推出原始填充与透明度。",
+      "en": "Median sRGB channels of recorded composites. Host colors affect glass; these values do not recover native fill or opacity."
+    }
+  }
 }

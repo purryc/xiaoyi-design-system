@@ -1,7 +1,12 @@
 import { test, expect } from "@playwright/test";
-const tabs = (page) => page.locator(".xy-v7-flow-tabs").first();
-const route = (page, hash = "patterns", params = "") =>
-  page.goto(`/?design=v7&lang=en${params}#${hash}`);
+const tabs = (page) => page.locator(".xy-v7-flow-tabs").last();
+const route = async (page, hash = "patterns", params = "") => {
+  await page.goto(`/?design=v7&lang=en${params}#${hash}`);
+  if (hash === "motion")
+    await page
+      .getByRole("button", { name: "7.0 surface effects", exact: true })
+      .click();
+};
 for (const width of [1440, 390])
   for (const lang of ["zh", "en"])
     test(`v7 all routes ${lang} ${width}`, async ({ page }) => {
@@ -391,4 +396,86 @@ test("v7 language switch preserves a user draft and selected requirements", asyn
   await expect(sheet.getByLabel("Write an event plan")).toHaveValue(
     "My original draft 阅读笔记",
   );
+});
+
+for (const language of ["en", "zh"])
+  test(`current edition retains companion, vision and accepted orb in ${language}`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 950 });
+    await page.goto(`/?design=v7&lang=${language}#patterns`);
+    await tabs(page)
+      .getByRole("button", {
+        name: language === "en" ? "Companion mode" : "小艺伴随",
+        exact: true,
+      })
+      .click();
+    await expect(page.locator(".companion-demo")).toBeVisible();
+    await expect(page.locator(".companion-demo canvas").first()).toBeVisible();
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBeTruthy();
+    if (language === "en")
+      expect(await page.locator("main").innerText()).not.toMatch(
+        /[\u3400-\u9fff]/,
+      );
+    await tabs(page)
+      .getByRole("button", {
+        name: language === "en" ? "Look at the World" : "看世界",
+        exact: true,
+      })
+      .click();
+    await expect(page.locator(".vision-demo")).toBeVisible();
+    await page.goto(`/?design=v7&lang=${language}#motion`);
+    await expect(page.locator(".edge-lab")).toBeVisible();
+    await expect(page.locator(".tsl-frame canvas")).toBeVisible();
+    await expect(
+      page.getByLabel(language === "en" ? "Design edition" : "设计版本"),
+    ).toHaveValue("v7");
+  });
+
+test("semantic colors survive filtering, sidebar rendering and SVG downloads", async ({
+  page,
+  request,
+}) => {
+  await route(page);
+  await tabs(page)
+    .getByRole("button", { name: "Skills gallery", exact: true })
+    .click();
+  const gallery = page.locator(".xy-v7-skills");
+  await gallery.getByLabel("Search skills").fill("charging");
+  await expect(
+    gallery.locator('.xy-v7-skill-list [data-icon="v7-charge-color"]'),
+  ).toBeVisible();
+  await tabs(page)
+    .getByRole("button", { name: "Conversation", exact: true })
+    .click();
+  await expect(
+    page.locator('[data-icon="v7-claw-color"] path').first(),
+  ).toHaveAttribute("stroke", "#ee512e");
+  await page
+    .getByRole("button", { name: "Conversation sidebar", exact: true })
+    .click();
+  await expect(
+    page.locator('.xy-v7-sidebar [data-icon="v7-retouch-color"]'),
+  ).toBeVisible();
+  await expect(
+    page.locator('.xy-v7-sidebar [data-icon="v7-helper-color"]'),
+  ).toBeVisible();
+  expect(await page.locator(".xy-v7-sidebar").innerText()).not.toMatch(
+    /[\u3400-\u9fff]/,
+  );
+  await page
+    .getByRole("button", { name: "Xiaoyi", exact: true })
+    .press("Escape");
+  await expect(page.locator(".xy-v7-sidebar")).toHaveCount(0);
+  const svg = await (await request.get("/icons/v7-helper-color.svg")).text();
+  expect(svg).toContain('fill="#8dd6f2"');
+  expect(svg).toContain('fill="#efb9c3"');
+  await page.screenshot({
+    path: "qa/color-review/conversation-en.png",
+    fullPage: true,
+  });
 });

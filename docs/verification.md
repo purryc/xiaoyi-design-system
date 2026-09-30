@@ -120,6 +120,15 @@
 
 ---
 
+
+### 7.0 表面与能力延续修正 · 2026-09-30
+
+重新打开 L19 原片，核对 00:12、00:25、00:27、00:37、01:15、04:33、04:52；7 组像素中位数与不含个人信息的裁切板写入 `reference/v7-analysis.json.visualReview`。在当前版本恢复伴随态、看世界、原光球与边缘光入口；分开修正 sheet/chip 配色，补充 10 枚彩色功能 SVG，总计 97 枚。
+
+`npm run build`、`npm run check` 通过。**5197 开发页**通过原有 48 项浏览器用例及新增 3 项延续能力／颜色导出用例；**5198 生产预览**完整运行 **51/51**，无跳过及失败。新增检查覆盖 390 px 下中英文保留流程、过滤后的技能配色对应、彩色侧栏及多色 SVG 导出；原有用例继续覆盖 WebGPU/WebGL2 透明边缘及旧版回归。已在用户实际使用的 5197 内置浏览器中查看对话 chip 与帮写 sheet。
+
+原 shader 文件、已认可的光球及边缘光参数未改。取样为录屏合成色，不是恢复出的原生 token；图标为人工拟合。以上为本地浏览器证据，不等于华为真机验证。
+
 ## English
 
 ### 3.0 / user-labelled 7.0 — 2026-09-30
@@ -213,3 +222,11 @@ There are 802 English catalog entries; all ten Markdown files include both langu
 Vision captions, camera facing, mute, camera off, hang-up and restart passed in both languages. Three full reference figures and two crops passed hash verification; they are not live capture. The library now contains 77 icons (47 redraws, 30 extensions), with CRC checks passing for all 80 ZIP members. All 18 original-media hashes and 18 web-source records passed.
 
 Desktop English motion/vision and mobile sliders/vision were visually reviewed. Known fast-motion fitting differences and the Three.js bundle warning remain documented. Initial camera tests found duplicate old/new controls in the DOM; mutually exclusive rendering fixed them. Transparency tests read the browser-composited PNG instead of a discarded GPU drawing buffer and also require visible orb pixels, preventing an empty canvas from falsely passing.
+
+### 7.0 surface and continuity correction · 2026-09-30
+
+Reopened the original L19 recording and inspected 00:12, 00:25, 00:27, 00:37, 01:15, 04:33 and 04:52. Seven source-pixel median color samples and a privacy-safe crop board are recorded in `reference/v7-analysis.json.visualReview`. Restored direct current-edition access to companion mode, vision, the accepted orb and edge light; refined separate sheet/chip colors and added 10 colored semantic SVGs (97 total).
+
+`npm run build` and `npm run check` passed. Development at **5197** passed the existing 48 browser cases and 3 additional continuity/color-export cases. Production preview at **5198** passed **51/51** in one full run with no skipped or failed cases. Added checks cover English/Chinese retained flows at 390 px, skill badge identity after filtering, colored sidebar icons and multi-color SVG export. Existing tests cover transparent TSL borders on WebGPU/WebGL2 and legacy regressions. The actual in-app 5197 page was visually inspected for the conversation chips and writing sheet.
+
+Original shader files and accepted orb/edge parameters are unchanged. Color measurements describe recorded composites, not recovered native tokens. Icon paths remain manual approximations. This is local browser evidence, not a physical Huawei-device test.

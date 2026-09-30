@@ -21,16 +21,23 @@ import {
 import analysis from "../../reference/v7-analysis.json";
 import tokens from "../../tokens/xiaoyi-v7.tokens.json";
 import { ControlCatalog } from "../controls/ControlCatalog";
+import { CompanionDemo } from "../components";
+import { MotionLab } from "../motion/MotionLab";
+import { Icon } from "../icons/Icon";
 import { VisionDemo } from "../vision/VisionDemo";
 const flowKeys = [
   "assistant",
+  "companion",
+  "vision",
   "conversation",
   "skills",
   "selection",
   "writing",
 ];
 function Flow({ kind, onFlow, initialPrompt }) {
-  return kind === "vision" ? (
+  return kind === "companion" ? (
+    <CompanionDemo />
+  ) : kind === "vision" ? (
     <VisionDemo />
   ) : kind === "assistant" ? (
     <AssistantDemo />
@@ -63,19 +70,32 @@ export function V7Showcase() {
       <div className="xy-v7-flow-tabs" role="group" aria-label={t("flows")}>
         {flowKeys.map((k) => (
           <button key={k} aria-pressed={flow === k} onClick={() => change(k)}>
-            {t(k)}
+            {t(k === "vision" ? "capture" : k)}
           </button>
         ))}
       </div>
-      <div className="xy-v7-layout">
-        <div className="xy-v7-theme" key={flow}>
+      <div
+        className={`xy-v7-layout ${["companion", "vision"].includes(flow) ? "is-retained" : ""}`}
+      >
+        <div
+          className={
+            ["companion", "vision"].includes(flow)
+              ? "xy-v7-retained"
+              : "xy-v7-theme"
+          }
+          key={flow}
+        >
           <Flow kind={flow} onFlow={change} initialPrompt={prompt} />
         </div>
         <aside className="xy-v7-notes">
           <h2>{t(flow === "vision" ? "capture" : flow)}</h2>
           <div className="xy-v7-note-card">
             <b>
-              L19 ·{" "}
+              {flow === "companion"
+                ? t("companionEvidence")
+                : flow === "vision"
+                  ? t("visionEvidence")
+                  : "L19 · "}
               {
                 {
                   assistant: "00:06–00:25",
@@ -86,27 +106,40 @@ export function V7Showcase() {
                 }[flow]
               }
             </b>
-            <p>{t("timingNote")}</p>
-          </div>
-          <div className="xy-v7-note-card">
-            <b>{t("observed")}</b>
             <p>
-              {
-                analysis.segments.find((s) => s.id === flow)?.[
-                  language === "en" ? "en" : "zh"
-                ]
-              }
+              {t(
+                ["companion", "vision"].includes(flow)
+                  ? "continuityNote"
+                  : "timingNote",
+              )}
             </p>
+          </div>
+          {["companion", "vision"].includes(flow) ? (
             <p>{t("permissionNote")}</p>
-          </div>
-          <div className="xy-v7-note-card">
-            <b>{t("unknown")}</b>
-            <p>{t("unobserved")}</p>
-          </div>
-          <a href="#reference">{t("openSources")} ↗</a>
-          <a href="/downloads/xiaoyi-v7.tokens.json" download>
-            Tokens ↓
-          </a>
+          ) : (
+            <>
+              <div className="xy-v7-note-card">
+                <b>{t("observed")}</b>
+                <p>
+                  {
+                    analysis.segments.find((s) => s.id === flow)?.[
+                      language === "en" ? "en" : "zh"
+                    ]
+                  }
+                </p>
+                {flow === "conversation" && <p>{t("agentNote")}</p>}
+                <p>{t("permissionNote")}</p>
+              </div>
+              <div className="xy-v7-note-card">
+                <b>{t("unknown")}</b>
+                <p>{t("unobserved")}</p>
+              </div>
+              <a href="#reference">{t("openSources")} ↗</a>
+              <a href="/downloads/xiaoyi-v7.tokens.json" download>
+                Tokens ↓
+              </a>
+            </>
+          )}
         </aside>
       </div>
     </>
@@ -462,10 +495,85 @@ export function V7MotionLab() {
     </>
   );
 }
+export function V7MotionWorkspace({ onOpen }) {
+  const t = useV7Copy(),
+    [group, setGroup] = useState("retained");
+  return (
+    <>
+      <div
+        className="xy-v7-flow-tabs"
+        role="group"
+        aria-label={t("motionTitle")}
+      >
+        {[
+          ["retained", "retainedMotion"],
+          ["new", "newMotion"],
+        ].map(([id, key]) => (
+          <button
+            key={id}
+            aria-pressed={group === id}
+            onClick={() => setGroup(id)}
+          >
+            {t(key)}
+          </button>
+        ))}
+      </div>
+      <p>{t("continuityNote")}</p>
+      {group === "retained" ? <MotionLab onOpen={onOpen} /> : <V7MotionLab />}
+    </>
+  );
+}
+export function V7SurfaceReview() {
+  const t = useV7Copy();
+  return (
+    <section className="xy-v7-surface-review">
+      <h2>{t("colorReview")}</h2>
+      <p>{t("colorReviewNote")}</p>
+      <div className="xy-v7-material-grid">
+        <figure>
+          <img src="/reference/v7/L19-answer.jpg" alt="L19 00:24" />
+          <figcaption>Sheet · L19 00:24</figcaption>
+        </figure>
+        <figure>
+          <img src="/reference/v7/L19-writing-options.jpg" alt="L19 04:33" />
+          <figcaption>Sheet / chip · L19 04:33</figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/reference/v7/L19-color-details.jpg"
+            alt={t("iconColors")}
+          />
+          <figcaption>Icon / chip · L19 00:37 / 01:15</figcaption>
+        </figure>
+      </div>
+      <p>{t("iconColorNote")}</p>
+      <div className="xy-v7-color-icons">
+        {[
+          "v7-news-color",
+          "v7-sparkles-color",
+          "v7-claw-color",
+          "v7-clean-color",
+          "v7-charge-color",
+          "v7-settings-color",
+          "v7-car-color",
+          "v7-retouch-color",
+          "v7-helper-color",
+          "v7-time-color",
+        ].map((name) => (
+          <a key={name} href={`/icons/${name}.svg`} download>
+            <Icon name={name} size={32} />
+            <code>{name}</code>
+          </a>
+        ))}
+      </div>
+    </section>
+  );
+}
 export function V7Foundations() {
   const t = useV7Copy();
   return (
     <>
+      <V7SurfaceReview />
       <div className="xy-v7-tokens">
         {Object.entries(tokens.values).map(([name, item]) => (
           <div key={name} className="xy-v7-token">
@@ -498,7 +606,7 @@ export function V7Foundations() {
     </>
   );
 }
-export function V7Page({ page, controlRequest, legacyReference }) {
+export function V7Page({ page, controlRequest, legacyReference, onOpen }) {
   const t = useV7Copy(),
     titles = {
       overview: "heading",
@@ -516,7 +624,7 @@ export function V7Page({ page, controlRequest, legacyReference }) {
       <p>{t(page === "overview" ? "intro" : "evidence")}</p>
       {["overview", "components", "patterns"].includes(page) && <V7Showcase />}
       {page === "foundations" && <V7Foundations />}
-      {page === "motion" && <V7MotionLab />}
+      {page === "motion" && <V7MotionWorkspace onOpen={onOpen} />}
       {page === "reference" && (
         <>
           <V7Evidence />
@@ -528,17 +636,11 @@ export function V7Page({ page, controlRequest, legacyReference }) {
       )}
       {page === "components" && (
         <>
+          <V7SurfaceReview />
           <h2>{t("newControls")}</h2>
           <p>{t("adaptation")}</p>
           <ControlCatalog request={controlRequest} />
         </>
-      )}
-      {page === "patterns" && (
-        <details>
-          <summary>{t("capture")}</summary>
-          <p>{t("legacyVision")}</p>
-          <VisionDemo />
-        </details>
       )}
       {page === "handoff" && (
         <>

@@ -37,7 +37,7 @@ export function ToolChips() {
     <div className="xy-v7-tools">
       {[
         ["deep", "v7-reasoning"],
-        ["claw", "sparkles"],
+        ["claw", "v7-claw-color"],
         ["retouch", "image"],
         ["capture", "camera"],
       ].map(([key, icon]) => (
@@ -489,10 +489,59 @@ export function AssistantDemo() {
     </div>
   );
 }
+export function ConversationSidebar({ onClose, onHome }) {
+  const t = useV7Copy();
+  return (
+    <div
+      className="xy-v7-sidebar-layer"
+      onKeyDown={(e) => {
+        if (e.key === "Escape") onClose();
+      }}
+    >
+      <button
+        className="xy-v7-sidebar-dismiss"
+        aria-label={t("close")}
+        onClick={onClose}
+      />
+      <aside className="xy-v7-sidebar" aria-label={t("sidebar")}>
+        <header>
+          <V7IconButton name="v7-menu" label={t("close")} onClick={onClose} />
+        </header>
+        <button className="xy-v7-sidebar-home" onClick={onHome} autoFocus>
+          <V7Emblem /> Xiaoyi
+        </button>
+        <div className="xy-v7-sidebar-row">
+          <Icon name="sparkles" />
+          {t("memo")}
+        </div>
+        <div className="xy-v7-sidebar-row">
+          <Icon name="grid-four" />
+          {t("automation")}
+        </div>
+        <div className="xy-v7-sidebar-row">
+          <Icon name="v7-claw-color" style={{ filter: "grayscale(1)" }} />{" "}
+          {t("claw")}
+        </div>
+        <h3>{t("agents")}</h3>
+        {[
+          ["retouch", "agentRetouch"],
+          ["helper", "agentHelp"],
+          ["time", "agentTime"],
+        ].map(([icon, label]) => (
+          <div className="xy-v7-sidebar-row" key={icon}>
+            <Icon name={`v7-${icon}-color`} size={25} />
+            {t(label)}
+          </div>
+        ))}
+      </aside>
+    </div>
+  );
+}
 export function ConversationDemoV7({ initialPrompt = "" }) {
   const t = useV7Copy(),
     r = useResponse(),
     [muted, setMuted] = useState(true),
+    [sidebar, setSidebar] = useState(false),
     answer = t("answer");
   useEffect(() => {
     if (initialPrompt) r.start(initialPrompt);
@@ -503,7 +552,11 @@ export function ConversationDemoV7({ initialPrompt = "" }) {
   return (
     <div className="xy-v7-phone xy-v7-conversation">
       <header>
-        <V7IconButton name="v7-menu" label={t("back")} onClick={r.reset} />
+        <V7IconButton
+          name="v7-menu"
+          label={t("sidebar")}
+          onClick={() => setSidebar(true)}
+        />
         <b>Xiaoyi</b>
         <V7IconButton
           name="v7-call"
@@ -526,7 +579,16 @@ export function ConversationDemoV7({ initialPrompt = "" }) {
           }
         />
       </header>
-      <V7Light effect="writing" />
+      {sidebar && (
+        <ConversationSidebar
+          onClose={() => setSidebar(false)}
+          onHome={() => {
+            r.reset();
+            setSidebar(false);
+          }}
+        />
+      )}
+      <V7Light effect="writing" parameters={{ intensity: 0.25 }} />
       <div className="xy-v7-conversation-body">
         {r.status === "idle" ? (
           <>
@@ -538,7 +600,12 @@ export function ConversationDemoV7({ initialPrompt = "" }) {
             <div className="xy-v7-suggestions">
               {["prompt1", "prompt2", "prompt3"].map((k) => (
                 <button key={k} onClick={() => r.start(t(k))}>
-                  <Icon name="sparkles" size={20} />
+                  <Icon
+                    name={
+                      k === "prompt1" ? "v7-news-color" : "v7-sparkles-color"
+                    }
+                    size={20}
+                  />
                   {t(k)}
                 </button>
               ))}
@@ -582,12 +649,17 @@ export function ConversationDemoV7({ initialPrompt = "" }) {
     </div>
   );
 }
-export function SkillCard({ title, subtitle, icon = "sparkles", onTry }) {
+export function SkillCard({
+  title,
+  subtitle,
+  icon = "v7-sparkles-color",
+  onTry,
+}) {
   const t = useV7Copy();
   return (
     <div className="xy-v7-skill-row">
       <span className="xy-v7-skill-symbol">
-        <Icon name={icon} />
+        <Icon name={icon} size={37} />
       </span>
       <span>
         <b>{title}</b>
@@ -664,7 +736,14 @@ export function SkillsGallery({ onTry }) {
             key={k}
             title={t(k)}
             subtitle={t(category)}
-            icon={["v7-clean", "v7-charge", "settings", "v7-car"][i]}
+            icon={
+              {
+                skill1: "v7-clean-color",
+                skill2: "v7-charge-color",
+                skill3: "v7-settings-color",
+                skill4: "v7-car-color",
+              }[k]
+            }
             onTry={() => onTry?.(t(k))}
           />
         ))}
@@ -946,7 +1025,11 @@ export function WritingSheetV7({
       }}
       data-status={actualStatus}
     >
-      <V7Light effect="writing" time={frameTime} />
+      <V7Light
+        effect="writing"
+        time={frameTime}
+        parameters={{ intensity: actualStatus === "idle" ? 0.18 : 0.32 }}
+      />
       <button
         className="xy-v7-handle"
         aria-label={t(expanded ? "collapse" : "expand")}
@@ -997,7 +1080,7 @@ export function WritingSheetV7({
                   setDraft(t(k));
                 }}
               >
-                {t(k)}
+                <span>{t(k)}</span>
               </button>
             ))}
             <V7IconButton

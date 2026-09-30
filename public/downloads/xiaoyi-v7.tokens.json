@@ -17,12 +17,12 @@
       "source": "L19"
     },
     "glass": {
-      "$value": "#303034",
+      "$value": "#242426",
       "confidence": "estimate",
       "source": "L19"
     },
     "writing": {
-      "$value": "#27283d",
+      "$value": "#27293a",
       "confidence": "estimate",
       "source": "L19"
     },
@@ -95,6 +95,41 @@
       "$value": "240ms",
       "confidence": "estimate",
       "source": "L19"
+    },
+    "tool-chip": {
+      "$value": "#20202080",
+      "confidence": "estimate",
+      "source": "L19 00:37 / 04:33 / 04:52"
+    },
+    "tool-stroke": {
+      "$value": "#ffffff2b",
+      "confidence": "estimate",
+      "source": "L19 00:37 / 04:33 / 04:52"
+    },
+    "style-chip": {
+      "$value": "#3b3e4c",
+      "confidence": "estimate",
+      "source": "L19 00:37 / 04:33 / 04:52"
+    },
+    "requirement-chip": {
+      "$value": "#2a283b",
+      "confidence": "estimate",
+      "source": "L19 00:37 / 04:33 / 04:52"
+    },
+    "dock": {
+      "$value": "#202020cc",
+      "confidence": "estimate",
+      "source": "L19 00:37 / 04:33 / 04:52"
+    },
+    "writing-output": {
+      "$value": "#343337",
+      "confidence": "estimate",
+      "source": "L19 00:37 / 04:33 / 04:52"
+    },
+    "suggestion-chip": {
+      "$value": "#302c2cc9",
+      "confidence": "estimate",
+      "source": "L19 00:37 / 04:33 / 04:52"
     }
   }
 }

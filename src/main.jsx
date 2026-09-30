@@ -1205,6 +1205,7 @@ function App() {
           {design === "v7" && page !== "icons" ? (
             <V7Page
               page={page}
+              onOpen={common.onOpen}
               controlRequest={controlRequest}
               legacyReference={<References {...common} />}
             />

@@ -77,6 +77,21 @@ The laboratory supports effect selection, four host backgrounds, pause/seek, par
 
 Run `npm run build`, `npm run check`, `npm test` against the actual development server at 5197, then repeat browser checks against production preview with `PLAYWRIGHT_BASE_URL`. Tests cover edition/language precedence, all routes, mobile overflow, mock lifecycle, writing insertion, selection return paths, both GPU backends, alpha borders and reduced motion. Read `docs/verification.md` for measured results and limitations. Updated source, bilingual docs, compact redacted evidence, tokens and icons are committed to the existing GitHub repository; original videos, installed dependencies, builds and QA output are excluded. This update does not deploy a site or upload a Drive archive.
 
+### Surface and continuity review · 2026-09-30
+
+The current edition is an incremental update. Companion mode and Look at the World are first-class tabs alongside the L19 flows. The motion page opens the accepted blue-violet orb and companion edge-light laboratory; a separate tab contains the L19 surface effects and small multicolor emblem. User-confirmed continuity retains the original evidence IDs and parameters; it does not establish tablet geometry or full orb motion from this phone recording.
+
+Reinspection at 00:12, 00:25, 00:27, 00:37, 01:15, 04:33 and 04:52 distinguishes these treatments:
+
+- The floating sheet uses neutral translucent dark glass and independent backdrop blur. The host changes the composite color, so a sampled blue region is not a blue fill token.
+- Tool chips have dark translucent fills and subtle light outlines. Writing-type chips have a filled violet-gray surface. The selected writing type uses blue-to-violet-to-pink text, while requirement selectors remain outlined.
+- The writing options sheet is blue-violet gray; the generated-result sheet shifts to a warmer neutral gray with a separate restrained light field. It must not use one saturated purple fill in every state.
+- Semantic icons include violet suggestions, orange-red Claw, cyan/rose skill badges and colored agent avatars. Back, mute and other utility icons remain neutral. The sidebar can be opened from Conversation; agent rows are appearance specimens without fabricated agent results.
+
+Seven median sRGB sample rectangles, their original-pixel coordinates and timestamps are in `reference/v7-analysis.json.visualReview`. Examples: writing base `#26293a`, style chip `#3b3e4c`, requirement interior `#2a283b`, input dock `#1f1f1f`, result interior `#424148`. These are measured recorded composites; CSS opacity, blur and underlying fills remain estimates. The compact crop board selects only areas without account or phone details. Original media remains untouched.
+
+Ten additional `v7-*-color` SVGs store colors per path. React, individual downloads, the sprite and the full icon ZIP preserve these colors. Their geometry is an editable reconstruction; at small source sizes no pixel-identical original vector is claimed. Existing monochrome IDs and their tint controls remain stable. Skill colors are keyed by skill ID, so filtering cannot change a skill's badge.
+
 ---
 
 ## 中文
@@ -136,3 +151,18 @@ Run `npm run build`, `npm run check`, `npm test` against the actual development 
 ### 验证与交付
 
 执行构建、完整性/双语检查、5197 开发页面浏览器测试，再用 `PLAYWRIGHT_BASE_URL` 指向生产预览复验。覆盖版本语言优先级、全页面、移动溢出、取消、帮写回填、选区返回、两种 GPU 后端、透明边界和减少动态效果。实测结果见 `docs/verification.md`。同步现有 GitHub 的内容包括源码、双语文档、紧凑遮蔽素材、变量与图标；不包含原视频、依赖目录、构建和 QA，本轮不部署、不上传 Drive。
+
+### 表面与能力延续复核 · 2026-09-30
+
+当前版本采用增量更新：伴随态和看世界与 L19 流程并列；动效页默认打开已认可的蓝紫光球及伴随边缘光实验室，另一个页签展示 L19 表面光效与小尺寸多彩标识。按用户确认保留原有能力，沿用原始来源及参数；手机录屏不用于证明平板布局或完整光球运动。
+
+复看 00:12、00:25、00:27、00:37、01:15、04:33、04:52 后区分：
+
+- 浮动 sheet 使用中性深灰透明玻璃与独立背景模糊；宿主改变合成颜色，不能把某块蓝色采样认定为蓝色填充 token。
+- 工具 chip 是深色透明填充及浅色细描边；帮写类型 chip 是灰紫实底，选中文字为蓝—紫—粉渐变，要求选择器继续使用描边。
+- 帮写配置阶段偏蓝紫灰，生成结果阶段偏暖中性灰，并有独立弱光场。各阶段不共用一块浓紫色。
+- 功能图标包含紫色建议、橙红 Claw、青／粉技能及彩色智能体头像；返回和静音等操作图标保持灰白。全屏对话可以展开侧栏；智能体行只展示外观，不虚构其结果。
+
+`reference/v7-analysis.json.visualReview` 保存 7 个 sRGB 通道中位数、原片像素矩形与时间。示例：帮写底色 `#26293a`、类型 chip `#3b3e4c`、要求内部 `#2a283b`、输入条 `#1f1f1f`、结果内容区 `#424148`。它们是录屏合成色的实测值，CSS 透明度、模糊与底色仍为估值。紧凑裁切板只选择不含账号与电话号码的区域，原视频不变。
+
+新增 10 枚 `v7-*-color` SVG，颜色写在独立路径中，React、单枚导出、sprite 和完整 ZIP 都保留颜色。图形可编辑但属于小尺寸原片的拟合重绘，不宣称官方原始矢量或逐像素一致。原单色图标 ID 和调色控件不变；技能配色与技能 ID 绑定，过滤后不会错配。
